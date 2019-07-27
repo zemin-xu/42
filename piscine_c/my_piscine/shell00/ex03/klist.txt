@@ -1,0 +1,5 @@
+Credentials cache: API:BD15827C-B8FD-4F8B-811D-73813CF8ADBE
+        Principal: zexu@42.FR
+
+  Issued                Expires             Flags    Principal
+Jun  3 13:34:57 2019  Jun 10 13:34:47 2019  FPIA   krbtgt/42.FR@42.FR

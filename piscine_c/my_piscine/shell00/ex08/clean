@@ -1,0 +1,1 @@
+find . -type f -name "*~" -print -and -delete -o -type f -name "#*#" -print -and -delete
