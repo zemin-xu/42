@@ -1,7 +1,104 @@
 #include <stdio.h>
 #include "libft.h"
-#include <stdlib.h>
-#include <string.h>
+
+void	check_create_elem(void)
+{
+	int		data1 = 42;
+	char	*data2 = "hello";
+	void	*p_data1 = (void *)&data1;
+	void	*p_data2 = (void *)&data2;
+
+	t_list	*new_list1 = ft_create_elem(p_data1);
+	t_list	*new_list2 = ft_create_elem(p_data2);
+	printf("[+] CREATE_ELEM [+]\n");
+	printf("[-] mine: %d || origin: %d [-]\n",
+			*((int *)new_list1->data), data1);
+	printf("[-] mine: %s || origin: %s [-]\n",
+			*((char	**)new_list2->data), data2);
+	printf("[+] END OF CREATE_ELEM [+]\n\n");
+}
+
+void	check_list_push_front(void)
+{
+	int		data1 = 42;
+	int		data2 = 84;
+	char	*data3 = "hello";
+	void	*p_data1 = (void *)&data1;
+	void	*p_data2 = (void *)&data2;
+	void	*p_data3 = (void *)&data3;
+
+	t_list	*head = ft_create_elem(p_data1);
+	ft_list_push_front(&head, p_data2);
+
+	t_list	*head3 = NULL;
+	ft_list_push_front(&head3, p_data3);
+
+	printf("[+] LIST_PUSH_FRONT [+]\n");
+	printf("[-] mine: %d || origin: %d [-]\n",
+			*((int *)head->data), data2);
+	printf("[-] Test with NULL LIST [-]\n");
+	printf("[-] mine: %s || origin: %s [-]\n",
+			*((char	**)head3->data), data3);
+	printf("[+] END OF LIST_PUSH_FRONT [+]\n\n");
+}
+
+void	check_list_push_back(void)
+{
+	int		data1 = 42;
+	int		data2 = 84;
+	int		data3 = 27;
+	char	*data4 = "hello";
+	void	*p_data1 = (void *)&data1;
+	void	*p_data2 = (void *)&data2;
+	void	*p_data3 = (void *)&data3;
+	void	*p_data4 = (void *)&data4;
+
+	t_list	*head = ft_create_elem(p_data1);
+	ft_list_push_front(&head, p_data2);
+	ft_list_push_back(&head, p_data3);
+
+	t_list	*head4 = NULL;
+	ft_list_push_back(&head4, p_data4);
+
+	printf("[+] LIST_PUSH_BACK [+]\n");
+	printf("[-] mine: %d || origin: %d [-]\n",
+			*((int *)head->next->next->data), data3);
+	printf("[-] Test with NULL LIST [-]\n");
+	printf("[-] mine: %s || origin: %s [-]\n",
+			*((char	**)head4->data), data4);
+	printf("[+] END OF LIST_PUSH_BACK [+]\n\n");
+}
+
+void	check_list_size(void)
+{
+	int		data1 = 42;
+	int		data2 = 84;
+	int		data3 = 27;
+	char	*data4 = "hello";
+	void	*p_data1 = (void *)&data1;
+	void	*p_data2 = (void *)&data2;
+	void	*p_data3 = (void *)&data3;
+	void	*p_data4 = (void *)&data4;
+
+	t_list	*head = ft_create_elem(p_data1);
+	ft_list_push_front(&head, p_data2);
+	ft_list_push_back(&head, p_data3);
+
+	t_list	*head4 = NULL;
+	ft_list_push_back(&head4, p_data4);
+
+	t_list	*head5 = NULL;
+
+	printf("[+] LIST_SIZE [+]\n");
+	printf("[-] mine: %d || origin: 3 [-]\n",
+			ft_list_size(head));
+	printf("[-] mine: %d || origin: 1 [-]\n",
+			ft_list_size(head4));
+	printf("[-] Test with NULL LIST [-]\n");
+	printf("[-] mine: %d || origin: 0 [-]\n",
+			ft_list_size(head5));
+	printf("[+] END OF LIST_SIZE [+]\n\n");
+}
 
 void	check_memset(void)
 {
@@ -129,8 +226,6 @@ void	check_memcmp(void)
 	char	str4[17] = "abCdef";
 	char	str5[1] = "";
 	char	str6[1] = "";
-	char	*str7;
-	char	*str8;
 	int		int1[2] = {21, 42};
 	int		int2[2] = {21, 42};
 
@@ -145,8 +240,6 @@ void	check_memcmp(void)
 	printf("[-] Test with EMPTY STRING [-]\n");
 	printf("[-] mine: %d || origin: %d || ex : %s && %s [-]\n",
 			ft_memcmp(str5, str6, 1), memcmp(str5, str6, 1), str5, str6); 
-	printf("[-] mine: %d || origin: %d || ex : %s && %s [-]\n",
-			ft_memcmp(str7, str8, 0), memcmp(str7, str8, 0), str7, str8); 
 	printf("[+] END OF MEMCMP [+]\n\n");
 }
 
@@ -172,6 +265,7 @@ void	check_strmap(void)
 	char	(*func)(char) = check_strmap_inverse_alpha;
 
 	printf("[+] STRMAP [+]\n");
+	printf("[-] The function here will inverse the alphabet [-]\n");
 	printf("[-] mine: %s || ex : %s [-]\n", ft_strmap(str1, func), str1);
 	printf("[-] Test with EMPTY STRING [-]\n");
 	printf("[-] mine: %s || ex : %s [-]\n", ft_strmap(str2, func), str2);
@@ -185,6 +279,8 @@ void	check_strmapi(void)
 	char	(*func)(unsigned int, char) = check_strmapi_inverse_alpha;
 
 	printf("[+] STRMAPI [+]\n");
+	printf("[-] The function here will inverse the alphabet [-]\n");
+	printf("[-] As well as adding its index value [-]\n");
 	printf("[-] mine: %s || ex : %s [-]\n", ft_strmapi(str1, func), str1);
 	printf("[-] Test with EMPTY STRING [-]\n");
 	printf("[-] mine: %s || ex : %s [-]\n", ft_strmapi(str2, func), str2);
@@ -385,9 +481,14 @@ int     main(int argc, char **argv)
 {
 
 	/*
+	check_create_elem();
+	check_list_push_front();
+	check_list_push_back();
+
 	check_strlen();
 	check_strcmp();
 	check_strncmp();
+
 	check_memset();
 	check_bzero();
 	check_memcpy();
@@ -400,7 +501,8 @@ int     main(int argc, char **argv)
 	check_strequ();
 	check_strnequ();
 	check_strtrim();
+	check_memcmp();
 	*/
 
-	check_memcmp();
+	check_list_size();
 }

@@ -1,6 +1,26 @@
+#ifndef LIBFT_H
+# define LIBFT_H
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+
+typedef	struct		s_list
+{
+	struct s_list	*next;
+	void			*data;
+}					t_list;
+
+t_list		*ft_create_elem(void *data);
+int			ft_list_size(t_list *begin_list);
+void		ft_list_push_back(t_list **begin_list, void *data);
+void		ft_list_push_front(t_list **begin_list, void *data);
+t_list		*ft_list_last(t_list *begin_list);
+t_list		*ft_list_push_params(int ac, char **av);
+void		ft_list_clear(t_list **begin_list);
+t_list		*ft_list_at(t_list *begin_list, unsigned int nbr);
+void		ft_list_reverse(t_list **begin_list);
+void		ft_list_foreach(t_list *begin_list, void (*f)(void *));
 
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_bzero(void *b, size_t len);
@@ -55,3 +75,5 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char const *s, int fd);
 void		ft_putendl_fd(char const *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
+
+#endif
