@@ -1,38 +1,37 @@
+#include "libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef			struct s_stack
+typedef				struct s_stack
 {
-	int			top;
+	t_list			*top;
 	unsigned int	size;
-	int			*array;
-}				t_stack;
+}					t_stack;
 
-t_stack			*create_stack(unsigned int size)
+t_stack				*init_stack(int *array)
 {
-	t_stack 	*stack;
+	t_stack			*p_stack;
+	unsigned int	i;
 
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	stack->size = size;
-	stack->top = -1;
-	stack->array = (int*)malloc(stack->size *sizeof(int));
-	return stack;
+	if((p_stack = (t_stack *)malloc(sizeof(t_stack))) == NULL)
+		return (NULL);
+	p_stack->size = sizeof(array) / sizeof(int) + 1;
+	ft_putnbr((int)p_stack->size);
+	i = 0;
+	while (i < p_stack->size)
+	{
+		ft_list_push_front(&(p_stack->top), (array + i));
+		i++;
+	}
+	return (p_stack);
 }
 
-void			push(t_stack *stack, int item)
-{
-	stack->array[++stack->top] = item;
-	printf("%d pushed to stack\n", item);
-}
 
 int				main()
 {
-	t_stack *stack = create_stack(10);
-	push(stack, 10);
-	push(stack, 20);
-	push(stack, 30);
-	printf("%d %d %d", stack->array[0], stack->array[1],
-			stack->array[2]);
+	int			array[3] = {10, 20, 30};
+	t_stack *stack = init_stack(array);
+	printf("%d", *(int *)stack->top->data);
 
 	return 0;
 }
