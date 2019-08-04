@@ -372,6 +372,28 @@ void	check_strtrim(void)
 	printf("[+] END OF STRTRIM [+]\n\n");
 }
 
+void	check_itoa(void)
+{
+	int int1 = 107;
+	int int2 = 0;
+	int int3 = -2147483648;
+	int int4 = -5;
+
+
+	printf("[+] ITOA [+]\n");
+
+	printf("[-] mine: %s || ex : %d [-]\n",
+			ft_itoa(int1), int1);
+	printf("[-] mine: %s || ex : %d [-]\n",
+			ft_itoa(int2), int2);
+	printf("[-] mine: %s || ex : %d [-]\n",
+			ft_itoa(int3), int3);
+	
+	printf("[-] Test with EMPTY STRING [-]\n");
+
+	printf("[+] END OF ITOA [+]\n\n");
+}
+
 void	check_strlen(void)
 {
 	char	str[5] = "abcd";
@@ -388,23 +410,30 @@ void	check_strlen(void)
 			(int)strlen(""), (int)strlen(""));
 	printf("[+] END OF STRLEN [+]\n\n");
 }
-void	check_strcmp(void)
-{
-	char	str[5] = "abcd";
-	char	str2[3] = "op";
 
-	printf("[+] STRCMP [+]\n");
-	printf("[-] mine: %d || origin: %d : s1: %s|| s2:%s[-]\n",
-			ft_strcmp(str, str2), strcmp(str, str2), str, str2);
-	printf("[-] mine: %d || origin: %d : s1: %s|| s2:%s[-]\n",
-			ft_strcmp("wher", "where"), strcmp("wher", "where"), "wher", "where");
-	printf("[-] mine: %d || origin: %d : s1: %s|| s2:%s[-]\n",
-			ft_strcmp("where", "wher"), strcmp("where", "wher"), "where", "wher");
+void	check_strstr(void)
+{
+	char	str1[5] = "abcd";
+	char	str2[3] = "bc";
+	char	str3[9] = "hehecett";
+	char	str4[5] = "hece";
+	char	str5[6] = "where";
+	char	str6[5] = "erea";
+
+	printf("[+] STRSTR [+]\n");
+	printf("[-] mine: %s || origin: %s : s1: %s|| s2:%s || compare: %d[-]\n",
+			ft_strstr(str1, str2), strstr(str1, str2), str1, str2,
+			strcmp(ft_strstr(str1, str2), strstr(str1, str2)));
+	printf("[-] mine: %s || origin: %s : s1: %s|| s2:%s || compare: %d[-]\n",
+			ft_strstr(str3, str4), strstr(str3, str4), str3, str4,
+			strcmp(ft_strstr(str3, str4), strstr(str3, str4)));
+	printf("[-] origin:  : s1: %s || s2: %s || result : %s[-]\n",
+			str5, str6, ((ft_strstr(str5, str6) == NULL) ? "NULL" : "NOT NULL"));
 
 	printf("[-] Test with EMPTY STRING [-]\n");
-	printf("[-] mine: %d || origin: %d : s1: %s|| s2:%s[-]\n",
-			ft_strcmp("", ""), strcmp("", ""), "", "");
-	printf("[+] END OF STRCMP [+]\n");
+	printf("[-] origin:  : s1: %s || s2: %s || result : %s[-]\n",
+			"", "", ((ft_strstr("", "") == NULL) ? "NULL" : "NOT NULL"));
+	printf("[+] END OF STRSTR [+]\n");
 }
 
 
@@ -484,6 +513,7 @@ int     main(int argc, char **argv)
 	check_create_elem();
 	check_list_push_front();
 	check_list_push_back();
+	check_list_size();
 
 	check_strlen();
 	check_strcmp();
@@ -502,7 +532,8 @@ int     main(int argc, char **argv)
 	check_strnequ();
 	check_strtrim();
 	check_memcmp();
+	check_itoa();
 	*/
 
-	check_list_size();
+	check_strstr();
 }
