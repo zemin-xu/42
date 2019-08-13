@@ -100,6 +100,143 @@ void	check_list_size(void)
 	printf("[+] END OF LIST_SIZE [+]\n\n");
 }
 
+void	check_list_at(void)
+{
+	int		data1 = 42;
+	int		data2 = 84;
+	int		data3 = 27;
+	char	*data4 = "hello";
+	void	*p_data1 = (void *)&data1;
+	void	*p_data2 = (void *)&data2;
+	void	*p_data3 = (void *)&data3;
+	void	*p_data4 = (void *)&data4;
+
+	t_list	*head = ft_create_elem(p_data1);
+	ft_list_push_front(&head, p_data2);
+	ft_list_push_front(&head, p_data3);
+
+	t_list	*head4 = NULL;
+	ft_list_push_back(&head4, p_data4);
+
+	t_list	*head5 = NULL;
+
+	printf("[+] LIST_AT [+]\n");
+	printf("[-] mine: %d || origin: 42 [-]\n",
+			*(int *)(ft_list_at(head, 2)->data));
+	printf("[-] mine: %d || origin: 84 [-]\n",
+			*(int *)(ft_list_at(head, 1)->data));
+	printf("[-] mine: %d || origin: 27 [-]\n",
+			*(int *)(ft_list_at(head, 0)->data));
+	printf("[-] Test with NULL LIST [-]\n");
+	printf("[+] END OF LIST_AT [+]\n\n");
+}
+
+void	check_list_remove_front(void)
+{
+	int		data1 = 42;
+	int		data2 = 84;
+	int		data3 = 27;
+	char	*data4 = "hello";
+	void	*p_data1 = (void *)&data1;
+	void	*p_data2 = (void *)&data2;
+	void	*p_data3 = (void *)&data3;
+	void	*p_data4 = (void *)&data4;
+
+	t_list	*head = ft_create_elem(p_data1);
+	ft_list_push_front(&head, p_data2);
+	ft_list_push_front(&head, p_data3);
+
+	t_list	*head4 = NULL;
+	ft_list_push_front(&head4, p_data4);
+
+	t_list	*head5 = NULL;
+
+	printf("[+] LIST_REMOVE_FRONT [+]\n");
+	ft_list_remove_front(&head);
+	printf("[-] mine: %d || origin: 84 [-]\n", *(int *)(head->data));
+	ft_list_remove_front(&head);
+	printf("[-] mine: %d || origin: 42 [-]\n", *(int *)(head->data));
+
+	printf("[-] Test expected to be NULL [-]\n");
+	ft_list_remove_front(&head);
+	printf("[-] result : %s [-]\n", ((head == NULL) ? "NULL" : "NOT NULL"));
+	ft_list_remove_front(&head5);
+	printf("[-] result : %s [-]\n", ((head5 == NULL) ? "NULL" : "NOT NULL"));
+	printf("[+] END OF LIST_REMOVE_FRONT [+]\n\n");
+}
+
+void	check_list_rotate(void)
+{
+	int		data1 = 42;
+	int		data2 = 84;
+	int		data3 = 27;
+	char	*data4 = "hello";
+	void	*p_data1 = (void *)&data1;
+	void	*p_data2 = (void *)&data2;
+	void	*p_data3 = (void *)&data3;
+	void	*p_data4 = (void *)&data4;
+
+	t_list	*head = ft_create_elem(p_data1);
+	ft_list_push_front(&head, p_data2);
+	ft_list_push_front(&head, p_data3);
+
+	t_list	*head4 = ft_create_elem(p_data4);
+
+	t_list	*head5 = NULL;
+
+	printf("[+] LIST_ROTATE [+]\n");
+	printf("[-] mine: %d || origin: 27 [-]\n", *(int *)(head->data));
+	ft_list_rotate(&head);
+	printf("[-] mine: %d || origin: 84 [-]\n", *(int *)(head->data));
+	ft_list_rotate(&head);
+	printf("[-] mine: %d || origin: 42 [-]\n", *(int *)(head->data));
+
+	printf("[-] mine: %c || origin: h [-]\n", *(char *)(head4->data));
+	ft_list_rotate(&head4);
+	printf("[-] mine: %c || origin: h [-]\n", *(char *)(head4->data));
+
+	printf("[-] Test expected to be NULL [-]\n");
+	ft_list_rotate(&head5);
+	printf("[-] result : %s [-]\n", ((head5 == NULL) ? "NULL" : "NOT NULL"));
+	printf("[+] END OF LIST_ROTATE [+]\n\n");
+}
+
+void	check_list_rotate_reverse(void)
+{
+	int		data1 = 42;
+	int		data2 = 84;
+	int		data3 = 27;
+	char	*data4 = "hello";
+	void	*p_data1 = (void *)&data1;
+	void	*p_data2 = (void *)&data2;
+	void	*p_data3 = (void *)&data3;
+	void	*p_data4 = (void *)&data4;
+
+	t_list	*head = ft_create_elem(p_data1);
+	ft_list_push_front(&head, p_data2);
+	ft_list_push_front(&head, p_data3);
+
+	t_list	*head4 = ft_create_elem(p_data4);
+
+	t_list	*head5 = NULL;
+
+	printf("[+] LIST_ROTATE_REVERSE [+]\n");
+	printf("[-] mine: %d || origin: 27 [-]\n", *(int *)(head->data));
+	ft_list_rotate_reverse(&head);
+	printf("[-] mine: %d || origin: 42 [-]\n", *(int *)(head->data));
+	ft_list_rotate_reverse(&head);
+	printf("[-] mine: %d || origin: 84 [-]\n", *(int *)(head->data));
+
+	printf("[-] mine: %c || origin: h [-]\n", *(char *)(head4->data));
+	ft_list_rotate_reverse(&head4);
+	printf("[-] mine: %c || origin: h [-]\n", *(char *)(head4->data));
+
+	printf("[-] Test expected to be NULL [-]\n");
+	ft_list_rotate_reverse(&head5);
+	printf("[-] result : %s [-]\n", ((head5 == NULL) ? "NULL" : "NOT NULL"));
+	printf("[+] END OF LIST_REVERSE_ROTATE [+]\n\n");
+}
+
 void	check_memset(void)
 {
 	char	str1[5] = "abcd";
@@ -513,11 +650,13 @@ int     main(int argc, char **argv)
 	check_create_elem();
 	check_list_push_front();
 	check_list_push_back();
-	check_list_size();
+	check_list_at();
+	check_list_remove_front();
+	check_list_rotate();
 
 	check_strlen();
-	check_strcmp();
 	check_strncmp();
+	check_strstr();
 
 	check_memset();
 	check_bzero();
@@ -533,7 +672,6 @@ int     main(int argc, char **argv)
 	check_strtrim();
 	check_memcmp();
 	check_itoa();
-	*/
-
-	check_strstr();
+*/
+	check_list_rotate_reverse();
 }

@@ -21,6 +21,11 @@ void		ft_list_clear(t_list **begin_list);
 t_list		*ft_list_at(t_list *begin_list, unsigned int nbr);
 void		ft_list_reverse(t_list **begin_list);
 void		ft_list_foreach(t_list *begin_list, void (*f)(void *));
+void		ft_list_remove_front(t_list **begin_list);
+void		ft_list_swap(t_list **begin_list);
+void		ft_list_rotate(t_list **begin_list);
+void		ft_list_rotate_reverse(t_list **begin_list);
+
 
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_bzero(void *b, size_t len);

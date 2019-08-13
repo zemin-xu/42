@@ -1,5 +1,11 @@
 #include "libft.h"
 
+/*
+ * return the Nth element of the list
+ * begin_list is considered as 0th
+ *
+ */
+
 t_list				*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
 	t_list			*curr_list;
