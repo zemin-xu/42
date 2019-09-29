@@ -1,12 +1,19 @@
+/*
+** find the first occurrence of the byte 'c' in the string beginning
+** at 'string'
+**
+** return a pointer to the located byte, or a null pointer if no match
+*/
+
 #include "libft.h"
 
-char				*ft_strchr(const char *s, int c)
+char				*ft_strchr(const char *string, int c)
 {
 	char			*str;
 
-	if (s == NULL)
+	if (string == NULL)
 		return (NULL);
-	str = (char *)s;
+	str = (char *)string;
 	while (*str)
 	{
 		if (*str == c)

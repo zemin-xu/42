@@ -1,3 +1,9 @@
+/*
+** allocate and return a new-created memory area
+**
+** the memory allocated is initialize to 0. If the allocation fails,
+** the function returns NULL
+*/
 #include "libft.h"
 
 void				*ft_memalloc(size_t size)

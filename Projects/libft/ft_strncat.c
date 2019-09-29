@@ -1,17 +1,27 @@
+/*
+** append 'size' bytes from 'from' to the end of 'to'
+**
+** 'from' need not be null-terminated
+**
+** a single null byte is also appended to 'to', so the total allocated
+** size of 'to' must be at least 'size + 1" bytes longer than its 
+** initial length
+*/
+
 #include "libft.h"
 
-char		*ft_strncat(char *s1, const char *s2, size_t n)
+char		*ft_strncat(char *to, const char *from, size_t size)
 {
 	size_t	len;
 	size_t	i;
 
-	len = ft_strlen(s1);
+	len = ft_strlen(to);
 	i = 0;
-	while (*(s2 + i) && i < n)
+	while (*(from + i) && i < size)
 	{
-		*(s1 + len + i) = *(s2 + i);
+		*(to + len + i) = *(from + i);
 		i++;
 	}
-	*(s1 + len + i) = '\0';
-	return (s1);
+	*(to + len + i) = '\0';
+	return (to);
 }

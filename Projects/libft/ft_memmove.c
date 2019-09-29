@@ -1,23 +1,38 @@
+/*
+** copy the 'size' bytes at 'from' into the 'size' bytes in 'to',
+** even the two blocks of space overlap
+**
+** ---- copy forward ----
+** <to..........>
+**         <from.........>
+**
+** ---- copy backward ----
+** <from..........>
+**         <to...........>
+**
+** return the value of 'to' 
+*/
+
 #include "libft.h"
 
-void				*ft_memmove(void *dst, const void *src, size_t len)
+void				*ft_memmove(void *to, const void *from, size_t size)
 {
 	size_t			i;
-	unsigned char	*c_dst;
-	unsigned char	*c_src;
+	unsigned char	*c_to;
+	unsigned char	*c_from;
 
-	c_dst = (unsigned char *)dst;
-	c_src = (unsigned char *)src;
-	if(c_dst < c_src)
-		return (ft_memcpy(dst, src, len));
+	c_to = (unsigned char *)to;
+	c_from = (unsigned char *)from;
+	if(c_to < c_from)
+		return (ft_memcpy(to, from, size));
 	else
 	{
-		i = len;
+		i = size;
 		while (i > 0)
 		{
-			*(c_dst + i - 1) = *(c_src + i - 1);
+			*(c_to + i - 1) = *(c_from + i - 1);
 			i--;
 		}
-		return (dst);
+		return (to);
 	}
 }

@@ -1,25 +1,33 @@
+/*
+** search 'haystack' for a substring 'needle'
+**
+** return a pointer into the string 'haystack' that is the first byte
+** of the substring, or a null pointer if no match
+** if 'needle' is an empty string, the function returns 'haystack'
+*/ 
+
 #include "libft.h"
 
-static int			compare(const char *big, const char *little)
+static int			compare(const char *haystack, const char *needle)
 {
-	while (*big && *little)
+	while (*haystack && *needle)
 	{
-		if (*big != *little)
+		if (*haystack != *needle)
 			return (0);
-		big++;
-		little++;
+		haystack++;
+		needle++;
 	}
-	return (*little == '\0');
+	return (*needle == '\0');
 }
 
 
-char				*ft_strstr(const char *big, const char *little)
+char				*ft_strstr(const char *haystack, const char *needle)
 {
-	while (*big)
+	while (*haystack)
 	{
-		if ((*big == *little) && compare(big, little))
-			return ((char *)big);
-		big++;
+		if ((*haystack == *needle) && compare(haystack, needle))
+			return ((char *)haystack);
+		haystack++;
 	}
 	return (NULL);
 }

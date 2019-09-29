@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include "libft.h"
 
+// scripts with potential problems : 
+// strlcat
+// strstr
+// strnstr
+//
 void	check_create_elem(void)
 {
 	int		data1 = 42;
@@ -267,7 +272,7 @@ void	check_bzero(void)
 	char	str5[1] = "";
 	char	str6[1] = "";
 
-	printf("[+] MEMSET [+]\n");
+	printf("[+] BZERO [+]\n");
 	ft_bzero(str1, 5);
 	bzero(str2, 5);
 	printf("[-] mine: %s || origin: %s || ex : abcd || size : 5 : compare : %d[-]\n", str1, str2, strncmp(str1, str2, 5));
@@ -281,7 +286,7 @@ void	check_bzero(void)
 	bzero(str6, 1);
 	printf("[-] mine: %s || origin: %s || ex : op || size : 1 : compare : %d[-]\n", str5, str6, strncmp(str5, str6, 1));
 
-	printf("[+] END OF MEMSET [+]\n\n");
+	printf("[+] END OF BZERO [+]\n\n");
 }
 
 void	check_memcpy(void)
@@ -307,6 +312,21 @@ void	check_memcpy(void)
 	printf("[+] END OF MEMCPY [+]\n\n");
 }
 
+
+void	check_memccpy(void)
+{
+	char	str1[17] = "abcdef";
+	char	str2[17] = "";
+	char	str3[17] = "abcdef";
+	char	str4[17] = "";
+	
+	int		int1[2] = {21, 42};
+	int		int2[2] = {21, 42};
+
+	printf("[+] MEMCCPY [+]\n");
+	printf("[-] mine: %s || origin: %s || ex : abcdef || size : 6 : compare : %d[-]\n", ft_memccpy(str2, str1, 'c', 6), memccpy(str4, str3, 'c', 6), strncmp(str2, str4, 6));
+	printf("[+] END OF MEMCCPY [+]\n\n");
+}
 void	check_memmove(void)
 {
 	char	str1[17] = "abcdef";
@@ -360,7 +380,7 @@ void	check_memcmp(void)
 	char	str1[17] = "abcdef";
 	char	str2[17] = "abcdef";
 	char	str3[17] = "abcdef";
-	char	str4[17] = "abCdef";
+	char	str4[17] = "abcdef";
 	char	str5[1] = "";
 	char	str6[1] = "";
 	int		int1[2] = {21, 42};
@@ -653,6 +673,7 @@ int     main(int argc, char **argv)
 	check_list_at();
 	check_list_remove_front();
 	check_list_rotate();
+	check_list_rotate_reverse();
 
 	check_strlen();
 	check_strncmp();
@@ -661,8 +682,10 @@ int     main(int argc, char **argv)
 	check_memset();
 	check_bzero();
 	check_memcpy();
+	check_memccpy();
 	check_memmove();
 	check_memchr();
+	check_memcmp();
 	check_toupper();
 	check_tolower();
 	check_strmap();
@@ -670,8 +693,7 @@ int     main(int argc, char **argv)
 	check_strequ();
 	check_strnequ();
 	check_strtrim();
-	check_memcmp();
 	check_itoa();
 */
-	check_list_rotate_reverse();
+	check_memccpy();
 }

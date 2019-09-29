@@ -1,18 +1,18 @@
 #include "libft.h"
 
-char				*ft_strdup(const char *str)
+char				*ft_strdup(const char *s)
 {
 	size_t			i;
-	char			*s;
+	char			*str;
 
-	if (str == NULL || (s = malloc(ft_strlen(str) + 1)) == NULL)
+	if (s == NULL || (str = malloc(ft_strlen(s) + 1)) == NULL)
 		return (NULL);
 	i = 0;
-	while (i < ft_strlen(str))
+	while (i < ft_strlen(s))
 	{
-		*(s + i) = *(str + i);
+		*(str + i) = *(s + i);
 		i++;
 	}
-	*(s + i) = '\0';
-	return (s);
+	*(str + i) = '\0';
+	return (str);
 }

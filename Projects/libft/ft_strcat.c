@@ -1,17 +1,17 @@
 #include "libft.h"
 
-char		*ft_strcat(char *s1, const char *s2)
+char		*ft_strcat(char *to, const char *from)
 {
 	size_t	len;
 	int		i;
 
-	len = ft_strlen(s1);
+	len = ft_strlen(to);
 	i = 0;
-	while (*(s2 + i))
+	while (*(from + i))
 	{
-		*(s1 + len + i) = *(s2 + i);
+		*(to + len + i) = *(from + i);
 		i++;
 	}
-	*(s1 + len + i) = '\0';
-	return (s1);
+	*(to + len + i) = '\0';
+	return (to);
 }
