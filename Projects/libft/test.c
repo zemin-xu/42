@@ -14,7 +14,7 @@ void	check_create_elem(void)
 	void	*p_data1 = (void *)&data1;
 	void	*p_data2 = (void *)&data2;
 
-	t_list	*new_list1 = ft_create_elem(p_data1);
+	t_list	*new_list1 = ft_create_elem(p_data1)
 	t_list	*new_list2 = ft_create_elem(p_data2);
 	printf("[+] CREATE_ELEM [+]\n");
 	printf("[-] mine: %d || origin: %d [-]\n",

@@ -1,13 +1,14 @@
 /*
-** allocate and return a copy of the string without whitespaces at the
-** beginning or at the end of the string 's' 
+** allocate and return a copy of the string given as argument without the
+** characters specified in the 'set' argument at the beginning and the end of
+** the string
 **
 ** return NULL if the allocation fails
 */
 
 #include "libft.h"
 
-char				*ft_strtrim(char const *s)
+char				*ft_strtrim(char const *s, char const *set)
 {
 	char			*str;
 	size_t			count;
