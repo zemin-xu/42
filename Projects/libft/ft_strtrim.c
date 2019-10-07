@@ -13,7 +13,8 @@ char				*ft_strtrim(char const *s, char const *set)
 	char			*str;
 	size_t			count;
 	size_t			i;
-
+//  to delete
+	ft_strlen(set);
 	if (s == NULL)
 		return (NULL);
 	i = 0;

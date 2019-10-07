@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:45:19 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/07 16:35:17 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/07 16:55:52 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void				ft_putendl(char *s);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
+void				ft_putnbr_fd(int n, int fd);
 
 /*
 ** should add :
@@ -117,6 +118,5 @@ char				**ft_strsplit(char const *s, char c);
 void				ft_putchar(char c);
 void				ft_putstr(char *s);
 void				ft_putnbr(int n);
-void				ft_putnbr_fd(int n, int fd);
 
 #endif

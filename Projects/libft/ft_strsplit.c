@@ -5,7 +5,7 @@
 
 #include "libft.h"
 
-static int		num_strings_1(char const *s, char c, int i, int j)
+static int		num_strings_1(char const *s, char c, size_t i, size_t j)
 {
 	int			num;
 	int			flag;
@@ -27,8 +27,8 @@ static int		num_strings_1(char const *s, char c, int i, int j)
 }
 static int		num_strings_2(char const *s, char c)
 {
-	int			i;
-	int			j;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	j = 0;
@@ -44,6 +44,8 @@ static int		num_strings_2(char const *s, char c)
 char			**ft_strsplit(char const *s, char c)
 {
 	ft_putnbr(num_strings_2(s, c));	
+	ft_strlen(s);
+	ft_putchar(c);
 	
 	return (NULL);
 }

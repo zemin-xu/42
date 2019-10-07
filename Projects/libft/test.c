@@ -2,7 +2,12 @@
 #include <string.h>
 #include "libft.h"
 
+// finish:
+// memset
+
 // scripts with potential problems : 
+// split
+// strtrim
 // strlcat
 // strstr
 // strnstr
@@ -14,7 +19,7 @@ void	check_create_elem(void)
 	void	*p_data1 = (void *)&data1;
 	void	*p_data2 = (void *)&data2;
 
-	t_list	*new_list1 = ft_create_elem(p_data1)
+	t_list	*new_list1 = ft_create_elem(p_data1);
 	t_list	*new_list2 = ft_create_elem(p_data2);
 	printf("[+] CREATE_ELEM [+]\n");
 	printf("[-] mine: %d || origin: %d [-]\n",
@@ -123,8 +128,6 @@ void	check_list_at(void)
 
 	t_list	*head4 = NULL;
 	ft_list_push_back(&head4, p_data4);
-
-	t_list	*head5 = NULL;
 
 	printf("[+] LIST_AT [+]\n");
 	printf("[-] mine: %d || origin: 42 [-]\n",
@@ -252,19 +255,26 @@ void	check_memset(void)
 	char	str5[1] = "";
 	char	str6[1] = "";
 	char	str7[1] = "";
-	char	str8[1] = "";
+
+	char	*str8;
+	char	*str9;
+
+	str8 = (char *)malloc(sizeof(char) * 5);
+	str9 = (char *)malloc(sizeof(char) * 5);
 
 	printf("[+] MEMSET [+]\n");
-	printf("[-] mine: %s || origin: %s || ex : abcd || size : 5 : compare : %d[-]\n",
-			ft_memset(str1, '$', 5), memset(str2, '$', 5), strncmp(str1, str2, 5));
+	printf("[-] mine: %s || origin: %s || ex : abcd || size : 4 : compare : %d[-]\n",
+			ft_memset(str1, '$', 4), memset(str2, '$', 4), strncmp(str1, str2, 4));
 	printf("[-] mine: %s || origin: %s || ex : op || size : 2 : compare : %d[-]\n",
 			ft_memset(str3, '$', 2), memset(str4, '$', 2), strncmp(str3, str4, 2));
 
 	printf("[-] Test with EMPTY STRING [-]\n");
 	printf("[-] mine: %s || origin: %s || ex : 0 || size : 1 : compare : %d[-]\n",
 			ft_memset(str5, '$', 1), memset(str6, '$', 1), strncmp(str5, str6, 1));
-	printf("[-] mine: %s || origin:  || ex : 0 || size : 1 : compare : [-]\n",
-			ft_memset(str7, '$', 3));
+	printf("[-] mine: %s || res : $ || ex : 0 || size : 1 : compare %d[-]\n",
+			ft_memset(str7, '$', 3), strncmp(str7, "$", 1));
+	printf("[-] mine: %s || origin: %s || ex : 0 || size : 5 : compare : %d[-]\n",
+			ft_memset(str8, '$', 5), memset(str9, '$', 5), strncmp(str8, str9, 5));
 	printf("[+] END OF MEMSET [+]\n\n");
 }
 
@@ -276,21 +286,27 @@ void	check_bzero(void)
 	char	str4[3] = "op";
 	char	str5[1] = "";
 	char	str6[1] = "";
+	char	str7[1] = "";
+
+	char	*str8;
+	char	*str9;
+
+	str8 = (char *)malloc(sizeof(char) * 5);
+	str9 = (char *)malloc(sizeof(char) * 5);
 
 	printf("[+] BZERO [+]\n");
-	ft_bzero(str1, 5);
-	bzero(str2, 5);
-	printf("[-] mine: %s || origin: %s || ex : abcd || size : 5 : compare : %d[-]\n", str1, str2, strncmp(str1, str2, 5));
-
-	ft_bzero(str3, 2);
-	bzero(str4, 2);
-	printf("[-] mine: %s || origin: %s || ex : op || size : 2 : compare : %d[-]\n", str3, str4, strncmp(str3, str4, 2));
+	printf("[-] mine: %s || origin: %s || ex : abcd || size : 4 : compare : %d[-]\n",
+			ft_bzero(str1, 4), bzero(str2, 4), strncmp(str1, str2, 4));
+	printf("[-] mine: %s || origin: %s || ex : op || size : 2 : compare : %d[-]\n",
+			ft_bzero(str3, 2), bzero(str4, 2), strncmp(str3, str4, 2));
 
 	printf("[-] Test with EMPTY STRING [-]\n");
-	ft_bzero(str5, 1);
-	bzero(str6, 1);
-	printf("[-] mine: %s || origin: %s || ex : op || size : 1 : compare : %d[-]\n", str5, str6, strncmp(str5, str6, 1));
-
+	printf("[-] mine: %s || origin: %s || ex : 0 || size : 1 : compare : %d[-]\n",
+			ft_bzero(str5, 1), bzero(str6, 1), strncmp(str5, str6, 1));
+	printf("[-] mine: %s || res : $ || ex : 0 || size : 1 : compare %d[-]\n",
+			ft_bzero(str7, 3), strncmp(str7, "", 1));
+	printf("[-] mine: %s || origin: %s || ex : 0 || size : 5 : compare : %d[-]\n",
+			ft_bzero(str8, 5), bzero(str9, 5), strncmp(str8, str9, 5));
 	printf("[+] END OF BZERO [+]\n\n");
 }
 
@@ -325,9 +341,6 @@ void	check_memccpy(void)
 	char	str3[17] = "abcdef";
 	char	str4[17] = "";
 	
-	int		int1[2] = {21, 42};
-	int		int2[2] = {21, 42};
-
 	printf("[+] MEMCCPY [+]\n");
 	printf("[-] mine: %s || origin: %s || ex : abcdef || size : 6 : compare : %d[-]\n", ft_memccpy(str2, str1, 'c', 6), memccpy(str4, str3, 'c', 6), strncmp(str2, str4, 6));
 	printf("[+] END OF MEMCCPY [+]\n\n");
@@ -341,8 +354,6 @@ void	check_memmove(void)
 	int		int1[2] = {21, 42};
 	int		int2[2] = {21, 42};
 
-	char	dst1[8] = "";
-	char	dst2[8] = "";
 	int		int3[2];
 	int		int4[2];
 	
@@ -507,53 +518,13 @@ void	check_strnequ(void)
 
 void	check_strtrim(void)
 {
-	char	str1[7] = "  ABCD";
-	char	str2[7] = "ABCD  ";
-	char	str3[5] = "ABCD";
-	char	str4[8] = " ab cd ";
-	char	str5[1] = "";
-	char	str6[3] = "  ";
-
 	printf("[+] STRTRIM [+]\n");
-
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str1), str1, strcmp(ft_strtrim(str1), "ABCD"));
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str2), str2, strcmp(ft_strtrim(str2), "ABCD"));
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str3), str3, strcmp(ft_strtrim(str3), "ABCD"));
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str4), str4, strcmp(ft_strtrim(str4), "ab cd"));
-	
-	printf("[-] Test with EMPTY STRING [-]\n");
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str5), str5, strcmp(ft_strtrim(str5), ""));
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str6), str6, strcmp(ft_strtrim(str6), ""));
-
 	printf("[+] END OF STRTRIM [+]\n\n");
 }
 
 void	check_strsplit(void)
 {
-	char	str1[7] = "  ABCD";
-	char	str2[7] = "ABCD  ";
-	char	str3[5] = "ABCD";
-	char	str4[8] = " ab cd ";
-	char	str5[1] = "";
-	char	str6[3] = "  ";
-
 	printf("[+] STRSPLIT [+]\n");
-
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str1), str1, strcmp(ft_strtrim(str1), "ABCD"));
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str2), str2, strcmp(ft_strtrim(str2), "ABCD"));
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str3), str3, strcmp(ft_strtrim(str3), "ABCD"));
-	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
-			ft_strtrim(str4), str4, strcmp(ft_strtrim(str4), "ab cd"));
-	
 	printf("[+] END OF STRSPLIT [+]\n\n");
 }
 
@@ -562,8 +533,6 @@ void	check_itoa(void)
 	int int1 = 107;
 	int int2 = 0;
 	int int3 = -2147483648;
-	int int4 = -5;
-
 
 	printf("[+] ITOA [+]\n");
 
@@ -691,7 +660,7 @@ void	check_tolower(void)
 			ft_tolower(-12), ft_tolower(-12), -12, -12);
 	printf("[+] END OF TOLOWER [+]\n");
 }
-int     main(int argc, char **argv)
+int     main(void)
 {
 
 	/*
@@ -724,6 +693,7 @@ int     main(int argc, char **argv)
 	check_itoa();
 	check_memccpy();
 */
+	/*
 	char **a = ft_strsplit("@@123fh@@da@@a", '@');
 	for(int i = 0; i < 3; i++)
 	{
@@ -741,4 +711,9 @@ int     main(int argc, char **argv)
 	strsplit("@@@", '@');
 	printf("\n");
 	strsplit("",'@');
+	*/
+
+
+	check_bzero();
+
 }
