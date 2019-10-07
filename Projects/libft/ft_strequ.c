@@ -1,3 +1,9 @@
+/*
+** lexicographical comparison between 's1' and 's2'
+**
+** return 0 if the two string are identical, return 1 if not
+*/
+
 #include "libft.h"
 
 int					ft_strequ(char const *s1, char const *s2)

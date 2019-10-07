@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "libft.h"
 
 // scripts with potential problems : 
@@ -250,6 +251,8 @@ void	check_memset(void)
 	char	str4[3] = "op";
 	char	str5[1] = "";
 	char	str6[1] = "";
+	char	str7[1] = "";
+	char	str8[1] = "";
 
 	printf("[+] MEMSET [+]\n");
 	printf("[-] mine: %s || origin: %s || ex : abcd || size : 5 : compare : %d[-]\n",
@@ -260,6 +263,8 @@ void	check_memset(void)
 	printf("[-] Test with EMPTY STRING [-]\n");
 	printf("[-] mine: %s || origin: %s || ex : 0 || size : 1 : compare : %d[-]\n",
 			ft_memset(str5, '$', 1), memset(str6, '$', 1), strncmp(str5, str6, 1));
+	printf("[-] mine: %s || origin:  || ex : 0 || size : 1 : compare : [-]\n",
+			ft_memset(str7, '$', 3));
 	printf("[+] END OF MEMSET [+]\n\n");
 }
 
@@ -529,6 +534,29 @@ void	check_strtrim(void)
 	printf("[+] END OF STRTRIM [+]\n\n");
 }
 
+void	check_strsplit(void)
+{
+	char	str1[7] = "  ABCD";
+	char	str2[7] = "ABCD  ";
+	char	str3[5] = "ABCD";
+	char	str4[8] = " ab cd ";
+	char	str5[1] = "";
+	char	str6[3] = "  ";
+
+	printf("[+] STRSPLIT [+]\n");
+
+	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
+			ft_strtrim(str1), str1, strcmp(ft_strtrim(str1), "ABCD"));
+	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
+			ft_strtrim(str2), str2, strcmp(ft_strtrim(str2), "ABCD"));
+	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
+			ft_strtrim(str3), str3, strcmp(ft_strtrim(str3), "ABCD"));
+	printf("[-] mine: %s || ex : %s || compare : %d[-]\n",
+			ft_strtrim(str4), str4, strcmp(ft_strtrim(str4), "ab cd"));
+	
+	printf("[+] END OF STRSPLIT [+]\n\n");
+}
+
 void	check_itoa(void)
 {
 	int int1 = 107;
@@ -694,6 +722,23 @@ int     main(int argc, char **argv)
 	check_strnequ();
 	check_strtrim();
 	check_itoa();
-*/
 	check_memccpy();
+*/
+	char **a = ft_strsplit("@@123fh@@da@@a", '@');
+	for(int i = 0; i < 3; i++)
+	{
+		printf("%s\n", *(a+i));
+	}
+
+	strsplit("@@123fh@@da@@", '@');
+	printf("\n");
+	strsplit("123fh@@da", '@');
+	printf("\n");
+	strsplit("123fhda", '@');
+	printf("\n");
+	strsplit("@@@aAAA@", '@');
+	printf("\n");
+	strsplit("@@@", '@');
+	printf("\n");
+	strsplit("",'@');
 }

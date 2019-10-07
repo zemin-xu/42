@@ -1,3 +1,8 @@
+/*
+** allocate and return a new created string ending with '\0' representing
+** the integer 'n' given as argument.
+*/
+
 #include "libft.h"
 
 static int			length(int n)

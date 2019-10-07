@@ -1,3 +1,9 @@
+/*
+** allocate and return a new-created concatenation ending with '\0'
+** 
+** return NULL if the allocation fails
+*/
+
 #include "libft.h"
 
 char				*ft_strjoin(char const *s1, char const *s2)
