@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/07 18:14:49 by zexu              #+#    #+#             */
+/*   Updated: 2019/10/07 18:15:32 by zexu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 ** copy 'size' bytes from the object beginning at 'from' into the object
 ** beginning at 'to'
@@ -21,7 +33,7 @@ void				*ft_memcpy(void *to, const void *from, size_t size)
 	c_from = (unsigned char *)from;
 	while (i < size)
 	{
-		*(c_to + i) = *(c_from + i);	
+		*(c_to + i) = *(c_from + i);
 		i++;
 	}
 	return (to);
