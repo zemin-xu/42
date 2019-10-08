@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:45:19 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/07 16:55:52 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/08 22:46:08 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 
 /*
 ** part 1
+** with problems:
+** strlcat(5,6,7,8), strnstr(9)
+*/
+
+/*
+** should add in part1:
+** strlcpy
+** calloc
 */
 
 void				*ft_memset(void *block, int c, size_t size);
@@ -45,14 +53,9 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 char				*ft_strdup(const char *s);
 
-/*
-** should add :
-** strlcpy
-** calloc
-*/
 
 /*
-** part 2
+** part 2 confirmed with itoa, putchar_fd,
 */
 
 char				*ft_substr(char const *s, unsigned int start, size_t len);

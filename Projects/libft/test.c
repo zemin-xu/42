@@ -294,19 +294,28 @@ void	check_bzero(void)
 	str8 = (char *)malloc(sizeof(char) * 5);
 	str9 = (char *)malloc(sizeof(char) * 5);
 
+	ft_bzero(str1, 4);
+	bzero(str2, 4);
+	ft_bzero(str3, 2);
+	bzero(str4, 2);
+	ft_bzero(str5, 1);
+	bzero(str6, 1);
+	ft_bzero(str7, 3);
+	ft_bzero(str8, 5);
+	bzero(str9, 5);
+
 	printf("[+] BZERO [+]\n");
 	printf("[-] mine: %s || origin: %s || ex : abcd || size : 4 : compare : %d[-]\n",
-			ft_bzero(str1, 4), bzero(str2, 4), strncmp(str1, str2, 4));
+			str1, str2, strncmp(str1, str2, 4));
 	printf("[-] mine: %s || origin: %s || ex : op || size : 2 : compare : %d[-]\n",
-			ft_bzero(str3, 2), bzero(str4, 2), strncmp(str3, str4, 2));
-
+			str3, str4, strncmp(str3, str4, 2));
 	printf("[-] Test with EMPTY STRING [-]\n");
 	printf("[-] mine: %s || origin: %s || ex : 0 || size : 1 : compare : %d[-]\n",
-			ft_bzero(str5, 1), bzero(str6, 1), strncmp(str5, str6, 1));
-	printf("[-] mine: %s || res : $ || ex : 0 || size : 1 : compare %d[-]\n",
-			ft_bzero(str7, 3), strncmp(str7, "", 1));
+			str5, str6, strncmp(str5, str6, 1));
+	printf("[-] mine: %s || res :  || ex : 0 || size : 1 : compare %d[-]\n",
+			str7, strncmp(str7, "", 1));
 	printf("[-] mine: %s || origin: %s || ex : 0 || size : 5 : compare : %d[-]\n",
-			ft_bzero(str8, 5), bzero(str9, 5), strncmp(str8, str9, 5));
+			str8, str9, strncmp(str8, str9, 5));
 	printf("[+] END OF BZERO [+]\n\n");
 }
 
@@ -573,6 +582,10 @@ void	check_strstr(void)
 	char	str4[5] = "hece";
 	char	str5[6] = "where";
 	char	str6[5] = "erea";
+	char	str7[7] = "lorem ";
+
+	char	*str8 = (char *)malloc(sizeof(char) * 1);
+	char	*str9 = (char *)malloc(sizeof(char) * 1);
 
 	printf("[+] STRSTR [+]\n");
 	printf("[-] mine: %s || origin: %s : s1: %s|| s2:%s || compare: %d[-]\n",
@@ -581,12 +594,21 @@ void	check_strstr(void)
 	printf("[-] mine: %s || origin: %s : s1: %s|| s2:%s || compare: %d[-]\n",
 			ft_strstr(str3, str4), strstr(str3, str4), str3, str4,
 			strcmp(ft_strstr(str3, str4), strstr(str3, str4)));
-	printf("[-] origin:  : s1: %s || s2: %s || result : %s[-]\n",
-			str5, str6, ((ft_strstr(str5, str6) == NULL) ? "NULL" : "NOT NULL"));
+	printf("[-] s1: %s || s2: %s || result : %s[-]\n",
+			str5, str6, ((ft_strstr(str5, str6) == NULL) ? "RIGHT" : "WRONG"));
 
 	printf("[-] Test with EMPTY STRING [-]\n");
-	printf("[-] origin:  : s1: %s || s2: %s || result : %s[-]\n",
-			"", "", ((ft_strstr("", "") == NULL) ? "NULL" : "NOT NULL"));
+	printf("[-] s1: %s || s2: %s || result : %s[-]\n",
+			str7, "", ((ft_strstr(str7, "") == NULL) ? "WRONG" : "RIGHT"));
+	printf("[-] s1: %s || s2: %s || result : %s[-]\n",
+			"", "", ((ft_strstr("", "") == NULL) ? "WRONG" : "RIGHT"));
+	printf("[-] Test with NULL STRING [-]\n");
+	printf("[-] s1: %s || s2: %s || result : %s[-]\n",
+			str8, "sf", ((ft_strstr(str8,"sf") == NULL) ? "RIGHT" : "WRONG"));
+	printf("[-] s1: %s || s2: %s || result : %s[-]\n",
+			str9, "", ((ft_strstr(str9,"") == NULL) ? "WRONG" : "RIGHT"));
+	printf("[-] s1: %s || s2: %s || result : %s[-]\n",
+			str8, str9,((ft_strstr(str8,str9)== NULL) ? "WRONG" : "RIGHT"));
 	printf("[+] END OF STRSTR [+]\n");
 }
 
@@ -714,6 +736,6 @@ int     main(void)
 	*/
 
 
-	check_bzero();
+	check_strstr();
 
 }

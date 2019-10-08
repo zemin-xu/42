@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:13:21 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/07 18:13:25 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/08 22:02:41 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,16 @@
 
 void		ft_bzero(void *block, size_t size)
 {
-	ft_memset(block, 0, size);
+	char			*p;
+	size_t			i;
+
+	p = (char *)block;
+	if (p == NULL)
+		return ;
+	i = 0;
+	while (i < size)
+	{
+		*(p + i) = '\0';
+		i++;
+	}
 }

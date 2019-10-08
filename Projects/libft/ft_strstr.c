@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/08 21:22:55 by zexu              #+#    #+#             */
+/*   Updated: 2019/10/08 21:35:38 by zexu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 ** search 'haystack' for a substring 'needle'
 **
@@ -20,9 +32,10 @@ static int			compare(const char *haystack, const char *needle)
 	return (*needle == '\0');
 }
 
-
 char				*ft_strstr(const char *haystack, const char *needle)
 {
+	if (*needle == '\0')
+		return((char *)haystack);
 	while (*haystack)
 	{
 		if ((*haystack == *needle) && compare(haystack, needle))

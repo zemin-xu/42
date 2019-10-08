@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/08 22:12:20 by zexu              #+#    #+#             */
+/*   Updated: 2019/10/08 22:24:50 by zexu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 ** append the nul-terminated string 'from' to the end of 'to'
 ** at most 'size - strlen(to) - 1' bytes, nul-terminating the result
@@ -7,23 +19,33 @@
 
 #include "libft.h"
 
+static size_t		len(const char *s)
+{
+    size_t	i;
+
+    i = 0;
+    while (s[i])
+        i++;
+    return (i);
+}
+
 size_t		ft_strlcat(char *to, const char *from, size_t size)
 {
-	size_t	len;
+	size_t	length;
 	size_t	i;
 
-	len = ft_strlen(to);
-	if (len + 1 >= size)
+	length = len(to);
+	if (length + 1 >= size)
 		*(to + size - 1) = '\0';
 	else
 	{
 		i = 0;
-		while (*(from + i) && i < size - len - 1)
+		while (*(from + i) && i < size - length - 1)
 		{
-			*(to + len + i) = *(from + i);
+			*(to + length + i) = *(from + i);
 			i++;
 		}
-		*(to + len + i) = '\0';
+		*(to + length + i) = '\0';
 	}
-	return (len + ft_strlen(from));
+	return (length + len(from));
 }
