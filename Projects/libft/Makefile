@@ -53,7 +53,7 @@ RM = rm -f
 
 OBJ = ${SRC:%.c=%.o}
 
-${NAME}: ${OBJ}
+$(NAME): ${OBJ}
 	ar rcs ${NAME} ${OBJ}
 	ranlib ${NAME}
 

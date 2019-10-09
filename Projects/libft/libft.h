@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:45:19 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/08 22:46:08 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/09 15:26:17 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,8 @@
 /*
 ** part 1
 ** with problems:
-** strlcat(5,6,7,8), strnstr(9)
-*/
-
-/*
 ** should add in part1:
 ** strlcpy
-** calloc
 */
 
 void				*ft_memset(void *block, int c, size_t size);
@@ -37,6 +32,7 @@ void				*ft_memmove(void *to, const void *from, size_t size);
 void				*ft_memchr(const void *block, int c, size_t size);
 int					ft_memcmp(const void *a1, const void *a2, size_t size);
 size_t				ft_strlen(const char *s);
+size_t				ft_strlcpy(char *to, const char *from, size_t size);
 size_t				ft_strlcat(char *to, const char *from, size_t size);
 char				*ft_strchr(const char *string, int c);
 char				*ft_strrchr(const char *string, int c);
@@ -52,19 +48,17 @@ int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 char				*ft_strdup(const char *s);
-
+void				*ft_calloc(size_t count, size_t elesize);
 
 /*
 ** part 2 confirmed with itoa, putchar_fd,
 */
-
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char *s, char (*f)(unsigned int, char));
-void				ft_putendl(char *s);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);

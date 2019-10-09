@@ -4,7 +4,7 @@
 */
 
 #include "libft.h"
-
+/*
 static int		num_strings_1(char const *s, char c, size_t i, size_t j)
 {
 	int			num;
@@ -49,3 +49,4 @@ char			**ft_strsplit(char const *s, char c)
 	
 	return (NULL);
 }
+*/

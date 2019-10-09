@@ -1,13 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/09 13:16:31 by zexu              #+#    #+#             */
+/*   Updated: 2019/10/09 13:18:10 by zexu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
+
+static void	inner_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
 
 void		ft_putstr_fd(char *s, int fd)
 {
-    int		i;
+	int		i;
 
-    i = 0;
-    while (s[i])
-    {
-        ft_putchar_fd(s[i], fd);
-        i++;
-    }
+	i = 0;
+	while (s[i])
+	{
+		inner_putchar_fd(s[i], fd);
+		i++;
+	}
 }

@@ -7,7 +7,7 @@
 */
 
 #include "libft.h"
-
+/*
 char				*ft_strtrim(char const *s, char const *set)
 {
 	char			*str;
@@ -34,3 +34,4 @@ char				*ft_strtrim(char const *s, char const *set)
 	*(str + ft_strlen(s) - count - i) = '\0';
 	return (str);
 }
+*/

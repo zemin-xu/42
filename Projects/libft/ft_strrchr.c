@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 22:21:10 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/08 22:23:52 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/09 10:27:30 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 static size_t		len(const char *s)
 {
-    size_t	i;
+	size_t	i;
 
-    i = 0;
-    while (s[i])
-        i++;
-    return (i);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
 char				*ft_strrchr(const char *string, int c)

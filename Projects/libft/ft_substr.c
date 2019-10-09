@@ -1,0 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/09 15:19:00 by zexu              #+#    #+#             */
+/*   Updated: 2019/10/09 15:28:43 by zexu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*
+** allocate and return a new-created substring from 's'
+** the substring begins at index 'start' and is of size 'len'
+**
+** return NULL if the allocation fails
+*/
+
+#include "libft.h"
+
+static size_t		inner_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char				*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char			*str;
+	size_t			i;
+
+	if (s == NULL || start > inner_strlen(s) ||
+			(str = (char *)malloc(len + 1)) == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len && *(s + start + i))
+	{
+		*(str + i) = *(s + start + i);
+		i++;
+	}
+	*(str + i) = '\0';
+	return (str);
+}
