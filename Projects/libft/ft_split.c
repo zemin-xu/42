@@ -6,14 +6,14 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 15:30:09 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/09 16:54:49 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/09 19:29:55 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
- ** allocate and return an array of strings ending with '\0', obtained by 
- ** spliting 's' using the character 'c' as a delimiter
- */
+** allocate and return an array of strings ending with '\0', obtained by
+** spliting 's' using the character 'c' as a delimiter
+*/
 
 #include "libft.h"
 
@@ -36,12 +36,12 @@ static int		num_strings_1(char const *s, char c, size_t i, size_t j)
 	flag = 0;
 	while (i < inner_count(s, '\0') - j - 1)
 	{
-		if(*(s + i) == c && flag == 0)
+		if (*(s + i) == c && flag == 0)
 		{
 			flag = 1;
 			num++;
 		}
-		else
+		else if (*(s + i) != c)
 			flag = 0;
 		i++;
 	}
@@ -55,12 +55,16 @@ static int		num_strings_2(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	while (*(s + i) == c) 
+	while (*(s + i) == c)
+	{
 		i++;
-	if (inner_count(s, '\0') <= 0 || i == inner_count(s, '\0'))
+	}
+	if (inner_count(s, '\0') == 0 || i == inner_count(s, '\0'))
 		return (0);
 	while (*(s + inner_count(s, '\0') - j - 1) == c)
+	{
 		j++;
+	}
 	return (num_strings_1(s, c, i, j));
 }
 
@@ -72,27 +76,22 @@ char			**ft_split(char const *s, char c)
 	int			j;
 
 	num = num_strings_2(s, c) + 1;
-	ft_putnbr_fd(num,1);
 	i = -1;
 	if ((res = malloc(sizeof(char *) * num)) == NULL)
 		return (NULL);
 	while (++i < num - 1)
 	{
+		j = 0;
 		while (*s == c)
 			s++;
-		if ((*(res + i) = malloc(sizeof(char) * inner_count(s, c))) == NULL)
+		if ((res[i] = malloc(sizeof(char) * (inner_count(s, c) + 1))) == NULL)
 			return (NULL);
-		ft_putchar_fd('!', 1);
-		ft_putnbr_fd(inner_count(s,c),1);
-		ft_putchar_fd('!', 1);
 		while (inner_count(s, c) > 0)
 		{
-			j = 0;
-			*(*(res + i) + j) = *s; 		
-			j++;
+			res[i][j++] = *s;
 			s++;
 		}
-		*(*(res + i) + j) = '\0';
+		res[i][j] = '\0';
 	}
 	*(res + i) = NULL;
 	return (res);

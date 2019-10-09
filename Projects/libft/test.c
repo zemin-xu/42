@@ -510,6 +510,71 @@ void	check_tolower(void)
 	printf("[+] END OF TOLOWER [+]\n");
 }
 
+void	check_split(void)
+{
+	
+	char ori1[] = "@@abcde@@fg@@hijk@";
+	char **res1;
+
+	char ori2[] = "123@abc";
+	char **res2;
+
+	char ori3[] = "@@@abc@@@";
+	char **res3;
+	
+	char ori4[] = "@@@@@@";
+	char **res4;
+
+	char ori5[] = "";
+	char **res5;
+
+	char ori6[] = "@@or@@@@sit@ametl,@@@@@@@@@consectetur@@@adipiscing@elit.@ed@non@risus.@@@@";
+	char **res6;
+
+	printf("[+] SPLIT [+]\n");
+	printf("[-] origin: %s || sep: %c [-]\n", ori1, '@' );  
+	res1 = ft_split(ori1, '@');
+	for(int i = 0; i < 3; i++)
+		printf("%s\n", res1[i]);
+
+	printf("[-] ------------------------------------- [-]\n" );  
+
+	printf("[-] origin: %s || sep: %c [-]\n", ori2, '@' );  
+	res2 = ft_split(ori2, '@');
+	for(int i = 0; i < 3; i++)
+		printf("%s\n", res2[i]);
+
+	printf("[-] ------------------------------------- [-]\n" );  
+	
+	printf("[-] origin: %s || sep: %c [-]\n", ori3, '@' );  
+	res3 = ft_split(ori3, '@');
+	for(int i = 0; i < 1; i++)
+		printf("%s\n", res3[i]);
+
+	printf("[-] ------------------------------------- [-]\n" );  
+	
+	printf("[-] origin: %s || sep: %c [-]\n", ori4, '@' );  
+	res4 = ft_split(ori4, '@');
+	for(int i = 0; i < 1; i++)
+		printf("%s\n", res4[i]);
+
+	printf("[-] ------------------------------------- [-]\n" );  
+	
+	printf("[-] origin: %s || sep: %c [-]\n", ori5, '@' );  
+	res5 = ft_split(ori5, '@');
+	for(int i = 0; i < 1; i++)
+		printf("%s\n", res5[i]);
+
+	printf("[-] ------------------------------------- [-]\n" );  
+	
+	printf("[-] origin: %s || sep: %c [-]\n", ori6, '@');  
+	res6 = ft_split(ori6, '@');
+	for(int i = 0; i < 10; i++)
+		printf("%s~~~%d\n", res6[i], i);
+
+	printf("[+] END OF SPLIT [+]\n");
+}
+
 int     main(void)
 {
 
@@ -545,25 +610,6 @@ int     main(void)
 	check_memccpy();
 	check_putnbr_fd();
 */
-	/*
-	char **a = ft_split("@@123fh@@da@@a", '@');
-	for(int i = 0; i < 3; i++)
-	{
-		printf("%s\n", *(a+i));
-	}
-	*/
-
-	ft_split("@@123fh@@da@@dga@", '@');
-	printf("\n");
-	ft_split("123fh@@da", '@');
-	printf("\n");
-	ft_split("123fhda", '@');
-	printf("\n");
-	ft_split("@@@aAAA@", '@');
-	printf("\n");
-	ft_split("@@@", '@');
-	printf("\n");
-	ft_split("",'@');
-
+	check_split();
 
 }

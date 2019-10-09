@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:45:19 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/09 15:26:17 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/09 17:17:29 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void				*ft_calloc(size_t count, size_t elesize);
 /*
 ** part 2 confirmed with itoa, putchar_fd,
 */
+char				**ft_strsplit(char const *s, char c);
+
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
@@ -65,9 +67,6 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
 /*
-** should add :
-** split
-**
 ** should modify:
 ** strtrim
 */
