@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:45:19 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/09 17:17:29 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/09 22:43:31 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,6 @@ int					ft_tolower(int c);
 char				*ft_strdup(const char *s);
 void				*ft_calloc(size_t count, size_t elesize);
 
-/*
-** part 2 confirmed with itoa, putchar_fd,
-*/
-char				**ft_strsplit(char const *s, char c);
-
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
@@ -68,51 +63,25 @@ void				ft_putnbr_fd(int n, int fd);
 
 /*
 ** should modify:
-** strtrim
+** strtrim strlcpy ft_lstadd_back
 */
+
+char				**ft_strsplit(char const *s, char c);
 
 typedef	struct		s_list
 {
+	void			*content;
 	struct s_list	*next;
-	void			*data;
 }					t_list;
 
-t_list				*ft_create_elem(void *data);
-int					ft_list_size(t_list *begin_list);
-void				ft_list_push_back(t_list **begin_list, void *data);
-void				ft_list_push_front(t_list **begin_list, void *data);
-t_list				*ft_list_last(t_list *begin_list);
-t_list				*ft_list_push_params(int ac, char **av);
-void				ft_list_clear(t_list **begin_list);
-t_list				*ft_list_at(t_list *begin_list, unsigned int nbr);
-void				ft_list_reverse(t_list **begin_list);
-void				ft_list_foreach(t_list *begin_list, void (*f)(void *));
-void				ft_list_remove_front(t_list **begin_list);
-void				ft_list_swap(t_list **begin_list);
-void				ft_list_rotate(t_list **begin_list);
-void				ft_list_rotate_reverse(t_list **begin_list);
-
-char				*ft_strcpy(char *to, const char *from);
-char				*ft_strncpy(char *to, const char *from, size_t size);
-char				*ft_strcat(char *to, const char *from);
-char				*ft_strncat(char *to, const char *from, size_t size);
-char				*ft_strstr(const char *haystack, const char *needle);
-int					ft_strcmp(const char *s1, const char *s2);
-char				*ft_strsub(char const *s, unsigned int start, size_t len);
-
-void				*ft_memalloc(size_t size);
-void				ft_memdel(void **ap);
-char				*ft_strnew(size_t size);
-void				ft_strdel(char **as);
-void				ft_strclr(char *s);
-void				ft_striter(char *s, void (*f)(char *));
-void				ft_striteri(char *s, void (*f)(unsigned int, char *));
-char				*ft_strmap(char const *s, char (*f)(char));
-int					ft_strequ(char const *s1, char const *s2);
-int					ft_strnequ(char const *s1, char const *s2, size_t n);
-char				**ft_strsplit(char const *s, char c);
-void				ft_putchar(char c);
-void				ft_putstr(char *s);
-void				ft_putnbr(int n);
+t_list				*ft_lstnew(void *content);
+void				ft_lstadd_front(t_list **alst, t_list *new);
+int					ft_lstsize(t_list *lst);
+t_list				*ft_lstlast(t_list *lst);
+void				ft_lstadd_back(t_list **alst, t_list *new);
+void				ft_lstdelone(t_list *lst, void (*del)(void *));
+void				ft_lstclear(t_list **lst, void (*del)(void *));
+void				ft_lstiter(t_list *lst, void (*f)(void *));
+t_list				*ft_lstmap(t_list *lst, t_list *(*f)(void *));
 
 #endif
