@@ -321,6 +321,65 @@ void	check_strlcat(void)
 	printf("[+] END OF STRLCAT [+]\n\n");
 }
 
+void	check_strlcpy(void)
+{
+	char	str1[6] = "lorem";
+	char	str2[6] = "lorem";
+	char	str3[14] = "sssssssssssss";
+	char	str4[14] = "sssssssssssss";
+	int a1 = ft_strlcpy(str3, str1, 6);
+	int a2 = strlcpy(str4, str2, 6);
+
+	char	str5[6] = "lorem";
+	char	str6[6] = "lorem";
+	char	str7[14] = "sssssssssssss";
+	char	str8[14] = "sssssssssssss";
+	int a3 = ft_strlcpy(str7, str5, 8);
+	int a4 = strlcpy(str8, str6, 8);
+
+	char	str9[1] = "";
+	char	str10[1] = "";
+	char	str11[14] = "sssssssssssss";
+	char	str12[14] = "sssssssssssss";
+	int a5 = ft_strlcpy(str11, str9, 3);
+	int a6 = strlcpy(str12, str10, 3);
+
+	char	str13[12] = "lorem ipsum";
+	char	str14[12] = "lorem ipsum";
+	char	str15[14] = "sssssssssssss";
+	char	str16[14] = "sssssssssssss";
+	int a7 = ft_strlcpy(str15, str13, 3);
+	int a8 = strlcpy(str16, str14, 3);
+
+	char	str17[12] = "lorem ipsum";
+	char	str18[12] = "lorem ipsum";
+	char	str19[14] = "sssssssssssss";
+	char	str20[14] = "sssssssssssss";
+	int a9 = ft_strlcpy(str19, str17, 0);
+	int a10 = strlcpy(str20, str18, 0);
+
+	char	str21[12] = "lorem ipsum";
+	char	str22[12] = "lorem ipsum";
+	char	str23[14] = "sssssssssssss";
+	char	str24[14] = "sssssssssssss";
+	int a9 = ft_strlcpy(str19, str17, 0);
+	int a10 = strlcpy(str20, str18, 0);
+	printf("[+] STRLCPY [+]\n");
+	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
+			str3, str4, a1, a2, strncmp(str3, str4, 6), ((a1 == a2) ? "RIGHT" : "WRONG")); 
+	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
+			str7, str8, a3, a4, strncmp(str7, str8, 8), ((a3 == a4) ? "RIGHT" : "WRONG")); 
+	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
+			str11, str12, a5, a6, strncmp(str11, str12, 3), ((a5 == a6) ? "RIGHT" : "WRONG")); 
+	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
+			str15, str16, a7, a8, strncmp(str15, str16, 3), ((a7 == a8) ? "RIGHT" : "WRONG")); 
+	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
+			str19, str20, a9, a10, strncmp(str19, str20, 0), ((a9 == a10) ? "RIGHT" : "WRONG")); 
+			
+	
+	printf("[-] Test with EMPTY STRING [-]\n");
+	printf("[+] END OF STRLCPY [+]\n\n");
+}
 
 void	check_strnstr(void)
 {
@@ -608,8 +667,9 @@ int     main(void)
 	check_strjoin();
 	check_itoa();
 	check_memccpy();
+	check_split();
 	check_putnbr_fd();
 */
-	check_split();
+	check_strlcpy();
 
 }
