@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 22:12:20 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/09 10:07:00 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/20 16:54:07 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ size_t				ft_strlcat(char *to, const char *from, size_t size)
 	size_t			length;
 	size_t			i;
 
-	length = len(to);
+	i = 0;
+	while (to[i] && i < size)
+		i++;
+	length = i;
 	if (length >= size)
 		return (len(from) + size);
 	else

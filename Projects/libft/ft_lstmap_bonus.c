@@ -3,22 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 22:26:02 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/13 11:31:13 by zexu             ###   ########.fr       */
+/*   Created: 2019/10/20 18:10:32 by zexu              #+#    #+#             */
+/*   Updated: 2019/10/20 19:47:56 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** iterate the list 'lst' and apply the function 'f' to each element
-** create a new list resulting of the successive applications of the funcion 'f'
+** iterate the list 'lst' and apply the function 'f' to the content of each
+** element. create a new list resulting of the successive application of it
+**
+** 'del' function is here to delete the content of an element if needed
 */
 
 #include "libft.h"
-/*
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(void *))
+
+t_list				*ft_listmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	return NULL;
+	int				size;
+	int				i;
+
+	i = 0;
+	if (lst == NULL)
+		return ;
+	size = ft_lstsize(lst);
+	
+	while (i < size)
+	{
+		f(curr_list->data);
+		curr_list = curr_list->next;
+	}
+	return (NULL);
 }
-*/

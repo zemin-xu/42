@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:45:19 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/13 12:01:11 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/20 19:47:45 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-
-/*
-** part 1
-** with problems:
-** should add in part1:
-** strlcpy
-*/
 
 void				*ft_memset(void *block, int c, size_t size);
 void				ft_bzero(void *block, size_t size);
@@ -63,7 +56,7 @@ void				ft_putnbr_fd(int n, int fd);
 
 /*
 ** should modify:
-** strtrim strlcpy ft_lstadd_back
+** strtrim add make bonus and add filename to compile
 */
 
 char				**ft_strsplit(char const *s, char c);
@@ -82,6 +75,6 @@ void				ft_lstadd_back(t_list **alst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(void *));
+t_list				*ft_lstmap(t_list *lst, t_list *(*f)(void *), void (*del)(void *));
 
 #endif

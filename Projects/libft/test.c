@@ -3,8 +3,6 @@
 #include "libft.h"
 
 // scripts with potential problems : 
-// split
-// strtrim
 // strmapi
 
 
@@ -230,6 +228,26 @@ void	check_strsplit(void)
 	printf("[+] END OF STRSPLIT [+]\n\n");
 }
 
+void	check_strsub()
+{
+	char str[] = "lorem ipsum dolor sit amet";
+	char *strsub;
+	char *test;
+
+	strsub = ft_substr(str, 400, 20);
+
+	if (strsub != NULL)
+	{
+		test = (char *)&strsub[30];
+		test = "no sense";
+	}
+	
+	printf("[+] STRSUB [+]\n");
+	printf("[-] mine: %s [-]\n", (strsub == NULL) ? "NULL" : "NOT NULL");
+
+	printf("[+] END OF STRSUB [+]\n\n");
+}
+
 void	check_itoa(void)
 {
 	int int1 = 107;
@@ -297,12 +315,12 @@ void	check_strlcat(void)
 	int a7 = ft_strlcat(str15, str13, 2);
 	int a8 = strlcat(str16, str14, 2);
 
-	char	str17[8] = "abcdaed";
-	char	str18[8] = "abcdaed";
-	char	str19[9] = "efgh";
-	char	str20[9] = "efgh";
-	int a9 = ft_strlcat(str19, str17, 4);
-	int a10 = strlcat(str20, str18, 4);
+	char	str17[] = "lorem ipsum dolor sit amet";
+	char	str18[] = "lorem ipsum dolor sit amet";
+	char	str19[16] = "rrrrrrrrrrrrrrr";
+	char	str20[16] = "rrrrrrrrrrrrrrr";
+	int a9 = ft_strlcat(str19, str17, 5);
+	int a10 = strlcat(str20, str18, 5);
 
 	printf("[+] STRLCAT [+]\n");
 	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
@@ -314,8 +332,7 @@ void	check_strlcat(void)
 	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
 			str15, str16, a7, a8, strncmp(str15, str16, 9), ((a7 == a8) ? "RIGHT" : "WRONG")); 
 	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
-			str19, str20, a9, a10, strncmp(str19, str20, 9), ((a9 == a10) ? "RIGHT" : "WRONG")); 
-			
+			str19, str20, a9, a10, strncmp(str19, str20, 5), ((a9 == a10) ? "RIGHT" : "WRONG")); 
 	
 	printf("[-] Test with EMPTY STRING [-]\n");
 	printf("[+] END OF STRLCAT [+]\n\n");
@@ -351,19 +368,13 @@ void	check_strlcpy(void)
 	int a7 = ft_strlcpy(str15, str13, 3);
 	int a8 = strlcpy(str16, str14, 3);
 
-	char	str17[12] = "lorem ipsum";
-	char	str18[12] = "lorem ipsum";
-	char	str19[14] = "sssssssssssss";
-	char	str20[14] = "sssssssssssss";
+	char	str17[27] = "lorem ipsum dolor sit amet";
+	char	str18[27] = "lorem ipsum dolor sit amet";
+	char	str19[16] = "sssssssssssssss";
+	char	str20[16] = "sssssssssssssss";
 	int a9 = ft_strlcpy(str19, str17, 0);
 	int a10 = strlcpy(str20, str18, 0);
 
-	char	str21[12] = "lorem ipsum";
-	char	str22[12] = "lorem ipsum";
-	char	str23[14] = "sssssssssssss";
-	char	str24[14] = "sssssssssssss";
-	int a9 = ft_strlcpy(str19, str17, 0);
-	int a10 = strlcpy(str20, str18, 0);
 	printf("[+] STRLCPY [+]\n");
 	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
 			str3, str4, a1, a2, strncmp(str3, str4, 6), ((a1 == a2) ? "RIGHT" : "WRONG")); 
@@ -376,7 +387,6 @@ void	check_strlcpy(void)
 	printf("[-] mine: %s || origin: %s || return : %d || %d || compare : %d %s[-]\n",
 			str19, str20, a9, a10, strncmp(str19, str20, 0), ((a9 == a10) ? "RIGHT" : "WRONG")); 
 			
-	
 	printf("[-] Test with EMPTY STRING [-]\n");
 	printf("[+] END OF STRLCPY [+]\n\n");
 }
@@ -656,6 +666,7 @@ int     main(void)
 	check_memcpy();
 	check_memccpy();
 	check_memmove();
+	check_strlcat();
 	check_memchr();
 	check_memcmp();
 	check_toupper();
@@ -670,6 +681,6 @@ int     main(void)
 	check_split();
 	check_putnbr_fd();
 */
-	check_strlcpy();
+	check_strsub();
 
 }
