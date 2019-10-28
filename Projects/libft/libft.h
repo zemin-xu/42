@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:45:19 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/20 19:47:45 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/28 15:43:39 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+
+/*
+** should modify:
+** verify makefile, norminette(ft_split with 27 ligne), includefilename
+** bonus: addback, delone, clear, lstmap
+*/
 
 void				*ft_memset(void *block, int c, size_t size);
 void				ft_bzero(void *block, size_t size);
@@ -53,13 +59,6 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-
-/*
-** should modify:
-** strtrim add make bonus and add filename to compile
-*/
-
-char				**ft_strsplit(char const *s, char c);
 
 typedef	struct		s_list
 {
