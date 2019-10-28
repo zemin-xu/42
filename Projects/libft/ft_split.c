@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 15:30:09 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/09 19:29:55 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/28 14:20:18 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char			**ft_split(char const *s, char c)
 	int			i;
 	int			j;
 
+	if (s == NULL)
+		return (NULL);
 	num = num_strings_2(s, c) + 1;
 	i = -1;
 	if ((res = malloc(sizeof(char *) * num)) == NULL)

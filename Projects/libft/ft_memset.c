@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:59:02 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/07 19:49:14 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/28 13:44:35 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void				*ft_memset(void *block, int c, size_t size)
 
 	ch = (unsigned char)c;
 	p = (char *)block;
-	if (p == NULL)
-		return (NULL);
 	i = 0;
 	while (i < size)
 	{

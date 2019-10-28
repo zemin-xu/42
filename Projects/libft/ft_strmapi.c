@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 11:07:55 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/09 13:28:24 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/28 14:26:47 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char				*ft_strmapi(char *s, char (*f)(unsigned int, char))
 	char			*str;
 	size_t			i;
 
+	if (s == NULL || f == NULL)
+		return (NULL);
 	i = 0;
 	len = inner_strlen(s);
 	if ((str = (char *)malloc(len + 1)) == NULL)

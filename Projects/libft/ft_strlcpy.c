@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 21:09:54 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/20 16:05:05 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/28 14:50:40 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ size_t				ft_strlcpy(char *to, const char *from, size_t size)
 {
 	size_t			i;
 
+	if (to == NULL || from == NULL)
+		return (0);
 	i = 0;
 	if (size > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:14:49 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/07 18:15:32 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/28 14:18:38 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void				*ft_memcpy(void *to, const void *from, size_t size)
 	unsigned char	*c_to;
 	unsigned char	*c_from;
 
+	if (to == NULL && from == NULL)
+		return (NULL);
 	i = 0;
 	c_to = (unsigned char *)to;
 	c_from = (unsigned char *)from;

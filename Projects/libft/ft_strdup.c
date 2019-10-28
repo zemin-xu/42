@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 22:03:59 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/09 10:14:29 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/28 14:25:04 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char				*ft_strdup(const char *s)
 	size_t			i;
 	char			*str;
 
-	if (s == NULL || (str = malloc(len(s) + 1)) == NULL)
+	if ((str = malloc(len(s) + 1)) == NULL)
 		return (NULL);
 	i = 0;
 	while (i < len(s))

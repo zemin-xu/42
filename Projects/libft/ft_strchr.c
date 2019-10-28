@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 10:24:54 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/20 16:56:58 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/28 14:22:33 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ char				*ft_strchr(const char *string, int c)
 {
 	char			*str;
 
-	if (string == NULL)
-		return (NULL);
 	str = (char *)string;
 	while (*str)
 	{

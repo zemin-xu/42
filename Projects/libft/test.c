@@ -216,11 +216,6 @@ void	check_strmapi(void)
 	printf("[+] END OF STRMAPI [+]\n\n");
 }
 
-void	check_strtrim(void)
-{
-	printf("[+] STRTRIM [+]\n");
-	printf("[+] END OF STRTRIM [+]\n\n");
-}
 
 void	check_strsplit(void)
 {
@@ -470,9 +465,46 @@ void	check_strjoin(void)
 	printf("[+] END OF STRJOIN [+]\n\n");
 }
 
+void	check_strtrim(void)
+{
+	char str1[] = "abcde";
+	char *set1 = NULL;
+	char res1[] = "abcde";
+
+	char str2[] = "abcde";
+	char *set2 = "ab";
+	char res2[] = "cde";
+
+	char str3[] = "abcaa";
+	char *set3 = "ae";
+	char res3[] = "bc";
+
+	char str4[] = "abcblbde";
+	char *set4 = "aebb";
+	char res4[] = "cblbd";
+
+	char str5[] = "ae";
+	char *set5 = "aebb";
+	char res5[] = "";
+
+	printf("[+] STRTRIM [+]\n");
+	printf("[-] str : %s || set: %s || res: %s || compare : %d[-]\n",
+			str2, set2, res2, strncmp(ft_strtrim(str2,set2), res2, 4)); 
+	printf("[-] str : %s || set: %s || res: %s || compare : %d[-]\n",
+			str3, set3, ft_strtrim(str3, set3), strncmp(ft_strtrim(str3,set3), res3, 3)); 
+	printf("[-] str : %s || set: %s || res: %s || compare : %d[-]\n",
+			str4, set4, res4, strncmp(ft_strtrim(str4,set4), res4, 7)); 
+	printf("[-] str : %s || set: %s || res: %s || compare : %d[-]\n",
+			str5, set5, res5, strncmp(ft_strtrim(str5,set5), res5, 2)); 
+	
+	printf("[-] Test with EMPTY STRING [-]\n");
+	printf("[-] str : %s || set: %s || res: %s || compare : %d[-]\n",
+			str1, set1, res1, strncmp(ft_strtrim(str1,set1), res1, 6)); 
+	printf("[+] END OF STRTRIM [+]\n\n");
+}
+
 void	check_putnbr_fd(void)
 {
-
 	printf("[+] PUTNBR_FD [+]\n");
 	printf("[-] num: 0 || fd: 1 [-]\n");
 	ft_putnbr_fd(0, 1);
@@ -667,6 +699,7 @@ int     main(void)
 	check_memccpy();
 	check_memmove();
 	check_strlcat();
+	check_strsub();
 	check_memchr();
 	check_memcmp();
 	check_toupper();
@@ -681,6 +714,6 @@ int     main(void)
 	check_split();
 	check_putnbr_fd();
 */
-	check_strsub();
+	check_strtrim();
 
 }
