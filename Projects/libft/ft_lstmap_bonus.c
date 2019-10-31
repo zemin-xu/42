@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 18:10:32 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/31 12:09:20 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/31 13:30:12 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,10 @@
 
 #include "libft.h"
 
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list		*ft_listmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	(void)lst;
 	(void)f;
 	(void)del;
 	return (NULL);
-	/*int				size;
-	int				i;
-
-	i = 0;
-	if (lst == NULL)
-		return ;
-	size = ft_lstsize(lst);
-	
-	while (i < size)
-	{
-		f(curr_list->data);
-		curr_list = curr_list->next;
-	}*/
 }

@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:13:09 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/31 11:04:49 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/31 13:29:03 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list				*ft_lstlast(t_list *lst)
 
 	if ((curr_list = lst) == NULL)
 		return (NULL);
-	while(curr_list->next)
+	while (curr_list->next)
 		curr_list = curr_list->next;
 	return (curr_list);
 }

@@ -77,6 +77,9 @@ all: ${NAME}
 ${OBJ}:
 	${CC} ${CFLAGS} -I ${HEADER} -c ${SRC}
 
+${OBJ_BONUS}:
+	${CC} ${CFLAGS} -I ${HEADER} -c ${SRC_BONUS}
+
 bonus: ${OBJ} ${OBJ_BONUS}
 	ar rcs ${NAME} ${OBJ} ${OBJ_BONUS} 
 
