@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 11:07:55 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/28 14:26:47 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/31 11:50:10 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char			*inner_strcpy(char *to, const char *from)
 	return (to);
 }
 
-char				*ft_strmapi(char *s, char (*f)(unsigned int, char))
+char				*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	size_t			len;
 	char			*str;

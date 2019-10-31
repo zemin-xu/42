@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 10:11:18 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/28 13:19:03 by zexu             ###   ########.fr       */
+/*   Updated: 2019/10/31 12:25:27 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 void				*ft_memchr(const void *block, int c, size_t size)
 {
 	size_t			i;
-	char			*c_block;
+	unsigned char	*c_block;
 
 	i = 0;
-	c_block = (char *)block;
+	c_block = (void *)block;
 	while (i < size)
 	{
-		if (*(c_block + i) == c)
-			return ((void *)(c_block + i));
+		if (*(c_block + i) == (unsigned char)c)
+			return ((void *)(block + i));
 		i++;
 	}
 	return (NULL);

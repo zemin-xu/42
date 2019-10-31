@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 11:59:27 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/28 13:16:19 by zexu             ###   ########.fr       */
+/*   Created: 2019/10/31 13:13:40 by zexu              #+#    #+#             */
+/*   Updated: 2019/10/31 13:15:19 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ char				*ft_strtrim(char const *s1, char const *set)
 	size_t			begin;
 	size_t			i;
 
-	if (s1 == NULL)
+	if (s1 == NULL || set == NULL)
 		return (NULL);
-	if (set == NULL || in_len(set) == 0)
+	if (in_len(set) == 0)
 		return (in_malloc(s1, in_len(s1), 0));
 	i = 0;
 	while (i < in_len(s1) && (in_cmp(*(s1 + i), set) == 1))
