@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:59:12 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/02 19:28:20 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/03 16:25:50 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,20 @@
 # define BUFFER_SIZE	512
 #endif
 
-typedef struct			s_tmp_list
+typedef struct			s_gnl_list
 {
 	int					fd;
+	int					incomplete;
 	char				*content;
-	struct s_tmp_list	*next;
-}						t_tmp_list;
+	struct s_gnl_list	*next;
+}						t_gnl_list;
 
+t_gnl_list				*gnl_new(char *content, int fd, int incomplete);
+void					gnl_push_back(t_gnl_list **head, t_gnl_list *new);
+int						gnl_search(t_gnl_list *head, int fd);
+char					*gnl_fetch(t_gnl_list **head, int fd);
+void					gnl_free_one(t_gnl_list **head, t_gnl_list *target);
+
+char					*strdup_with_ends(char *s, size_t start, size_t end);
 int						get_next_line(int fd, char **line);
-
 #endif

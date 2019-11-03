@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/02 23:46:32 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/03 16:41:55 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,58 +38,7 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-
-t_tmp_list				*tmp_list_new(char *content, int fd)
-{
-	t_tmp_list			*list;
-
-	if ((list = (t_tmp_list *)malloc(sizeof(t_tmp_list))) == NULL)
-		return (NULL);
-	list->content = content;
-	list->fd = fd;
-	list->next = NULL;
-	return (list);
-}
-
-void					tmp_list_push_back(t_tmp_list **head, t_tmp_list *new)
-{
-	t_tmp_list          *list_last;
-
-	if (head && new)
-	{
-		if (*head == NULL)
-			*head = new;
-		else
-		{
-			list_last = *head;
-			while (list_last->next)
-				list_last = list_last->next;
-			list_last->next = new;
-		}
-	}
-}
-
-char					*search_list(t_tmp_list *head, int fd)
-{
-	t_tmp_list			*curr_list;
-
-	if (head->fd == fd)
-		return (head->content);
-	curr_list = head;
-	while (curr_list->next)
-	{
-		if (curr_list->fd == fd)
-			return (curr_list->content);
-		curr_list = curr_list->next;
-	}
-	if (curr_list->fd == fd)
-		return (curr_list->content);
-	else
-		return (NULL);
-
-}
-
-char					*ft_strdup_with_ends(char *s, size_t start, size_t end)
+char					*strdup_with_ends(char *s, size_t start, size_t end)
 {
 	size_t				i;
 	char				*str;
@@ -104,30 +53,41 @@ char					*ft_strdup_with_ends(char *s, size_t start, size_t end)
 		if (start == 0)
 			*(str + i) = *(s + start + i);
 		else
-			*(str + i) = *(s + start + i + 1);
-
+			if (i < end - start - 1)
+				*(str + i) = *(s + start + i + 1);
 		i++;
 	}
 	*(str + i) = '\0';
 	return (str);
 }
 
+
 int						get_next_line(int fd, char **line)
 {
-	static t_tmp_list	*tmp;
+	static t_gnl_list	*tmp;
 	char				*buffer;
 	int					read_value;
 	size_t				end;
 	size_t				start;
 	char				*res;
 
-	if (tmp != NULL)
-	{
-		if ((res = search_list(tmp, fd)) == NULL)
-		{
+	gnl_push_back(&tmp, gnl_new(strdup_with_ends("here I am", 0, 9), 10, 0));
+	gnl_push_back(&tmp, gnl_new(strdup_with_ends("here you do", 0, 11), fd, 0));
+	gnl_push_back(&tmp, gnl_new(strdup_with_ends("wish you", 0, 8), fd, 0));
+	gnl_push_back(&tmp, gnl_new(strdup_with_ends("here he can", 0, 11), 10, 0));
 
-		}
+	// already lines in list
+	if ((gnl_search(tmp, fd)) == 2)
+	{
+		res = gnl_fetch(&tmp, fd);
+	while (tmp)
+	{
+		printf("%s\n", tmp->content);
+		tmp = tmp->next;
 	}
+	}
+
+	// no result or incomplet result in list
 	else
 	{
 		buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE);
@@ -137,26 +97,33 @@ int						get_next_line(int fd, char **line)
 			start = 0;
 			while (end < read_value)
 			{
+				// meet an '\n'
 				if (*(buffer + end) == '\n')
 				{
-					tmp_list_push_back(&tmp, tmp_list_new(ft_strdup_with_ends(buffer,
-									start, end), fd));
+					// retrive content
+					gnl_push_back(&tmp, gnl_new(strdup_with_ends(buffer,
+									start, end), fd, 0));
+					if (gnl_search(tmp, fd) == 1)
+						res = gnl_fetch(&tmp, fd);  
 					start = end;
+
 				}
+				// meet an '\0' without '\n' before, program stop here
 				else if (*(buffer + end) == '\0')
 				{
-
+					gnl_push_back(&tmp, gnl_new(strdup_with_ends(buffer,
+									start, end), fd, 0));
+					return (0);
 				}
 				end++;
 			}
+			// meet end of the buffer without '\n' nor '\0'
+			gnl_push_back(&tmp, gnl_new(strdup_with_ends(buffer, start, end), fd, 1));
+			// if res == NULL, recursive
 		}
-		
-		t_tmp_list *curr = tmp;
-		while (curr)
-		{
-			printf("%s", curr->content); 
-			curr = curr->next;
-		}
+
+		if (res != NULL)
+			free(res);
 		free(buffer);
 	}
 	return (0);
@@ -166,8 +133,9 @@ int						main()
 {
 	char				*newline;
 	int					fd;
-	
+
 	fd = open("test.txt", O_RDONLY); 
 	get_next_line(fd, &newline);
+	
 	return (0);
 }
