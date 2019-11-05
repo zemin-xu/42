@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:47:49 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/03 19:11:33 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/05 19:55:45 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char					*gnl_fetch(t_gnl_list **head, int fd)
 	curr_list = *head;
 	while (curr_list)
 	{
-		if ((curr_list->fd == fd) && (curr_list->incomplete == 1))
+		if (curr_list->fd == fd)
 		{
 			i = 0;
 			while (*((curr_list->content) + i)) 
