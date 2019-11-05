@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:47:49 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/03 16:41:31 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/03 19:11:33 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 #include <stdio.h>
 
 
-t_gnl_list				*gnl_new(char *content, int fd, int incomplete)
+t_gnl_list				*gnl_new(t_gnl_list **head, char *content, int fd, int incomplete)
 {
 	t_gnl_list			*list;
-
+	
 	if ((list = (t_gnl_list *)malloc(sizeof(t_gnl_list))) == NULL)
 		return (NULL);
-	list->content = content;
 	list->fd = fd;
 	list->incomplete = incomplete;
 	list->next = NULL;
+	if (gnl_search(*head, fd) == 1)
+		content = ft_strjoin(gnl_fetch(head, fd), content);
+	list->content = content;
 	return (list);
 }
 
@@ -74,7 +76,7 @@ char					*gnl_fetch(t_gnl_list **head, int fd)
 	curr_list = *head;
 	while (curr_list)
 	{
-		if (curr_list-> fd == fd)
+		if ((curr_list->fd == fd) && (curr_list->incomplete == 1))
 		{
 			i = 0;
 			while (*((curr_list->content) + i)) 
@@ -92,28 +94,23 @@ void				gnl_free_one(t_gnl_list **head, t_gnl_list *target)
 {
 	t_gnl_list		*pre_list;
 
-	if (*head == target)
+	if ((pre_list = *head) == target)
 	{
-		pre_list = *head;
 		if ((*head)->next)
 			*head = (*head)->next;
 		else
 			*head = NULL;
 	}
-	else
+	while (pre_list->next)
 	{
-		pre_list = *head;
-		while (pre_list->next)
+		if (pre_list->next == target)
 		{
-			if (pre_list->next == target)
-			{
-				if (pre_list->next->next)
-					pre_list->next = pre_list->next->next;
-				else
-					pre_list->next = NULL;
-			}
-			pre_list = pre_list->next;
+			if (pre_list->next->next)
+				pre_list->next = pre_list->next->next;
+			else
+				pre_list->next = NULL;
 		}
+		pre_list = pre_list->next;
 	}
 	free(target->content);
 	free(target);

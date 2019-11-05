@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/03 16:41:55 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/05 17:36:05 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,47 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
+
+static size_t		ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+static char			*inner_strncpy(char *to, const char *from, size_t size)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (from[i] && i < size)
+	{
+		to[i] = from[i];
+		i++;
+	}
+	while (i < size)
+	{
+		to[i] = '\0';
+		i++;
+	}
+	return (to);
+}
+
+char				*ft_strjoin(char const *s1, char const *s2)
+{
+	char			*str;
+
+	if (s1 == NULL || s2 == NULL || (str = (char *)malloc(ft_strlen(s1) +
+					ft_strlen(s2) + 1)) == NULL)
+		return (NULL);
+	inner_strncpy(str, s1, ft_strlen(s1));
+	inner_strncpy(str + ft_strlen(s1), s2, ft_strlen(s2));
+	*(str + ft_strlen(s1) + ft_strlen(s2)) = '\0';
+	return (str);
+}
 
 char					*strdup_with_ends(char *s, size_t start, size_t end)
 {
@@ -69,29 +110,23 @@ int						get_next_line(int fd, char **line)
 	int					read_value;
 	size_t				end;
 	size_t				start;
-	char				*res;
-
-	gnl_push_back(&tmp, gnl_new(strdup_with_ends("here I am", 0, 9), 10, 0));
-	gnl_push_back(&tmp, gnl_new(strdup_with_ends("here you do", 0, 11), fd, 0));
-	gnl_push_back(&tmp, gnl_new(strdup_with_ends("wish you", 0, 8), fd, 0));
-	gnl_push_back(&tmp, gnl_new(strdup_with_ends("here he can", 0, 11), 10, 0));
 
 	// already lines in list
 	if ((gnl_search(tmp, fd)) == 2)
 	{
-		res = gnl_fetch(&tmp, fd);
-	while (tmp)
-	{
-		printf("%s\n", tmp->content);
-		tmp = tmp->next;
+		*line = gnl_fetch(&tmp, fd);
+		return (1);
 	}
-	}
-
-	// no result or incomplet result in list
 	else
 	{
-		buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE);
-		if ((read_value = read(fd, buffer, BUFFER_SIZE)) > 0)
+		// no result or incomplet result in list
+		if ((buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE)) == NULL)
+			return (-1);
+
+		read_value = read(fd, buffer, BUFFER_SIZE);
+		printf("%d\n", read_value);
+
+		if (read_value > 0)
 		{
 			end = 0;
 			start = 0;
@@ -101,41 +136,62 @@ int						get_next_line(int fd, char **line)
 				if (*(buffer + end) == '\n')
 				{
 					// retrive content
-					gnl_push_back(&tmp, gnl_new(strdup_with_ends(buffer,
-									start, end), fd, 0));
-					if (gnl_search(tmp, fd) == 1)
-						res = gnl_fetch(&tmp, fd);  
+					gnl_push_back(&tmp, gnl_new(&tmp,
+								strdup_with_ends(buffer, start, end), fd, 0));
 					start = end;
-
 				}
 				// meet an '\0' without '\n' before, program stop here
 				else if (*(buffer + end) == '\0')
 				{
-					gnl_push_back(&tmp, gnl_new(strdup_with_ends(buffer,
-									start, end), fd, 0));
+					gnl_push_back(&tmp, gnl_new(&tmp, 
+								strdup_with_ends(buffer, start, end), fd, 0));
 					return (0);
 				}
 				end++;
 			}
 			// meet end of the buffer without '\n' nor '\0'
-			gnl_push_back(&tmp, gnl_new(strdup_with_ends(buffer, start, end), fd, 1));
-			// if res == NULL, recursive
-		}
+			gnl_push_back(&tmp, gnl_new(&tmp,
+						strdup_with_ends(buffer, start, end), fd, 1));
+			/*
+			   printf("-----------------------start-----------------\n");
+			   while (tmp)
+			   {
+			   printf("%s\n", tmp->content);
+			   tmp = tmp->next;
+			   }
+			   printf("-----------------------end-------------------\n");
+			   */
 
-		if (res != NULL)
-			free(res);
-		free(buffer);
+			printf("outer");
+			get_next_line(fd, line);
+			free(buffer);
+		}
+		return (1);
 	}
-	return (0);
 }
 
 int						main()
 {
 	char				*newline;
 	int					fd;
+	int					ret;
+
+	/*
+	t_gnl_list			*tmp;
+	gnl_push_back(&tmp, gnl_new(&tmp,
+				strdup_with_ends("dddd gg tt", 0, 10), 3, 0));
+	gnl_push_back(&tmp, gnl_new(&tmp,
+				strdup_with_ends("what is it", 0, 10), 3, 1));
+	gnl_push_back(&tmp, gnl_new(&tmp,
+				strdup_with_ends("who are you", 0, 11), 3, 1));
+	printf("-----------------------start-----------------\n");
+	printf("%s\n", tmp->content);
+	printf("%s\n", tmp->next->content);
+	printf("-----------------------end-------------------\n");
+	*/
+
 
 	fd = open("test.txt", O_RDONLY); 
-	get_next_line(fd, &newline);
-	
+	printf("\nreturn value: %d",ret = get_next_line(fd, &newline));
 	return (0);
 }
