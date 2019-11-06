@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/05 20:12:10 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/05 23:18:13 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,23 +82,25 @@ char				*ft_strjoin(char const *s1, char const *s2)
 char					*strdup_with_ends(char *s, size_t start, size_t end)
 {
 	size_t				i;
+	size_t				j;
 	char				*str;
 
-	if (start >= end)
+	if (start >= end && end != 0)
 		return (NULL);
 	i = 0;
+	j = 0;
 	if ((str = malloc(end - start + 1)) == NULL)
 		return (NULL);
 	while (i < end - start)
 	{
-		if (start == 0)
-			*(str + i) = *(s + start + i);
-		else
-			if (i < end - start - 1)
-				*(str + i) = *(s + start + i + 1);
+		if (*(s + start + i) != '\n')
+		{
+			*(str + j) = *(s + start + i);
+			j++;
+		}
 		i++;
 	}
-	*(str + i) = '\0';
+	*(str + j) = '\0';
 	return (str);
 }
 
@@ -138,6 +140,10 @@ int						get_next_line(int fd, char **line)
 
 	read_value = read(fd, buffer, BUFFER_SIZE);
 
+	//printf("%d\n",read_value);
+	if (read_value == 0)
+		return (0);
+
 	if (read_value > 0)
 	{
 		end = 0;
@@ -161,53 +167,37 @@ int						get_next_line(int fd, char **line)
 			}
 			end++;
 		}
-		//
-		// meet end of the buffer without '\n' nor '\0'
-		gnl_push_back(&tmp, gnl_new(&tmp,
+			gnl_push_back(&tmp, gnl_new(&tmp,
 					strdup_with_ends(buffer, start, end), fd, 1));
-		/*
-		test = tmp;
-		   printf("---------------in----start-----------------\n");
-		   while (test)
-		   {
-		   printf("\n");
-		   printf("%s\n", test->content);
-		   printf("%d\n", test->fd);
-		   printf("%d\n", test->incomplete);
-		   printf("\n");
-		   test= test->next;
-		   }
-		   printf("----------------in-----end-------------------\n");
-
-		*/
 		get_next_line(fd, line);
-		free(buffer);
 	}
-	return (3);
+	free(buffer);
+	return (1);
 }
 
 int						main()
 {
 	char				*newline;
-	int					fd;
-	int					ret;
+	int					fd[2];
+	int	i = 0;
+	int j = 0;
+	
 
-	/*
-	   gnl_push_back(&tmp, gnl_new(&tmp,
-	   strdup_with_ends("dddd gg tt", 0, 10), 3, 0));
-	   gnl_push_back(&tmp, gnl_new(&tmp,
-	   strdup_with_ends("what is it", 0, 10), 3, 1));
-	   gnl_push_back(&tmp, gnl_new(&tmp,
-	   strdup_with_ends("who are you", 0, 11), 3, 1));
-	   printf("-----------------------start-----------------\n");
-	   printf("%s\n", tmp->content);
-	   printf("%s\n", tmp->next->content);
-	   printf("-----------------------end-------------------\n");
-	   */
+	fd[0] = open("get_next_line_utils.c", O_RDONLY); 
+	fd[1] = open("copy.txt", O_RDONLY); 
+	if (fd[0] != -1 && fd[1] != -1)
+	{
 
-	fd = open("test.txt", O_RDONLY); 
-	printf("\nreturn value: %d\n",ret = get_next_line(fd, &newline));
-	printf("%s", newline);
+		while (i < 150)
+		{
+			j = get_next_line(fd[0], &newline);
+//			printf("%d || %s\n", j, newline);
+			i++;
+		}
+	}
+
+	close(fd[0]);
+	close(fd[1]);
 
 	return (0);
 }
