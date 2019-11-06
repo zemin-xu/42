@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/06 21:14:51 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/06 23:09:27 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,22 +112,19 @@ int						get_next_line(int fd, char **line)
 	size_t				end;
 	size_t				start;
 
+	if (fd < 0 || line == NULL || BUFFER_SIZE < 1)
+		return (-1);
 	while ((gnl_search(tmp, fd)) != 2)
 	{
 		if ((buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE)) == NULL)
 			return (-1);
-		read_value = read(fd, buffer, BUFFER_SIZE);
-
-		if (read_value == 0)
+		if ((read_value = read(fd, buffer, BUFFER_SIZE)) < 0)
+			return (-1);
+		else if (read_value == 0)
 		{
-			if (gnl_search(tmp, fd) == 1)
-			{
 				gnl_push_back(&tmp, gnl_new(&tmp, 
 							strdup_with_ends("", 0, 1), fd, 0));
 				*line = gnl_fetch(&tmp, fd);
-			}
-			else
-				*line = "";
 			return (0);
 		}
 		else if (read_value > 0)
@@ -152,7 +149,7 @@ int						get_next_line(int fd, char **line)
 	*line = gnl_fetch(&tmp, fd);
 	return (1);
 }
-
+/*
 int						main()
 {
 	char				*newline;
@@ -179,3 +176,4 @@ int						main()
 
 	return (0);
 }
+*/
