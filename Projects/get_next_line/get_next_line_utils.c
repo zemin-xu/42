@@ -94,14 +94,14 @@ void				gnl_free_one(t_gnl_list **head, t_gnl_list *target)
 {
 	t_gnl_list		*pre_list;
 
-	if ((pre_list = *head) == target)
+	if ((pre_list = (*head)) == target)
 	{
 		if ((*head)->next)
 			*head = (*head)->next;
 		else
 			*head = NULL;
 	}
-	while (pre_list->next)
+	while (pre_list && pre_list->next)
 	{
 		if (pre_list->next == target)
 		{

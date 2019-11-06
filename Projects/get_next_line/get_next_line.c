@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/05 23:18:13 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/06 21:14:51 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,92 +112,70 @@ int						get_next_line(int fd, char **line)
 	size_t				end;
 	size_t				start;
 
-	t_gnl_list			*test;
-	test = tmp;
-
-	printf("-----------------------start-----------------\n");
-	while (test)
+	while ((gnl_search(tmp, fd)) != 2)
 	{
-		printf("\n");
-		printf("%s\n", test->content);
-		printf("%d\n", test->fd);
-		printf("%d\n", test->incomplete);
-		printf("\n");
-		test= test->next;
-	}
-	printf("-----------------------end-------------------\n");
-	
-	// already lines in list
-	if ((gnl_search(tmp, fd)) == 2)
-	{
-		*line = gnl_fetch(&tmp, fd);
-		return (1);
-	}
+		if ((buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE)) == NULL)
+			return (-1);
+		read_value = read(fd, buffer, BUFFER_SIZE);
 
-	// no result or incomplet result in list
-	if ((buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE)) == NULL)
-		return (-1);
-
-	read_value = read(fd, buffer, BUFFER_SIZE);
-
-	//printf("%d\n",read_value);
-	if (read_value == 0)
-		return (0);
-
-	if (read_value > 0)
-	{
-		end = 0;
-		start = 0;
-		while (end < read_value)
+		if (read_value == 0)
 		{
-			// meet an '\n'
-			if (*(buffer + end) == '\n')
-			{
-				// retrive content
-				gnl_push_back(&tmp, gnl_new(&tmp,
-							strdup_with_ends(buffer, start, end), fd, 0));
-				start = end;
-			}
-			// meet an '\0' without '\n' before, program stop here
-			else if (*(buffer + end) == '\0')
+			if (gnl_search(tmp, fd) == 1)
 			{
 				gnl_push_back(&tmp, gnl_new(&tmp, 
-							strdup_with_ends(buffer, start, end), fd, 0));
-				return (0);
+							strdup_with_ends("", 0, 1), fd, 0));
+				*line = gnl_fetch(&tmp, fd);
 			}
-			end++;
+			else
+				*line = "";
+			return (0);
 		}
+		else if (read_value > 0)
+		{
+			end = 0;
+			start = 0;
+			while ((int)end < read_value)
+			{
+				if (*(buffer + end) == '\n')
+				{
+					gnl_push_back(&tmp, gnl_new(&tmp,
+								strdup_with_ends(buffer, start, end), fd, 0));
+					start = end;
+				}
+				end++;
+			}
 			gnl_push_back(&tmp, gnl_new(&tmp,
-					strdup_with_ends(buffer, start, end), fd, 1));
-		get_next_line(fd, line);
+						strdup_with_ends(buffer, start, end), fd, 1));
+		}
+		free(buffer);
 	}
-	free(buffer);
+	*line = gnl_fetch(&tmp, fd);
 	return (1);
 }
 
 int						main()
 {
 	char				*newline;
-	int					fd[2];
+	int					fd[3];
 	int	i = 0;
 	int j = 0;
-	
 
-	fd[0] = open("get_next_line_utils.c", O_RDONLY); 
+
+	fd[0] = open("test.txt", O_RDONLY); 
 	fd[1] = open("copy.txt", O_RDONLY); 
-	if (fd[0] != -1 && fd[1] != -1)
+	fd[2] = open("get_next_line.h", O_RDONLY);
+	if (fd[0] != -1 && fd[1] != -1 && fd[2] != -1)
 	{
-
-		while (i < 150)
+		while ( i < 105)
 		{
-			j = get_next_line(fd[0], &newline);
-//			printf("%d || %s\n", j, newline);
+			j = get_next_line(fd[i%3], &newline);
+			printf(" %d || %s\n", j, newline);
 			i++;
 		}
 	}
-
 	close(fd[0]);
 	close(fd[1]);
+	close(fd[2]);
 
 	return (0);
 }
