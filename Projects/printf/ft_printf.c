@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 19:42:38 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/05 13:37:44 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/07 22:50:22 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,19 @@
  ** the second (must be initialised) into the first.
  */
 
-#include <stdarg.h>
+/*
+ **	-------------------------Conversion Specifiers---------------------------
+ ** %diouxX: The int (or appropriate variant) argument is converted to signed
+ ** decimal (d and i), unsigned octal (o), unsigned decimal (u), or unsigned 
+ ** hexadecimal (x and X) notation.  The letters ``abcdef'' are used for x 
+ ** conversions; the letters ``ABCDEF'' are used for X conversions.  
+ ** The precision, if any, gives the minimum number of digits that must appear;
+ ** if the converted value requires fewer digits, it is padded on the left 
+ ** with zeros.
+ */
+
+#include "ft_printf.h"
+#include <stdio.h>
 
 int					ft_printf(const char *format, ...)
 {
@@ -39,15 +51,30 @@ int					ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (*format == '%')
-				ft_putchar('%');
-			else if (*format == 'c')
-				//print char
-			else if (*format == 'd')
-				//print char
+			if (*format == 'c')
+				ft_putchar_fd((char)va_arg(argp, int), 1);
+			else if (*format == 's')
+				ft_putstr_fd(va_arg(argp, char*), 1);
+			else if (*format == 'p')
+				ft_putchar_fd('p', 1);
+			else if (*format == 'd' || *format == 'i')
+				ft_putnbr_fd(va_arg(argp, int), 1);
+			else if (*format == 'u')
+			{
+				unsigned int x = (unsigned int)va_arg(argp, int);
+				ft_putnbr_fd(x, 1);
+			}
+			else if (*format == 'x')
+				ft_putchar_fd('x', 1);
+			else if (*format == 'X')
+				ft_putchar_fd('X', 1);
+			else if (*format == '%')
+				ft_putchar_fd('%', 1);
+			else
+				ft_putstr_fd("Not implemented yet", 1);
 		}
 		else
-			ft_putchar(*format);	
+			ft_putchar_fd(*format, 1);	
 		format++;
 	}
 	va_end(argp);
@@ -56,8 +83,12 @@ int					ft_printf(const char *format, ...)
 
 int					main()
 {
-	printf("%f\n", average(3, 1, 2, 3));
-	printargs(5, 23, 2, -1, 1);
-	printargs(5, -1, -1);
-	return (0);
+	int a = -5;
+	int b = 0x0b;
+	int *p = &a;
+	//ft_printf("%d%%%s%p%p$$", 100, "!!sfggd!!");
+	ft_printf("%u\n", a);
+	printf("%u\n", a);
+	return 0;
 }
+

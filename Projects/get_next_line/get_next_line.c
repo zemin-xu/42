@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/07 17:48:51 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/07 18:29:07 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,6 @@
  */
 
 #include "get_next_line.h"
-#include <stdio.h>
-
-static size_t		ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 char				*ft_strncpy(char *to, const char *from, size_t size)
 {
@@ -113,13 +102,30 @@ char					*gnl_strdup(char *s, size_t start, size_t end)
 	return (str);
 }
 
+void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer, int read_value)
+{
+	size_t				begin;
+	size_t				end;
+
+	end = 0;
+	begin = 0;
+	while ((int)end < read_value)
+	{
+		if (*(buffer + end) == '\n')
+		{
+			gnl_push_back(tmp, gnl_new(tmp, gnl_strdup(buffer, begin, end), fd, 0));
+			begin = end;
+		}
+		end++;
+	}
+	gnl_push_back(tmp, gnl_new(tmp, gnl_strdup(buffer, begin, end), fd, 1));
+}
+
 int						get_next_line(int fd, char **line)
 {
 	static t_gnl_list	*tmp;
 	char				*buffer;
 	int					read_value;
-	size_t				end;
-	size_t				start;
 
 	if (fd < 0 || line == NULL || BUFFER_SIZE < 1)
 		return (-1);
@@ -131,57 +137,14 @@ int						get_next_line(int fd, char **line)
 			return (-1);
 		else if (read_value == 0)
 		{
-				gnl_push_back(&tmp, gnl_new(&tmp, 
-							gnl_strdup("", 0, 1), fd, 0));
-				*line = gnl_fetch(&tmp, fd);
+			gnl_push_back(&tmp, gnl_new(&tmp, gnl_strdup("", 0, 1), fd, 0));
+			*line = gnl_fetch(&tmp, fd);
 			return (0);
 		}
 		else if (read_value > 0)
-		{
-			end = 0;
-			start = 0;
-			while ((int)end < read_value)
-			{
-				if (*(buffer + end) == '\n')
-				{
-					gnl_push_back(&tmp, gnl_new(&tmp,
-								gnl_strdup(buffer, start, end), fd, 0));
-					start = end;
-				}
-				end++;
-			}
-			gnl_push_back(&tmp, gnl_new(&tmp,
-						gnl_strdup(buffer, start, end), fd, 1));
-		}
+			get_next_line_2(&tmp, fd, buffer, read_value);
 		free(buffer);
 	}
 	*line = gnl_fetch(&tmp, fd);
 	return (1);
-}
-
-int						main()
-{
-	char				*newline;
-	int					fd[3];
-	int	i = 0;
-	int j = 0;
-
-
-	fd[0] = open("test.txt", O_RDONLY); 
-	fd[1] = open("copy.txt", O_RDONLY); 
-	fd[2] = open("get_next_line.h", O_RDONLY);
-	if (fd[0] != -1 && fd[1] != -1 && fd[2] != -1)
-	{
-		while ( i < 105)
-		{
-			j = get_next_line(fd[i%3], &newline);
-			printf(" %d || %s\n", j, newline);
-			i++;
-		}
-	}
-	close(fd[0]);
-	close(fd[1]);
-	close(fd[2]);
-
-	return (0);
 }

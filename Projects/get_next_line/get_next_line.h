@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:59:12 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/07 17:49:41 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/07 18:32:35 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE	512
 #endif
@@ -51,7 +47,8 @@ typedef struct			s_gnl_list
 	struct s_gnl_list	*next;
 }						t_gnl_list;
 
-t_gnl_list				*gnl_new(t_gnl_list **head, char *content, int fd, int incomplete);
+t_gnl_list				*gnl_new(t_gnl_list **head, char *content, int fd,
+								int incomplete);
 void					gnl_push_back(t_gnl_list **head, t_gnl_list *new);
 int						gnl_search(t_gnl_list *head, int fd);
 char					*gnl_fetch(t_gnl_list **head, int fd);
@@ -60,5 +57,7 @@ void					gnl_free_one(t_gnl_list **head, t_gnl_list *target);
 char					*gnl_strdup(char *s, size_t start, size_t end);
 char					*ft_strncpy(char *to, const char *from, size_t size);
 char					*ft_strjoin(char const *s1, char const *s2);
+void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer,
+										int read_value);
 int						get_next_line(int fd, char **line);
 #endif

@@ -6,13 +6,11 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:47:49 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/07 17:50:15 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/07 18:29:39 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-
 
 t_gnl_list				*gnl_new(t_gnl_list **head, char *content, int fd, int incomplete)
 {
@@ -47,7 +45,6 @@ void					gnl_push_back(t_gnl_list **head, t_gnl_list *new)
 	}
 }
 
-// 0: no res 1: res incomplete 2:res complete
 int						gnl_search(t_gnl_list *head, int fd)
 {
 	t_gnl_list			*curr_list;

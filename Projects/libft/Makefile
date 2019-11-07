@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/11/07 18:54:32 by zexu              #+#    #+#              #
+#    Updated: 2019/11/07 18:54:42 by zexu             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #
 # Makefile is a file to describe the way construct a project
 # in order to realise automatic compliation and construcion
