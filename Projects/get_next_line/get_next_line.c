@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/06 23:09:27 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/07 17:48:51 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static size_t		ft_strlen(const char *s)
 	return (i);
 }
 
-static char			*inner_strncpy(char *to, const char *from, size_t size)
+char				*ft_strncpy(char *to, const char *from, size_t size)
 {
 	unsigned int	i;
 
@@ -69,17 +69,26 @@ static char			*inner_strncpy(char *to, const char *from, size_t size)
 char				*ft_strjoin(char const *s1, char const *s2)
 {
 	char			*str;
+	size_t			len1;
+	size_t			len2;
 
-	if (s1 == NULL || s2 == NULL || (str = (char *)malloc(ft_strlen(s1) +
-					ft_strlen(s2) + 1)) == NULL)
+	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	inner_strncpy(str, s1, ft_strlen(s1));
-	inner_strncpy(str + ft_strlen(s1), s2, ft_strlen(s2));
-	*(str + ft_strlen(s1) + ft_strlen(s2)) = '\0';
+	len1 = 0;
+	len2 = 0;
+	while (s1[len1])
+		len1++;
+	while (s2[len2])
+		len2++;
+	if ((str = (char *)malloc(len1 + len2 + 1)) == NULL)
+		return (NULL);
+	ft_strncpy(str, s1, len1);
+	ft_strncpy(str + len1, s2, len2);
+	*(str + len1 + len2) = '\0';
 	return (str);
 }
 
-char					*strdup_with_ends(char *s, size_t start, size_t end)
+char					*gnl_strdup(char *s, size_t start, size_t end)
 {
 	size_t				i;
 	size_t				j;
@@ -123,7 +132,7 @@ int						get_next_line(int fd, char **line)
 		else if (read_value == 0)
 		{
 				gnl_push_back(&tmp, gnl_new(&tmp, 
-							strdup_with_ends("", 0, 1), fd, 0));
+							gnl_strdup("", 0, 1), fd, 0));
 				*line = gnl_fetch(&tmp, fd);
 			return (0);
 		}
@@ -136,20 +145,20 @@ int						get_next_line(int fd, char **line)
 				if (*(buffer + end) == '\n')
 				{
 					gnl_push_back(&tmp, gnl_new(&tmp,
-								strdup_with_ends(buffer, start, end), fd, 0));
+								gnl_strdup(buffer, start, end), fd, 0));
 					start = end;
 				}
 				end++;
 			}
 			gnl_push_back(&tmp, gnl_new(&tmp,
-						strdup_with_ends(buffer, start, end), fd, 1));
+						gnl_strdup(buffer, start, end), fd, 1));
 		}
 		free(buffer);
 	}
 	*line = gnl_fetch(&tmp, fd);
 	return (1);
 }
-/*
+
 int						main()
 {
 	char				*newline;
@@ -176,4 +185,3 @@ int						main()
 
 	return (0);
 }
-*/

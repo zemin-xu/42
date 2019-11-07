@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:47:49 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/05 20:58:21 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/07 17:50:15 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char					*gnl_fetch(t_gnl_list **head, int fd)
 			i = 0;
 			while (*((curr_list->content) + i)) 
 				i++;
-			tmp = strdup_with_ends(curr_list->content, 0, i);	
+			tmp = gnl_strdup(curr_list->content, 0, i);	
 			gnl_free_one(head, curr_list);
 			return (tmp);
 		}

@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:59:12 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/03 17:26:06 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/07 17:49:41 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int						gnl_search(t_gnl_list *head, int fd);
 char					*gnl_fetch(t_gnl_list **head, int fd);
 void					gnl_free_one(t_gnl_list **head, t_gnl_list *target);
 
-char					*strdup_with_ends(char *s, size_t start, size_t end);
+char					*gnl_strdup(char *s, size_t start, size_t end);
+char					*ft_strncpy(char *to, const char *from, size_t size);
 char					*ft_strjoin(char const *s1, char const *s2);
 int						get_next_line(int fd, char **line);
 #endif
