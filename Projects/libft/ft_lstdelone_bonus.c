@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:16:09 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/01 15:10:18 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/09 11:51:20 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@
 
 void				ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (lst && del)
-	{
-		del(lst->content);
-		free(lst);
-	}
+	if (del == NULL || lst == NULL)
+		return ;
+	del(lst->content);
+	free(lst);
 }

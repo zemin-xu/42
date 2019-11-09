@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 13:45:19 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/31 12:06:15 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/09 11:26:53 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-
-/*
-** should modify:
-** verify makefile, norme, includefilename
-** bonus: addback, delone, clear, lstmap
-*/
 
 void				*ft_memset(void *block, int c, size_t size);
 void				ft_bzero(void *block, size_t size);
@@ -74,6 +68,7 @@ void				ft_lstadd_back(t_list **alst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+								void (*del)(void *));
 
 #endif

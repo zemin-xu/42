@@ -6,7 +6,7 @@
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 15:30:09 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/31 10:49:30 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/09 10:38:04 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,20 @@ static int		num_strings_2(char const *s, char c)
 	return (num_strings_1(s, c, i, j));
 }
 
+static char		**free_strings(char **res, int size)
+{
+	int			i;
+
+	i = 0;
+	while (i < size)
+	{
+		free(res[i]);
+		i++;
+	}
+	free(res);
+	return (NULL);
+}
+
 char			**ft_split(char const *s, char c)
 {
 	char		**res;
@@ -83,7 +97,7 @@ char			**ft_split(char const *s, char c)
 		while (*s == c)
 			s++;
 		if ((res[i] = malloc(sizeof(char) * (inner_count(s, c) + 1))) == NULL)
-			return (NULL);
+			return (free_strings(res, i));
 		while (inner_count(s, c) > 0)
 			res[i][j++] = *s++;
 		res[i][j] = '\0';
