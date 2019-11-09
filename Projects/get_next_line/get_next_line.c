@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/09 16:18:56 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/09 17:33:21 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ char					*ft_strjoin(char const *s1, char const *s2)
 	ft_strncpy(str, s1, len1);
 	ft_strncpy(str + len1, s2, len2);
 	*(str + len1 + len2) = '\0';
-	//free(str);
+	free((void *)s1);
+	free((char *)s2);
 	return (str);
 }
 
@@ -101,6 +102,7 @@ char					*gnl_strdup(char *s, size_t start, size_t end)
 	}
 	*(str + j) = '\0';
 	return (str);
+
 }
 
 void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer,
@@ -166,7 +168,7 @@ int main()
 	fd[1] = open("get_next_line.c", O_RDONLY);
 	while (i < 100)
 	{
-		ret = get_next_line(fd[i%2], &str);
+		ret = get_next_line(fd[0], &str);
 		printf("%d|%s\n", ret, str); 
 			i++;
 	}
@@ -175,5 +177,6 @@ int main()
 	while(1)
 	{
 	}
+	
 	return 0;
 }
