@@ -6,16 +6,17 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:47:49 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/07 18:29:39 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/09 15:35:08 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_gnl_list				*gnl_new(t_gnl_list **head, char *content, int fd, int incomplete)
+t_gnl_list				*gnl_new(t_gnl_list **head, char *content, int fd,
+								int incomplete)
 {
 	t_gnl_list			*list;
-	
+
 	if ((list = (t_gnl_list *)malloc(sizeof(t_gnl_list))) == NULL)
 		return (NULL);
 	list->fd = fd;
@@ -76,9 +77,9 @@ char					*gnl_fetch(t_gnl_list **head, int fd)
 		if (curr_list->fd == fd)
 		{
 			i = 0;
-			while (*((curr_list->content) + i)) 
+			while (*((curr_list->content) + i))
 				i++;
-			tmp = gnl_strdup(curr_list->content, 0, i);	
+			tmp = gnl_strdup(curr_list->content, 0, i);
 			gnl_free_one(head, curr_list);
 			return (tmp);
 		}
@@ -87,9 +88,9 @@ char					*gnl_fetch(t_gnl_list **head, int fd)
 	return (NULL);
 }
 
-void				gnl_free_one(t_gnl_list **head, t_gnl_list *target)
+void					gnl_free_one(t_gnl_list **head, t_gnl_list *target)
 {
-	t_gnl_list		*pre_list;
+	t_gnl_list			*pre_list;
 
 	if ((pre_list = (*head)) == target)
 	{

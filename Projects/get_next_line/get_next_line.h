@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:59:12 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/07 18:32:35 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/09 13:34:29 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <unistd.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE	512
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE	512
+# endif
 
 typedef struct			s_gnl_list
 {

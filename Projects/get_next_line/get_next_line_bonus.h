@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 16:59:12 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/07 18:34:09 by zexu             ###   ########.fr       */
+/*   Created: 2019/11/09 13:42:48 by zexu              #+#    #+#             */
+/*   Updated: 2019/11/09 13:43:19 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-#include <unistd.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE	512
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE	512
+# endif
 
 typedef struct			s_gnl_list
 {

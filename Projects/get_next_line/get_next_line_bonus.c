@@ -3,43 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/07 18:34:30 by zexu             ###   ########.fr       */
+/*   Created: 2019/11/09 13:42:26 by zexu              #+#    #+#             */
+/*   Updated: 2019/11/09 13:42:29 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
- ** Return a line read from a file descriptor without the newline character.
- **
- ** Return '1' if a line has been read;
- ** return '0' if EOF has been reached;
- ** return '-1' if an error happens.
- */
+** Return a line read from a file descriptor without the newline character.
+**
+** Return '1' if a line has been read;
+** return '0' if EOF has been reached;
+** return '-1' if an error happens.
+*/
 
 /*
- ** ssize_t		read(int fd, void *buf, size_t count);
- **
- ** read() attempts to read up to 'count' bytes from file descriptor 'fd'
- ** into the buffer starting at 'buf'.
- **
- ** If 'count' is zero, read() may detect the errors. If it does not check for
- ** errors, it returns zero and has no other effects.
- **
- ** On success, the number of bytes read is returned (zero indicates EOF),
- ** and the file position is advanced by this number.
- */
+** ssize_t		read(int fd, void *buf, size_t count);
+**
+** read() attempts to read up to 'count' bytes from file descriptor 'fd'
+** into the buffer starting at 'buf'.
+**
+** If 'count' is zero, read() may detect the errors. If it does not check for
+** errors, it returns zero and has no other effects.
+**
+** On success, the number of bytes read is returned (zero indicates EOF),
+** and the file position is advanced by this number.
+*/
 
 /*
- ** File descriptor is integer that uniquely identifies an open file of process.
- */
+** File descriptor is integer that uniquely identifies an open file of process.
+*/
 
 #include "get_next_line_bonus.h"
 
-char				*ft_strncpy(char *to, const char *from, size_t size)
+char					*ft_strncpy(char *to, const char *from, size_t size)
 {
-	unsigned int	i;
+	unsigned int		i;
 
 	i = 0;
 	while (from[i] && i < size)
@@ -55,11 +55,11 @@ char				*ft_strncpy(char *to, const char *from, size_t size)
 	return (to);
 }
 
-char				*ft_strjoin(char const *s1, char const *s2)
+char					*ft_strjoin(char const *s1, char const *s2)
 {
-	char			*str;
-	size_t			len1;
-	size_t			len2;
+	char				*str;
+	size_t				len1;
+	size_t				len2;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
@@ -102,7 +102,8 @@ char					*gnl_strdup(char *s, size_t start, size_t end)
 	return (str);
 }
 
-void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer, int read_value)
+void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer,
+										int read_value)
 {
 	size_t				begin;
 	size_t				end;
@@ -113,7 +114,8 @@ void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer, int read_value)
 	{
 		if (*(buffer + end) == '\n')
 		{
-			gnl_push_back(tmp, gnl_new(tmp, gnl_strdup(buffer, begin, end), fd, 0));
+			gnl_push_back(tmp,
+					gnl_new(tmp, gnl_strdup(buffer, begin, end), fd, 0));
 			begin = end;
 		}
 		end++;
