@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 13:42:26 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/09 13:42:29 by zexu             ###   ########.fr       */
+/*   Created: 2019/11/29 22:28:36 by zexu              #+#    #+#             */
+/*   Updated: 2019/11/29 22:28:56 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char					*ft_strjoin(char const *s1, char const *s2)
 	ft_strncpy(str, s1, len1);
 	ft_strncpy(str + len1, s2, len2);
 	*(str + len1 + len2) = '\0';
+	free((void *)s1);
+	free((void *)s2);
 	return (str);
 }
 
@@ -100,6 +102,7 @@ char					*gnl_strdup(char *s, size_t start, size_t end)
 	}
 	*(str + j) = '\0';
 	return (str);
+
 }
 
 void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer,
@@ -126,26 +129,24 @@ void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer,
 int						get_next_line(int fd, char **line)
 {
 	static t_gnl_list	*tmp;
-	char				*buffer;
+	char				buffer[BUFFER_SIZE];
 	int					read_value;
 
 	if (fd < 0 || line == NULL || BUFFER_SIZE < 1)
 		return (-1);
 	while ((gnl_search(tmp, fd)) != 2)
 	{
-		if ((buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE)) == NULL)
-			return (-1);
 		if ((read_value = read(fd, buffer, BUFFER_SIZE)) < 0)
 			return (-1);
 		else if (read_value == 0)
 		{
-			gnl_push_back(&tmp, gnl_new(&tmp, gnl_strdup("", 0, 1), fd, 0));
+			gnl_push_back(&tmp, gnl_new(&tmp, gnl_strdup("", 0, 0), fd, 0));
 			*line = gnl_fetch(&tmp, fd);
+			free(tmp);
 			return (0);
 		}
 		else if (read_value > 0)
 			get_next_line_2(&tmp, fd, buffer, read_value);
-		free(buffer);
 	}
 	*line = gnl_fetch(&tmp, fd);
 	return (1);

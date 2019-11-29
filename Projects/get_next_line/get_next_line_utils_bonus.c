@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/09 13:43:42 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/09 13:43:54 by zexu             ###   ########.fr       */
+/*   Created: 2019/11/29 22:29:11 by zexu              #+#    #+#             */
+/*   Updated: 2019/11/29 22:29:24 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ char					*gnl_fetch(t_gnl_list **head, int fd)
 			while (*((curr_list->content) + i))
 				i++;
 			tmp = gnl_strdup(curr_list->content, 0, i);
+			tmp[i] = '\0';
 			gnl_free_one(head, curr_list);
 			return (tmp);
 		}

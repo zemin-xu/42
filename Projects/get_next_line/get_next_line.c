@@ -6,7 +6,7 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/09 17:33:21 by zexu             ###   ########.fr       */
+/*   Updated: 2019/11/29 22:24:23 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char					*ft_strjoin(char const *s1, char const *s2)
 	ft_strncpy(str + len1, s2, len2);
 	*(str + len1 + len2) = '\0';
 	free((void *)s1);
-	free((char *)s2);
+	free((void *)s2);
 	return (str);
 }
 
@@ -129,54 +129,25 @@ void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer,
 int						get_next_line(int fd, char **line)
 {
 	static t_gnl_list	*tmp;
-	char				*buffer;
+	char				buffer[BUFFER_SIZE];
 	int					read_value;
 
 	if (fd < 0 || line == NULL || BUFFER_SIZE < 1)
 		return (-1);
 	while ((gnl_search(tmp, fd)) != 2)
 	{
-		if ((buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE)) == NULL)
-			return (-1);
 		if ((read_value = read(fd, buffer, BUFFER_SIZE)) < 0)
 			return (-1);
 		else if (read_value == 0)
 		{
-			gnl_push_back(&tmp, gnl_new(&tmp, gnl_strdup("", 0, 1), fd, 0));
+			gnl_push_back(&tmp, gnl_new(&tmp, gnl_strdup("", 0, 0), fd, 0));
 			*line = gnl_fetch(&tmp, fd);
+			free(tmp);
 			return (0);
 		}
 		else if (read_value > 0)
 			get_next_line_2(&tmp, fd, buffer, read_value);
-		free(buffer);
 	}
 	*line = gnl_fetch(&tmp, fd);
 	return (1);
-}
-
-#include <stdio.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-int main()
-{
-	char *str;
-	int fd[2];
-	int i = 0;
-	int ret;
-	fd[0] = open("test.txt", O_RDONLY);
-	fd[1] = open("get_next_line.c", O_RDONLY);
-	while (i < 100)
-	{
-		ret = get_next_line(fd[0], &str);
-		printf("%d|%s\n", ret, str); 
-			i++;
-	}
-	close(fd[0]);
-	close(fd[1]);
-	while(1)
-	{
-	}
-	
-	return 0;
 }
