@@ -13,12 +13,14 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
 
-int				ft_printf(const char *format, ...);
+#define FLAG_SET "-.*0123456789"
+#define FORMAT_SET "cspdiuxX%"
+
+int				ft_printf(char const *format, ...);
 typedef struct      s_output
 {
     char            *content;
@@ -26,8 +28,14 @@ typedef struct      s_output
     struct s_output *next;
 }                   t_output;
 
-size_t		ft_strlen(const char *s);
-size_t		ft_strlen(const char *s);
+size_t		ft_strlen(char const *s);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putnbr_fd(int n, int fd);
+char		*ft_strsub(char const *s, unsigned int start, size_t len);
+char		*ft_strchr(char const *string, int c);
+char		*ft_itoa(int n);
+char		*ft_strdup(const char *s);
 
 t_output        *t_output_new(void *content);
 t_output        *t_output_last(t_output **head);

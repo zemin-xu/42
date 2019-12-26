@@ -9,7 +9,6 @@ t_output        *t_output_new(void *content)
     list->content = content;
     list->length = ft_strlen(content);
     list->next = NULL;
-
     return (list);
 }
 
@@ -51,9 +50,11 @@ void            t_output_free(t_output **head)
     while (current->next)
     {
         next = current->next;
+        free(current->content);
         free(current);
         current = next;
     }
+    free(current->content);
     free(current);
     head = NULL;
 }

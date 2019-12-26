@@ -76,70 +76,154 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
-
-int					ft_printf(const char *format, ...)
+int			pf_char(va_list argp, t_output **res, int ret)
 {
-	va_list			argp;
-	t_output		*res;
-	int				ret;
+	char	*str;
+	t_output *new;
+
+	if (!(str = (char *)malloc(sizeof(char) * 2)))
+		return (-1);
+	*str = (char)va_arg(argp, int);
+	*(str + 1) = '\0';
+	if (!(new = t_output_new(str)))
+		return (-1);
+	t_output_add(res, new);
+	return (ret + 1);
+}
+
+int			pf_str(va_list argp, t_output **res, int ret)
+{
+	char	*str;
+	t_output *new;
+
+	if (!(str = ft_strdup(va_arg(argp, char *))))
+		return (-1);
+	if (!(new = t_output_new(str)))
+		return (-1);
+	t_output_add(res, new);
+	return (ret + t_output_last(res)->length);
+}
+
+int			pf_signed_int(va_list argp, t_output **res, int ret)
+{
+	char	*str;
+	t_output *new;
+
+	if (!(str = ft_itoa(va_arg(argp, int))))
+		return (-1);
+	if (!(new = t_output_new(str)))
+		return (-1);
+	t_output_add(res, new);
+	return (ret + t_output_last(res)->length);
+}
+
+int			pf_percentage(va_list argp, t_output **res, int ret)
+{
+	char	*str;
+	t_output *new;
+
+	if (!(str = (char *)malloc(sizeof(char) * 2)))
+		return (-1);
+	*str = '%';
+	*(str + 1) = '\0';
+	if (!(new = t_output_new(str)))
+		return (-1);
+	t_output_add(res, new);
+	return (ret + 1);
+}
+static void parse_flag(void)
+{
+
+}
+
+static int parse_format(va_list argp, char const **format, t_output **res, int ret)
+{	
+	if (**format == 'c')
+		ret = pf_char(argp, res, ret);
+	else if (**format == 's')
+		ret = pf_str(argp, res, ret);
+	else if (**format == 'p')
+		ft_putchar_fd('p', 1);
+	else if (**format == 'd' || **format == 'i')
+		ret = pf_signed_int(argp, res, ret);
+	else if (**format == 'u')
+		ft_putnbr_fd((unsigned int)(va_arg(argp, int)), 1);
+	else if (**format == 'x')
+		ft_putchar_fd('x', 1);
+	else if (**format == 'X')
+		ft_putchar_fd('X', 1);
+	else if (**format == '%')
+		ret = pf_percentage(argp, res, ret);
+	(*format)++;
+	return (ret);
+}
+
+static int format_str(va_list argp, char const **format, t_output **res, int ret)
+{
+	(*format)++;
+	if (ft_strchr(FORMAT_SET, **format))
+		return (parse_format(argp, format, res, ret));
+	else if (ft_strchr(FORMAT_SET, **format))
+		parse_flag();
+	else
+	{
+		ft_putstr_fd("Not implemented yet", 1);
+		return (-1);
+	}
+
+	return (ret);
+}
+
+static int normal_str(va_list argp, char const **format, t_output **res, int ret)
+{
+	int start;
+	char *str;
+	t_output *new;
+
+	start = ret;
+	while (*(*format + ret - start) && *(*format + ret - start) != '%')
+		ret++;
+
+	/* add string into list */
+	if (!(str = ft_strsub(*format, 0, ret - start)))
+		return (-1);
+	if (!(new = t_output_new(str)))
+		return (-1);
+	t_output_add(res, new);
+
+	*format += (ret - start);
+	return (ret);
+}
+
+int ft_printf(char const *format, ...)
+{
+	va_list argp;
+	t_output *res;
+	int ret;
 
 	res = NULL;
 	ret = 0;
-
-	t_output *ta = t_output_new("where are you");
-	t_output *tb = t_output_new("Fine thank you!");
-	t_output *tc = t_output_new("and you!!!");
-	t_output_add(&res, ta); 
-	t_output_add(&res, tb); 
-	t_output_add(&res, tc); 
-	t_output_read(res);
-	t_output_free(&res);
-
 	va_start(argp, format);
 	while (*format != '\0')
 	{
 		if (*format == '%')
-		{
-			format++;
-			if (*format == 'c')
-				 ft_putchar_fd((char)va_arg(argp, int), 1);
-			else if (*format == 's')
-				ft_putstr_fd(va_arg(argp, char*), 1);
-			else if (*format == 'p')
-				ft_putchar_fd('p', 1);
-			else if (*format == 'd' || *format == 'i')
-				ft_putnbr_fd(va_arg(argp, int), 1);
-			else if (*format == 'u')
-				ft_putnbr_fd((unsigned int)(va_arg(argp, int)), 1);
-			else if (*format == 'x')
-				ft_putchar_fd('x', 1);
-			else if (*format == 'X')
-				ft_putchar_fd('X', 1);
-			else if (*format == '%')
-				ft_putchar_fd('%', 1);
-			else
-				ft_putstr_fd("Not implemented yet", 1);
-		}
+			ret = format_str(argp, &format, &res, ret);
 		else
-		{
-			ret++;
-			ft_putchar_fd(*format, 1);	
-		}
-		format++;
+			ret = normal_str(argp, &format, &res, ret);
 	}
-	
 	va_end(argp);
-	
-	return (0);
+	t_output_read(res);
+	t_output_free(&res);
+	return (ret);
 }
 
-int					main()
+int main()
 {
-	ft_printf("@@@");
+	int len = ft_printf("%d%cherework%s",12,'b',"love");
+	ft_printf("\nlen: %d", len);
 	while(1)
 	{
 
 	}
 	return 0;
 }
-

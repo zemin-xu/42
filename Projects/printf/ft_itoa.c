@@ -15,7 +15,7 @@
 ** the integer 'n' given as argument.
 */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static int			length(int n)
 {

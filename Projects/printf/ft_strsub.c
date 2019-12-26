@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,9 +17,9 @@
 ** return NULL if the allocation fails
 */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static size_t		inner_strlen(const char *s)
+static size_t		inner_strlen(char const *s)
 {
 	size_t	i;
 
@@ -29,7 +29,7 @@ static size_t		inner_strlen(const char *s)
 	return (i);
 }
 
-char				*ft_substr(char const *s, unsigned int start, size_t len)
+char				*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	char			*str;
 	size_t			i;
