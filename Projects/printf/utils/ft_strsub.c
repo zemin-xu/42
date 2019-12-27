@@ -17,7 +17,7 @@
 ** return NULL if the allocation fails
 */
 
-#include "ft_printf.h"
+#include "ft_utils.h"
 
 static size_t		inner_strlen(char const *s)
 {

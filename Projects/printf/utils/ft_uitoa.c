@@ -15,7 +15,7 @@
 ** the integer 'n' given as argument.
 */
 
-#include "ft_printf.h"
+#include "ft_utils.h"
 
 static int			length(unsigned int n)
 {

@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 13:16:31 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/28 14:27:33 by zexu             ###   ########.fr       */
+/*   Created: 2019/10/09 10:24:54 by zexu              #+#    #+#             */
+/*   Updated: 2019/10/28 14:22:33 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+/*
+** find the first occurrence of the byte 'c' in the string beginning
+** at 'string'
+**
+** return a pointer to the located byte, or a null pointer if no match
+*/
 
-static void	inner_putchar_fd(char c, int fd)
+#include "ft_utils.h"
+
+char				*ft_strchr(char const *string, int c)
 {
-	write(fd, &c, 1);
-}
+	char			*str;
 
-void		ft_putstr_fd(char *s, int fd)
-{
-	int		i;
-
-	if (s == NULL)
-		return ;
-	i = 0;
-	while (s[i])
+	str = (char *)string;
+	while (*str)
 	{
-		inner_putchar_fd(s[i], fd);
-		i++;
+		if (*str == c)
+			return (str);
+		str++;
 	}
+	if (*str == c)
+		return (str);
+	else
+		return (NULL);
 }

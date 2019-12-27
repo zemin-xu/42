@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_hextoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,29 +15,24 @@
 ** the integer 'n' given as argument.
 */
 
-#include "ft_printf.h"
+#include "ft_utils.h"
 
-static int			length(int n)
+static int			length(unsigned int n)
 {
 	long			tmp;
 	int				count;
 
 	tmp = (long)n;
 	count = 1;
-	if (tmp < 0)
+	while (tmp >= 16)
 	{
-		count++;
-		tmp *= -1;
-	}
-	while (tmp >= 10)
-	{
-		tmp /= 10;
+		tmp /= 16;
 		count++;
 	}
 	return (count);
 }
 
-char				*ft_itoa(int n)
+char				*ft_hextoa(unsigned int n, int is_maj)
 {
 	int				len;
 	int				i;
@@ -50,16 +45,18 @@ char				*ft_itoa(int n)
 		return (NULL);
 	*(str + len) = '\0';
 	i = 0;
-	if (tmp < 0)
-	{
-		*str = '-';
-		tmp *= -1;
-		i = 1;
-	}
 	while (len > i)
 	{
-		*(str + --len) = '0' + tmp % 10;
-		tmp /= 10;
+		if (tmp % 16 < 10)
+			*(str + --len) = '0' + tmp % 16;
+		else
+		{
+			if (is_maj)
+				*(str + --len) = 'A' + (tmp % 16) - 10;
+			else
+				*(str + --len) = 'a' + (tmp % 16) - 10;
+		}
+		tmp /= 16;
 	}
 	return (str);
 }
