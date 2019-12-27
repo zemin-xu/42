@@ -117,7 +117,47 @@ int			pf_signed_int(va_list argp, t_output **res, int ret)
 	return (ret + t_output_last(res)->length);
 }
 
-int			pf_percentage(va_list argp, t_output **res, int ret)
+int			pf_unsigned_int(va_list argp, t_output **res, int ret)
+{
+	char	*str;
+	t_output *new;
+
+	if (!(str = ft_uitoa(va_arg(argp, unsigned int))))
+		return (-1);
+	if (!(new = t_output_new(str)))
+		return (-1);
+	t_output_add(res, new);
+	return (ret + t_output_last(res)->length);
+}
+
+int			pf_hex(va_list argp, t_output **res, int ret, int is_maj)
+{
+	char	*str;
+	t_output *new;
+
+	if (!(str = ft_hextoa(va_arg(argp, unsigned int), is_maj)))
+		return (-1);
+	if (!(new = t_output_new(str)))
+		return (-1);
+	t_output_add(res, new);
+	return (ret + t_output_last(res)->length);
+}
+
+int			pf_pointer(va_list argp, t_output **res, int ret)
+{
+	char	*str;
+	t_output *new;
+
+	if (!(str = ft_ptoa(va_arg(argp, void *))))
+		return (-1);
+	if (!(new = t_output_new(str)))
+		return (-1);
+	t_output_add(res, new);
+	return (ret + t_output_last(res)->length);
+}
+
+
+int			pf_percentage(t_output **res, int ret)
 {
 	char	*str;
 	t_output *new;
@@ -143,17 +183,17 @@ static int parse_format(va_list argp, char const **format, t_output **res, int r
 	else if (**format == 's')
 		ret = pf_str(argp, res, ret);
 	else if (**format == 'p')
-		ft_putchar_fd('p', 1);
+		ret = pf_pointer(argp, res, ret);
 	else if (**format == 'd' || **format == 'i')
 		ret = pf_signed_int(argp, res, ret);
 	else if (**format == 'u')
-		ft_putnbr_fd((unsigned int)(va_arg(argp, int)), 1);
+		ret = pf_unsigned_int(argp, res, ret);
 	else if (**format == 'x')
-		ft_putchar_fd('x', 1);
+		ret = pf_hex(argp, res, ret, 0);
 	else if (**format == 'X')
-		ft_putchar_fd('X', 1);
+		ret = pf_hex(argp, res, ret, 1);
 	else if (**format == '%')
-		ret = pf_percentage(argp, res, ret);
+		ret = pf_percentage(res, ret);
 	(*format)++;
 	return (ret);
 }
@@ -174,7 +214,7 @@ static int format_str(va_list argp, char const **format, t_output **res, int ret
 	return (ret);
 }
 
-static int normal_str(va_list argp, char const **format, t_output **res, int ret)
+static int normal_str(char const **format, t_output **res, int ret)
 {
 	int start;
 	char *str;
@@ -209,7 +249,7 @@ int ft_printf(char const *format, ...)
 		if (*format == '%')
 			ret = format_str(argp, &format, &res, ret);
 		else
-			ret = normal_str(argp, &format, &res, ret);
+			ret = normal_str(&format, &res, ret);
 	}
 	va_end(argp);
 	t_output_read(res);
@@ -219,11 +259,9 @@ int ft_printf(char const *format, ...)
 
 int main()
 {
-	int len = ft_printf("%d%cherework%s",12,'b',"love");
-	ft_printf("\nlen: %d", len);
-	while(1)
-	{
-
-	}
+	int a = 10;
+	int *p = &a;
+	printf("%p\n", p);
+	ft_printf("\n%p", p);
 	return 0;
 }

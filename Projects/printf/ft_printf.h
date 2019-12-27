@@ -35,6 +35,9 @@ void		ft_putnbr_fd(int n, int fd);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*ft_strchr(char const *string, int c);
 char		*ft_itoa(int n);
+char		*ft_uitoa(unsigned int n);
+char		*ft_hextoa(unsigned int n, int is_maj);
+char		*ft_ptoa(void *n);
 char		*ft_strdup(const char *s);
 
 t_output        *t_output_new(void *content);
