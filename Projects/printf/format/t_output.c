@@ -8,6 +8,8 @@ t_output        *t_output_new(void *content)
         return (NULL);
     list->content = content;
     list->length = ft_strlen(content);
+    if (!(list->flag = t_flag_init()))
+        return (NULL);
     list->next = NULL;
     return (list);
 }
@@ -57,15 +59,4 @@ void            t_output_free(t_output **head)
     free(current->content);
     free(current);
     head = NULL;
-}
-
-void            t_output_read(t_output *head)
-{
-    t_output    *current;
-
-    if (!(current = head))    
-        return ;
-    ft_putstr_fd(current->content, 1);
-    while ((current = current->next) != NULL)
-        ft_putstr_fd(current->content, 1);
 }

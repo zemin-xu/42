@@ -77,12 +77,30 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-static void parse_flag(void)
+static int parse_flag(va_list argp, char const *format, t_flag *flag)
 {
+	char wildcard;
 
+	flag->has_flag = 1;
+	if (*format == '0')
+		flag->is_padded_zero = 1;
+	else if (*format == '-')
+		flag->is_left_justified = 1;
+	else if (*format == '.')
+		flag->is_precised = 1;
+	else if (*format == '*')
+	{
+		wildcard = (char)va_arg(argp, int);
+		if (wildcard < '0' || wildcard > '9')
+			return (-1);
+		pf_flag_read_num(flag, wildcard);
+	}
+	else
+		pf_flag_read_num(flag, *format);
+	return (0);
 }
 
-static int parse_format(va_list argp, char const **format, t_output **res, int ret)
+static int parse_format(va_list argp, char const **format, t_output **res, int ret, t_flag *flag)
 {	
 	if (**format == 'c')
 		ret = pf_char(argp, res, ret);
@@ -100,23 +118,31 @@ static int parse_format(va_list argp, char const **format, t_output **res, int r
 		ret = pf_hex(argp, res, ret, 1);
 	else if (**format == '%')
 		ret = pf_percentage(res, ret);
+	t_output_last(res)->flag = flag;
 	(*format)++;
 	return (ret);
 }
 
 static int format_str(va_list argp, char const **format, t_output **res, int ret)
 {
+	t_flag *flag;
+
+	if (!(flag = t_flag_init()))
+		return (-1);
 	(*format)++;
+	while (ft_strchr(FLAG_SET, **format))
+	{
+		if (parse_flag(argp, *format, flag) == -1)
+			return (-1);
+		(*format)++;
+	}
 	if (ft_strchr(FORMAT_SET, **format))
-		return (parse_format(argp, format, res, ret));
-	else if (ft_strchr(FORMAT_SET, **format))
-		parse_flag();
+		return (parse_format(argp, format, res, ret, flag));
 	else
 	{
 		ft_putstr_fd("Not implemented yet", 1);
 		return (-1);
 	}
-
 	return (ret);
 }
 
@@ -165,9 +191,10 @@ int ft_printf(char const *format, ...)
 
 int main()
 {
-	int a = 10;
+	int a = 12;
 	int *p = &a;
-	printf("%p\n", p);
-	ft_printf("\n%p", p);
+	ft_printf("$%p$\n", p);
+	ft_printf("$%5d$\n", a);
+	ft_printf("$%d$\n", a);
 	return 0;
 }

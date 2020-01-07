@@ -20,8 +20,6 @@
 #include "utils/ft_utils.h"
 #include "format/pf_format.h"
 
-#define FLAG_SET "-.*0123456789"
-#define FORMAT_SET "cspdiuxX%"
 
 int				ft_printf(char const *format, ...);
 
