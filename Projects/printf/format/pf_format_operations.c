@@ -1,6 +1,6 @@
 #include "pf_format.h"
 
-void pf_pad(t_output *str, size_t pad_len, size_t prec_len, char c)
+int pf_pad(t_output *str, size_t pad_len, size_t prec_len, char c)
 {
     int rest;
 
@@ -8,41 +8,41 @@ void pf_pad(t_output *str, size_t pad_len, size_t prec_len, char c)
     {
         if ((rest = pad_len - str->length) > 0)
         {
-            while (rest > 0)
-            {
+            while (--rest > -1)
                 write(1, &c, 1);
-                rest--;
-            }
         }
+        return (pad_len > str->length ? pad_len : 0);
     }
     else
     {
         if ((rest = pad_len - prec_len) > 0)
         {
-            while (rest > 0)
-            {
+            while (--rest > -1)
                 write(1, &c, 1);
-                rest--;
-            }
         }
+        return (pad_len - prec_len);
     }
 }
 
-void pf_precise(t_output *str, size_t len)
+int pf_precise(t_output *str, size_t prec_len)
 {
     int rest;
     char c;
 
     c = '0';
-    if (str->format_type == 's' && len < ft_strlen(str->content))
-        *(str->content + len) = '\0';
-    else if (str->format_type == 'i' || str->format_type == 'u' || 
-            str->format_type == 'x' || str->format_type == 'X')
+    if (str->format_type == 's' && prec_len < str->length)
     {
-        if ((rest = len - ft_strlen(str->content)) > 0)
-        {
-            while (--rest > -1)
-                write(1, &c, 1);
-        }
+        *(str->content + prec_len) = '\0';
+        return (prec_len - str->length);
     }
+    else if ((str->format_type == 'i' || str->format_type == 'u' ||
+              str->format_type == 'x' || str->format_type == 'X') &&
+             (rest = prec_len - str->length) > 0)
+    {
+        while (--rest > -1)
+            write(1, &c, 1);
+        return (prec_len - str->length);
+    }
+    else
+        return (0);
 }

@@ -182,12 +182,12 @@ int ft_printf(char const *format, ...)
 	while (*format != '\0')
 	{
 		if (*format == '%')
-			ret = format_str(argp, &format, &res, ret);
+			format_str(argp, &format, &res, ret);
 		else
-			ret = normal_str(&format, &res, ret);
+			normal_str(&format, &res, ret);
 	}
 	va_end(argp);
-	t_output_read(res);
+	ret = t_output_read(res);
 	t_output_free(&res);
 	return (ret);
 }
@@ -253,6 +253,8 @@ int main()
 	printf("$%-*.*u$\n",7,6, j);
 	printf("$%-5u$\n", j);
 	*/
+
+	/*
 	int a = 1023523212;
 
 	ft_printf("$%-10.12x$\n", a);
@@ -260,6 +262,13 @@ int main()
 	printf("$----------$\n");
 	printf("$%-10.12x$\n", a);
 	printf("$%-12.10x$\n", a);
+	*/
+
+	int a = ft_printf("%2.4d", 123);
+	printf("\n%d", a);
+	printf("\n");
+	int b =    printf("%2.4d", 123);
+	printf("\n%d", b);
 	
 	return 0;
 }
