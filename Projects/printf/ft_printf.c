@@ -194,12 +194,13 @@ int ft_printf(char const *format, ...)
 
 int main()
 {
-	int i = 103;
+	int i = 1031247822;
+	unsigned int j = -12103;
+	char *s = "WHEREAREYOU";
 
-	
 	ft_printf("$%.6d$\n", i);
 	ft_printf("$%4.6d$\n", i);
-	ft_printf("$%7.6d$\n", i);
+	ft_printf("$%8.6d$\n", i);
 	ft_printf("$%5d$\n", i);
 	ft_printf("$---minus-------$\n");
 
@@ -207,16 +208,26 @@ int main()
 	ft_printf("$%-4.6d$\n", i);
 	ft_printf("$%-7.6d$\n", i);
 	ft_printf("$%-5d$\n", i);
+	ft_printf("$---text-------$\n");
+	ft_printf("$%5s$\n", s);
+	ft_printf("$%4.5s$\n", s);
+	ft_printf("$---unsigned int-------$\n");
 
+	ft_printf("$%.6u$\n", j);
+	ft_printf("$%4.6u$\n", j);
+	ft_printf("$%7.6u$\n", j);
+	ft_printf("$%5u$\n", j);
+	ft_printf("$---minus-------$\n");
+
+	ft_printf("$%-.6u$\n", j);
+	ft_printf("$%-*.*u$\n",4,6, j);
+	ft_printf("$%-*.*u$\n",7,6, j);
+	ft_printf("$%-5u$\n", j);
+	
 	printf("$----------$\n");
-/*
-	printf("$%06d$\n", i);
-	printf("$%06.4d$\n", i);
-	printf("$%-6.4d$\n", i);
-	*/
 	printf("$%.6d$\n", i);
 	printf("$%4.6d$\n", i);
-	printf("$%7.6d$\n", i);
+	printf("$%8.6d$\n", i);
 	printf("$%5d$\n", i);
 	printf("$---minus-------$\n");
 
@@ -224,5 +235,22 @@ int main()
 	printf("$%-4.6d$\n", i);
 	printf("$%-7.6d$\n", i);
 	printf("$%-5d$\n", i);
+	printf("$---text-------$\n");
+	printf("$%5s$\n", s);
+	printf("$%4.5s$\n", s);
+
+	printf("$---unsigned int-------$\n");
+
+	printf("$%.6u$\n", j);
+	printf("$%4.6u$\n", j);
+	printf("$%7.6u$\n", j);
+	printf("$%5u$\n", j);
+	printf("$---minus-------$\n");
+
+	printf("$%-.6u$\n", j);
+	printf("$%-*.*u$\n",4,6, j);
+	printf("$%-*.*u$\n",7,6, j);
+	printf("$%-5u$\n", j);
+	
 	return 0;
 }

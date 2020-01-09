@@ -1,15 +1,29 @@
 #include "pf_format.h"
 
-void pf_pad(t_output *str, int len, char char_padding)
+void pf_pad(t_output *str, size_t pad_len, size_t prec_len, char c)
 {
     int rest;
 
-    if ((rest = len - str->length) > 0)
+    if (prec_len == 0 || str->length > pad_len)
     {
-        while (rest > 0)
+        if ((rest = pad_len - str->length) > 0)
         {
-            write(1, &char_padding, 1);
-            rest--;
+            while (rest > 0)
+            {
+                write(1, &c, 1);
+                rest--;
+            }
+        }
+    }
+    else
+    {
+        if ((rest = pad_len - prec_len) > 0)
+        {
+            while (rest > 0)
+            {
+                write(1, &c, 1);
+                rest--;
+            }
         }
     }
 }
@@ -22,7 +36,7 @@ void pf_precise(t_output *str, size_t len)
     c = '0';
     if (str->format_type == 's' && len < ft_strlen(str->content))
         *(str->content + len) = '\0';
-    else if (str->format_type == 'i')
+    else if (str->format_type == 'i' || str->format_type == 'u')
     {
         if ((rest = len - ft_strlen(str->content)) > 0)
         {

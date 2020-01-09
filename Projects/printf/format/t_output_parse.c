@@ -28,9 +28,9 @@ void t_output_flag(t_output *curr)
 void t_output_pad(t_output *curr)
 {
     if (curr->flag->is_padded == 1)
-        pf_pad(curr, curr->flag->pad_num, ' ');
+        pf_pad(curr, curr->flag->pad_num, curr->flag->precise_num, ' ');
     else if (curr->flag->is_padded == 2)
-        pf_pad(curr, curr->flag->pad_num, '0');
+        pf_pad(curr, curr->flag->pad_num, curr->flag->precise_num, '0');
 }
 
 void t_output_read(t_output *head)

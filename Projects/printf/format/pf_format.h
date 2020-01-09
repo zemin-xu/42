@@ -29,7 +29,7 @@ int			pf_str(va_list argp, t_output **res, int ret);
 int			pf_percentage(t_output **res, int ret);
 
 
-void pf_pad(t_output *str, int len, char char_padding);
+void pf_pad(t_output *str, size_t pad_len, size_t prec_len,  char c);
 void pf_precise(t_output *str, size_t len);
 
 t_output        *t_output_new(void *content, char type);
