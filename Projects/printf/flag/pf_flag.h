@@ -14,7 +14,7 @@ typedef struct      s_flag
     int             has_flag;
 
     int             is_left_justified;
-    int             is_padded_zero;
+    int             is_padded;
     int             pad_num;
     int             is_precised;
     int             precise_num;
@@ -22,7 +22,8 @@ typedef struct      s_flag
 t_flag              *t_flag_init(void);
 void                t_flag_free(t_flag *flag);
 
-void pf_flag_read_num(t_flag *flag, char num);
+void pf_flag_read_char(t_flag *flag, char num);
+void pf_flag_read_int(t_flag *flag, int num);
 
 #endif
 

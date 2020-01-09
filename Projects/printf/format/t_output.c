@@ -1,12 +1,13 @@
 #include "pf_format.h"
 
-t_output        *t_output_new(void *content)
+t_output        *t_output_new(void *content, char type)
 {
     t_output    *list; 
 
     if (!(list = (t_output *)malloc(sizeof(t_output))))
         return (NULL);
     list->content = content;
+    list->format_type = type;
     list->length = ft_strlen(content);
     if (!(list->flag = t_flag_init()))
         return (NULL);

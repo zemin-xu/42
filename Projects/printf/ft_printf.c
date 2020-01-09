@@ -72,6 +72,9 @@
 ** point, for 'e' and 'f' formats, or the maximum number of bytes to be printed
 ** from a string; if the digit string is missing, the precision is treated as
 ** zero.
+**
+** https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNC
+** TIONS/format.html 
 */
 
 #include "ft_printf.h"
@@ -79,24 +82,24 @@
 
 static int parse_flag(va_list argp, char const *format, t_flag *flag)
 {
-	char wildcard;
+	int wildcard;
 
 	flag->has_flag = 1;
 	if (*format == '0')
-		flag->is_padded_zero = 1;
+		flag->is_padded = 2;
 	else if (*format == '-')
 		flag->is_left_justified = 1;
 	else if (*format == '.')
 		flag->is_precised = 1;
 	else if (*format == '*')
 	{
-		wildcard = (char)va_arg(argp, int);
-		if (wildcard < '0' || wildcard > '9')
+		wildcard = va_arg(argp, int);
+		if (wildcard < 0)
 			return (-1);
-		pf_flag_read_num(flag, wildcard);
+		pf_flag_read_int(flag, wildcard);
 	}
 	else
-		pf_flag_read_num(flag, *format);
+		pf_flag_read_char(flag, *format);
 	return (0);
 }
 
@@ -159,7 +162,7 @@ static int normal_str(char const **format, t_output **res, int ret)
 	/* add string into list */
 	if (!(str = ft_strsub(*format, 0, ret - start)))
 		return (-1);
-	if (!(new = t_output_new(str)))
+	if (!(new = t_output_new(str, 's')))
 		return (-1);
 	t_output_add(res, new);
 
@@ -191,10 +194,35 @@ int ft_printf(char const *format, ...)
 
 int main()
 {
-	int a = 12;
-	int *p = &a;
-	ft_printf("$%p$\n", p);
-	ft_printf("$%5d$\n", a);
-	ft_printf("$%d$\n", a);
+	int i = 103;
+
+	
+	ft_printf("$%.6d$\n", i);
+	ft_printf("$%4.6d$\n", i);
+	ft_printf("$%7.6d$\n", i);
+	ft_printf("$%5d$\n", i);
+	ft_printf("$---minus-------$\n");
+
+	ft_printf("$%-.6d$\n", i);
+	ft_printf("$%-4.6d$\n", i);
+	ft_printf("$%-7.6d$\n", i);
+	ft_printf("$%-5d$\n", i);
+
+	printf("$----------$\n");
+/*
+	printf("$%06d$\n", i);
+	printf("$%06.4d$\n", i);
+	printf("$%-6.4d$\n", i);
+	*/
+	printf("$%.6d$\n", i);
+	printf("$%4.6d$\n", i);
+	printf("$%7.6d$\n", i);
+	printf("$%5d$\n", i);
+	printf("$---minus-------$\n");
+
+	printf("$%-.6d$\n", i);
+	printf("$%-4.6d$\n", i);
+	printf("$%-7.6d$\n", i);
+	printf("$%-5d$\n", i);
 	return 0;
 }

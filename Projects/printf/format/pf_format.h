@@ -12,6 +12,7 @@
 
 typedef struct      s_output
 {
+    char            format_type;
     char            *content;
     size_t          length;
     struct s_flag   *flag;
@@ -29,12 +30,14 @@ int			pf_percentage(t_output **res, int ret);
 
 
 void pf_pad(t_output *str, int len, char char_padding);
+void pf_precise(t_output *str, size_t len);
 
-t_output        *t_output_new(void *content);
+t_output        *t_output_new(void *content, char type);
 t_output        *t_output_last(t_output **head);
 void    	    t_output_add(t_output **head, t_output *new);
 void            t_output_free(t_output **head);
 void            t_output_flag(t_output *curr);
+void            t_output_pad(t_output *curr);
 void            t_output_read(t_output *head);
 
 #endif

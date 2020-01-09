@@ -1,32 +1,44 @@
 #include "pf_format.h"
 
-void            t_output_flag(t_output *curr)
+void t_output_flag(t_output *curr)
 {
     if (!curr)
-        return ;
+        return;
     if (!curr->flag->has_flag)
     {
         ft_putstr_fd(curr->content, 1);
-        return ;
+        return;
     }
     if (curr->flag->is_left_justified)
+    {
+        if (curr->flag->is_precised)
+            pf_precise(curr, curr->flag->precise_num);
         ft_putstr_fd(curr->content, 1);
+        t_output_pad(curr);
+    }
     else
     {
-        if (curr->flag->is_padded_zero)
-            pf_pad(curr, curr->flag->pad_num, '0');
-        else
-            pf_pad(curr, curr->flag->pad_num, ' ');
+        t_output_pad(curr);
+        if (curr->flag->is_precised)
+            pf_precise(curr, curr->flag->precise_num);
         ft_putstr_fd(curr->content, 1);
     }
 }
 
-void            t_output_read(t_output *head)
+void t_output_pad(t_output *curr)
 {
-    t_output    *current;
+    if (curr->flag->is_padded == 1)
+        pf_pad(curr, curr->flag->pad_num, ' ');
+    else if (curr->flag->is_padded == 2)
+        pf_pad(curr, curr->flag->pad_num, '0');
+}
 
-    if (!(current = head))    
-        return ;
+void t_output_read(t_output *head)
+{
+    t_output *current;
+
+    if (!(current = head))
+        return;
     t_output_flag(current);
     while ((current = current->next) != NULL)
         t_output_flag(current);
