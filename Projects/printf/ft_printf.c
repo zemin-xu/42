@@ -103,30 +103,33 @@ static int parse_flag(va_list argp, char const *format, t_flag *flag)
 	return (0);
 }
 
-static int parse_format(va_list argp, char const **format, t_output **res, int ret, t_flag *flag)
+static int parse_format(va_list argp, char const **format, t_output **res, t_flag *flag)
 {	
+	int ret;
+
+	ret = -1;
 	if (**format == 'c')
-		ret = pf_char(argp, res, ret);
+		ret = pf_char(argp, res);
 	else if (**format == 's')
-		ret = pf_str(argp, res, ret);
+		ret = pf_str(argp, res);
 	else if (**format == 'p')
-		ret = pf_pointer(argp, res, ret);
+		ret = pf_pointer(argp, res);
 	else if (**format == 'd' || **format == 'i')
-		ret = pf_signed_int(argp, res, ret);
+		ret = pf_signed_int(argp, res);
 	else if (**format == 'u')
-		ret = pf_unsigned_int(argp, res, ret);
+		ret = pf_unsigned_int(argp, res);
 	else if (**format == 'x')
-		ret = pf_hex(argp, res, ret, 0);
+		ret = pf_hex(argp, res, 0);
 	else if (**format == 'X')
-		ret = pf_hex(argp, res, ret, 1);
+		ret = pf_hex(argp, res, 1);
 	else if (**format == '%')
-		ret = pf_percentage(res, ret);
+		ret = pf_percentage(res);
 	t_output_last(res)->flag = flag;
 	(*format)++;
 	return (ret);
 }
 
-static int format_str(va_list argp, char const **format, t_output **res, int ret)
+static int format_str(va_list argp, char const **format, t_output **res)
 {
 	t_flag *flag;
 
@@ -140,34 +143,30 @@ static int format_str(va_list argp, char const **format, t_output **res, int ret
 		(*format)++;
 	}
 	if (ft_strchr(FORMAT_SET, **format))
-		return (parse_format(argp, format, res, ret, flag));
+		return (parse_format(argp, format, res, flag));
 	else
 	{
 		ft_putstr_fd("Not implemented yet", 1);
 		return (-1);
 	}
-	return (ret);
 }
 
-static int normal_str(char const **format, t_output **res, int ret)
+static int normal_str(char const **format, t_output **res)
 {
-	int start;
+	int i;
 	char *str;
 	t_output *new;
 
-	start = ret;
-	while (*(*format + ret - start) && *(*format + ret - start) != '%')
-		ret++;
-
-	/* add string into list */
-	if (!(str = ft_strsub(*format, 0, ret - start)))
+	i = 0;
+	while (*(*format + i) && *(*format + i) != '%')
+		i++;
+	if (!(str = ft_strsub(*format, 0, i)))
 		return (-1);
 	if (!(new = t_output_new(str, 's')))
 		return (-1);
 	t_output_add(res, new);
-
-	*format += (ret - start);
-	return (ret);
+	*format += i;
+	return (0);
 }
 
 int ft_printf(char const *format, ...)
@@ -177,14 +176,13 @@ int ft_printf(char const *format, ...)
 	int ret;
 
 	res = NULL;
-	ret = 0;
 	va_start(argp, format);
-	while (*format != '\0')
+	while (*format)
 	{
 		if (*format == '%')
-			format_str(argp, &format, &res, ret);
-		else
-			normal_str(&format, &res, ret);
+			format_str(argp, &format, &res);
+		else if (normal_str(&format, &res) == -1)
+			return (-1);
 	}
 	va_end(argp);
 	ret = t_output_read(res);
@@ -264,10 +262,10 @@ int main()
 	printf("$%-12.10x$\n", a);
 	*/
 
-	int a = ft_printf("%2.4d", 123);
+	int a = ft_printf("%2.4dwhere%d%%", 123,44);
 	printf("\n%d", a);
 	printf("\n");
-	int b =    printf("%2.4d", 123);
+	int b =    printf("%2.4dwhere%d%%", 123,44);
 	printf("\n%d", b);
 	
 	return 0;

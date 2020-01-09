@@ -1,8 +1,8 @@
 #include "pf_format.h"
 
-t_output        *t_output_new(void *content, char type)
+t_output *t_output_new(void *content, char type)
 {
-    t_output    *list; 
+    t_output *list;
 
     if (!(list = (t_output *)malloc(sizeof(t_output))))
         return (NULL);
@@ -15,9 +15,9 @@ t_output        *t_output_new(void *content, char type)
     return (list);
 }
 
-t_output        *t_output_last(t_output **head)
+t_output *t_output_last(t_output **head)
 {
-    t_output    *current;
+    t_output *current;
 
     if (!(*head)->next)
         return (*head);
@@ -27,29 +27,29 @@ t_output        *t_output_last(t_output **head)
     return (current);
 }
 
-void    	    t_output_add(t_output **head, t_output *new)
+int t_output_add(t_output **head, t_output *new)
 {
-	t_output    *last;
+    t_output *last;
 
-	if (head && new)
-	{
-		if (*head == NULL)
-			*head = new;
-		else
-		{
-			last = t_output_last(head);
-			last->next = new;
-		}
-	}
+    if (!head || !new)
+        return (-1);
+    if (!(*head))
+        *head = new;
+    else
+    {
+        last = t_output_last(head);
+        last->next = new;
+    }
+    return (0);
 }
 
-void            t_output_free(t_output **head)
+void t_output_free(t_output **head)
 {
-    t_output    *current;
-    t_output    *next;
+    t_output *current;
+    t_output *next;
 
     if (!(current = *head))
-        return ;
+        return;
     while (current->next)
     {
         next = current->next;

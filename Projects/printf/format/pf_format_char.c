@@ -1,6 +1,6 @@
 #include "pf_format.h"
 
-int			pf_char(va_list argp, t_output **res, int ret)
+int			pf_char(va_list argp, t_output **res)
 {
 	char	*str;
 	t_output *new;
@@ -11,11 +11,10 @@ int			pf_char(va_list argp, t_output **res, int ret)
 	*(str + 1) = '\0';
 	if (!(new = t_output_new(str, 'c')))
 		return (-1);
-	t_output_add(res, new);
-	return (ret + 1);
+	return (t_output_add(res, new));
 }
 
-int			pf_str(va_list argp, t_output **res, int ret)
+int			pf_str(va_list argp, t_output **res)
 {
 	char	*str;
 	t_output *new;
@@ -24,11 +23,10 @@ int			pf_str(va_list argp, t_output **res, int ret)
 		return (-1);
 	if (!(new = t_output_new(str, 's')))
 		return (-1);
-	t_output_add(res, new);
-	return (ret + t_output_last(res)->length);
+	return (t_output_add(res, new));
 }
 
-int			pf_percentage(t_output **res, int ret)
+int			pf_percentage(t_output **res)
 {
 	char	*str;
 	t_output *new;
@@ -39,6 +37,5 @@ int			pf_percentage(t_output **res, int ret)
 	*(str + 1) = '\0';
 	if (!(new = t_output_new(str, '%')))
 		return (-1);
-	t_output_add(res, new);
-	return (ret + 1);
+	return (t_output_add(res, new));
 }
