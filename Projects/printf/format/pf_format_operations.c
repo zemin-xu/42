@@ -36,7 +36,8 @@ void pf_precise(t_output *str, size_t len)
     c = '0';
     if (str->format_type == 's' && len < ft_strlen(str->content))
         *(str->content + len) = '\0';
-    else if (str->format_type == 'i' || str->format_type == 'u')
+    else if (str->format_type == 'i' || str->format_type == 'u' || 
+            str->format_type == 'x' || str->format_type == 'X')
     {
         if ((rest = len - ft_strlen(str->content)) > 0)
         {

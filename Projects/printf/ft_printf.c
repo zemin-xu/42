@@ -253,13 +253,13 @@ int main()
 	printf("$%-*.*u$\n",7,6, j);
 	printf("$%-5u$\n", j);
 	*/
-	int a = 102;
+	int a = 1023523212;
 
-	ft_printf("$%-10.12i$\n", a);
-	ft_printf("$%-12.10i$\n", a);
+	ft_printf("$%-10.12x$\n", a);
+	ft_printf("$%-12.10x$\n", a);
 	printf("$----------$\n");
-	printf("$%-10.12i$\n", a);
-	printf("$%-12.10i$\n", a);
+	printf("$%-10.12x$\n", a);
+	printf("$%-12.10x$\n", a);
 	
 	return 0;
 }
