@@ -85,7 +85,7 @@ static int parse_flag(va_list argp, char const *format, t_flag *flag)
 	int wildcard;
 
 	flag->has_flag = 1;
-	if (*format == '0')
+	if (*format == '0' && !flag->is_padded && !flag->is_precised)
 		flag->is_padded = 2;
 	else if (*format == '-')
 		flag->is_left_justified = 1;
@@ -194,6 +194,7 @@ int ft_printf(char const *format, ...)
 
 int main()
 {
+	/*
 	int i = 1031247822;
 	unsigned int j = -12103;
 	char *s = "WHEREAREYOU";
@@ -251,6 +252,14 @@ int main()
 	printf("$%-*.*u$\n",4,6, j);
 	printf("$%-*.*u$\n",7,6, j);
 	printf("$%-5u$\n", j);
+	*/
+	int a = 102;
+
+	ft_printf("$%-10.12i$\n", a);
+	ft_printf("$%-12.10i$\n", a);
+	printf("$----------$\n");
+	printf("$%-10.12i$\n", a);
+	printf("$%-12.10i$\n", a);
 	
 	return 0;
 }
