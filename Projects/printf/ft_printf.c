@@ -93,8 +93,7 @@ static int parse_flag(va_list argp, char const *format, t_flag *flag)
 		flag->is_precised = 1;
 	else if (*format == '*')
 	{
-		wildcard = va_arg(argp, int);
-		if (wildcard < 0)
+		if ((wildcard = va_arg(argp, int)) < 0)
 			return (-1);
 		pf_flag_read_int(flag, wildcard);
 	}
@@ -108,6 +107,8 @@ static int parse_format(va_list argp, char const **format, t_output **res, t_fla
 	int ret;
 
 	ret = -1;
+	if (!format || !res || !flag)
+		return (-1);
 	if (**format == 'c')
 		ret = pf_char(argp, res);
 	else if (**format == 's')
@@ -264,11 +265,11 @@ int main()
 	printf("$%-12.10x$\n", a);
 	*/
 
-	int a = ft_printf("%4.6d", 1234567);
-	printf("\n%d", a);
-	printf("\n");
-	int b = printf("%4.6d", 1234567);
-	printf("\n%d", b);
+	ft_printf("%d", 1234567);
+	while(1)
+	{
+
+	}
 	
 	return 0;
 }

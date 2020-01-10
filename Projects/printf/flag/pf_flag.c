@@ -17,5 +17,8 @@ t_flag              *t_flag_init(void)
 
 void                t_flag_free(t_flag *flag)
 {
+    if (!flag)
+        return;
     free(flag);
+    flag = NULL;
 }

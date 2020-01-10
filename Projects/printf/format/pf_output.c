@@ -19,6 +19,8 @@ t_output *t_output_last(t_output **head)
 {
     t_output *current;
 
+    if (!head)
+        return (NULL);
     if (!(*head)->next)
         return (*head);
     current = *head;
@@ -54,10 +56,12 @@ int     t_output_free(t_output **head)
     {
         next = current->next;
         free(current->content);
+        t_flag_free(current->flag);
         free(current);
         current = next;
     }
     free(current->content);
+    t_flag_free(current->flag);
     free(current);
     head = NULL;
     return (0);
