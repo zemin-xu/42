@@ -133,7 +133,7 @@ static int format_str(va_list argp, char const **format, t_output **res)
 {
 	t_flag *flag;
 
-	if (!(flag = t_flag_init()))
+	if (!format || !res || !(flag = t_flag_init()))
 		return (-1);
 	(*format)++;
 	while (ft_strchr(FLAG_SET, **format))
@@ -164,7 +164,8 @@ static int normal_str(char const **format, t_output **res)
 		return (-1);
 	if (!(new = t_output_new(str, 's')))
 		return (-1);
-	t_output_add(res, new);
+	if (t_output_add(res, new) == -1)
+		return (-1);
 	*format += i;
 	return (0);
 }
@@ -179,14 +180,15 @@ int ft_printf(char const *format, ...)
 	va_start(argp, format);
 	while (*format)
 	{
-		if (*format == '%')
-			format_str(argp, &format, &res);
+		if (*format == '%' && format_str(argp, &format, &res) == -1)
+			return (-1);
 		else if (normal_str(&format, &res) == -1)
 			return (-1);
 	}
 	va_end(argp);
 	ret = t_output_read(res);
-	t_output_free(&res);
+	if (t_output_free(&res) == -1)
+		return (-1);
 	return (ret);
 }
 
@@ -262,10 +264,10 @@ int main()
 	printf("$%-12.10x$\n", a);
 	*/
 
-	int a = ft_printf("%2.4dwhere%d%%", 123,44);
+	int a = ft_printf("%4.6d", 1234567);
 	printf("\n%d", a);
 	printf("\n");
-	int b =    printf("%2.4dwhere%d%%", 123,44);
+	int b = printf("%4.6d", 1234567);
 	printf("\n%d", b);
 	
 	return 0;

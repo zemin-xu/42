@@ -35,7 +35,7 @@ int             pf_precise(t_output *str, size_t prec_len);
 t_output        *t_output_new(void *content, char type);
 t_output        *t_output_last(t_output **head);
 int             t_output_add(t_output **head, t_output *new);
-void            t_output_free(t_output **head);
+int             t_output_free(t_output **head);
 int             t_output_flag(t_output *curr);
 int             t_output_pad(t_output *curr);
 int             t_output_read(t_output *head);

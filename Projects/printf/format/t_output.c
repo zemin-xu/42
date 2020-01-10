@@ -43,13 +43,13 @@ int t_output_add(t_output **head, t_output *new)
     return (0);
 }
 
-void t_output_free(t_output **head)
+int     t_output_free(t_output **head)
 {
     t_output *current;
     t_output *next;
 
-    if (!(current = *head))
-        return;
+    if (!head || !(current = *head))
+        return (-1);
     while (current->next)
     {
         next = current->next;
@@ -60,4 +60,5 @@ void t_output_free(t_output **head)
     free(current->content);
     free(current);
     head = NULL;
+    return (0);
 }

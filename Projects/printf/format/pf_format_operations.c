@@ -11,7 +11,7 @@ int pf_pad(t_output *str, size_t pad_len, size_t prec_len, char c)
             while (--rest > -1)
                 write(1, &c, 1);
         }
-        return (pad_len > str->length ? pad_len : 0);
+        return (pad_len > str->length ? pad_len - str->length : 0);
     }
     else
     {
