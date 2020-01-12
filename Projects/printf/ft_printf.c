@@ -125,6 +125,7 @@ static int parse_format(va_list argp, char const **format, t_output **res, t_fla
 		ret = pf_hex(argp, res, 1);
 	else if (**format == '%')
 		ret = pf_percentage(res);
+	t_flag_free(t_output_last(res)->flag);
 	t_output_last(res)->flag = flag;
 	(*format)++;
 	return (ret);
@@ -195,7 +196,6 @@ int ft_printf(char const *format, ...)
 
 int main()
 {
-	/*
 	int i = 1031247822;
 	unsigned int j = -12103;
 	char *s = "WHEREAREYOU";
@@ -253,7 +253,6 @@ int main()
 	printf("$%-*.*u$\n",4,6, j);
 	printf("$%-*.*u$\n",7,6, j);
 	printf("$%-5u$\n", j);
-	*/
 
 	/*
 	int a = 1023523212;
@@ -265,11 +264,6 @@ int main()
 	printf("$%-12.10x$\n", a);
 	*/
 
-	ft_printf("%d", 1234567);
-	while(1)
-	{
-
-	}
 	
 	return 0;
 }
