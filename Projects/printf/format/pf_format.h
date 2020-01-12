@@ -32,13 +32,13 @@ int			pf_percentage(t_output **res);
 int             pf_pad(t_output *str, size_t pad_len, size_t prec_len,  char c);
 int             pf_precise(t_output *str, size_t prec_len);
 
-t_output        *t_output_new(void *content, char type);
-t_output        *t_output_last(t_output **head);
-int             t_output_add(t_output **head, t_output *new);
-int             t_output_free(t_output **head);
-int             t_output_flag(t_output *curr);
-int             t_output_pad(t_output *curr);
-int             t_output_read(t_output *head);
+t_output        *pf_output_new(void *content, char type);
+t_output        *pf_output_last(t_output **head);
+int             pf_output_add(t_output **head, t_output *new);
+int             pf_output_free(t_output **head);
+int             pf_output_flag(t_output *curr);
+int             pf_output_pad(t_output *curr);
+int             pf_output_print(t_output *head);
 
 #endif
 

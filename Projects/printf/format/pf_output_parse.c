@@ -1,6 +1,6 @@
 #include "pf_format.h"
 
-int t_output_flag(t_output *curr)
+int pf_output_flag(t_output *curr)
 {
     int count;
 
@@ -14,11 +14,11 @@ int t_output_flag(t_output *curr)
         if (curr->flag->is_precised)
             count += pf_precise(curr, curr->flag->precise_num);
         ft_putstr_fd(curr->content, 1);
-        count += t_output_pad(curr);
+        count += pf_output_pad(curr);
     }
     else
     {
-        count += t_output_pad(curr);
+        count += pf_output_pad(curr);
         if (curr->flag->is_precised)
             count += pf_precise(curr, curr->flag->precise_num);
         ft_putstr_fd(curr->content, 1);
@@ -26,7 +26,7 @@ int t_output_flag(t_output *curr)
     return (count);
 }
 
-int t_output_pad(t_output *curr)
+int pf_output_pad(t_output *curr)
 {
     if (curr->flag->is_padded == 1)
         return (pf_pad(curr, curr->flag->pad_num, curr->flag->precise_num, ' '));
@@ -36,7 +36,7 @@ int t_output_pad(t_output *curr)
         return (0); 
 }
 
-int t_output_read(t_output *head)
+int pf_output_print(t_output *head)
 {
     int count;
 
@@ -45,8 +45,8 @@ int t_output_read(t_output *head)
 
     if (!(current = head))
         return (0);
-    count += t_output_flag(current);
+    count += pf_output_flag(current);
     while ((current = current->next) != NULL)
-        count += t_output_flag(current);
+        count += pf_output_flag(current);
     return (count);
 }

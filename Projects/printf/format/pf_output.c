@@ -1,6 +1,6 @@
 #include "pf_format.h"
 
-t_output *t_output_new(void *content, char type)
+t_output *pf_output_new(void *content, char type)
 {
     t_output *list;
 
@@ -15,7 +15,7 @@ t_output *t_output_new(void *content, char type)
     return (list);
 }
 
-t_output *t_output_last(t_output **head)
+t_output *pf_output_last(t_output **head)
 {
     t_output *current;
 
@@ -29,7 +29,7 @@ t_output *t_output_last(t_output **head)
     return (current);
 }
 
-int t_output_add(t_output **head, t_output *new)
+int pf_output_add(t_output **head, t_output *new)
 {
     t_output *last;
 
@@ -39,13 +39,13 @@ int t_output_add(t_output **head, t_output *new)
         *head = new;
     else
     {
-        last = t_output_last(head);
+        last = pf_output_last(head);
         last->next = new;
     }
     return (0);
 }
 
-int     t_output_free(t_output **head)
+int     pf_output_free(t_output **head)
 {
     t_output *current;
     t_output *next;

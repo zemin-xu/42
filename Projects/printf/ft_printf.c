@@ -125,8 +125,8 @@ static int parse_format(va_list argp, char const **format, t_output **res, t_fla
 		ret = pf_hex(argp, res, 1);
 	else if (**format == '%')
 		ret = pf_percentage(res);
-	t_flag_free(t_output_last(res)->flag);
-	t_output_last(res)->flag = flag;
+	t_flag_free(pf_output_last(res)->flag);
+	pf_output_last(res)->flag = flag;
 	(*format)++;
 	return (ret);
 }
@@ -164,9 +164,9 @@ static int normal_str(char const **format, t_output **res)
 		i++;
 	if (!(str = ft_strsub(*format, 0, i)))
 		return (-1);
-	if (!(new = t_output_new(str, 's')))
+	if (!(new = pf_output_new(str, 's')))
 		return (-1);
-	if (t_output_add(res, new) == -1)
+	if (pf_output_add(res, new) == -1)
 		return (-1);
 	*format += i;
 	return (0);
@@ -188,8 +188,8 @@ int ft_printf(char const *format, ...)
 			return (-1);
 	}
 	va_end(argp);
-	ret = t_output_read(res);
-	if (t_output_free(&res) == -1)
+	ret = pf_output_print(res);
+	if (pf_output_free(&res) == -1)
 		return (-1);
 	return (ret);
 }
