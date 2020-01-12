@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 15:19:00 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/20 17:55:36 by zexu             ###   ########.fr       */
+/*   Created: 2020/01/12 20:15:03 by zexu              #+#    #+#             */
+/*   Updated: 2020/01/12 20:15:06 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** return NULL if the allocation fails
 */
 
-#include "ft_utils.h"
+#include "pf_utils.h"
 
 static size_t		inner_strlen(char const *s)
 {

@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   pf_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 19:18:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/07 19:18:17 by zexu             ###   ########.fr       */
+/*   Created: 2020/01/12 20:15:11 by zexu              #+#    #+#             */
+/*   Updated: 2020/01/12 20:25:30 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_UTILS_H
+# define FT_UTILS_H
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
-#include "utils/pf_utils.h"
-#include "format/pf_format.h"
-
-
-int				ft_printf(char const *format, ...);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putnbr_fd(int n, int fd);
+size_t		ft_strlen(char const *s);
+char		*ft_strsub(char const *s, unsigned int start, size_t len);
+char		*ft_strchr(char const *string, int c);
+char		*ft_strdup(const char *s);
+char		*ft_itoa(int n);
+char		*ft_uitoa(unsigned int n);
+char		*ft_hextoa(unsigned int n, int is_maj);
+char		*ft_ptoa(void *n);
 
 #endif
 

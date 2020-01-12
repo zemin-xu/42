@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_format.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/12 20:10:23 by zexu              #+#    #+#             */
+/*   Updated: 2020/01/12 20:10:24 by zexu             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PF_FORMAT_H
 # define PF_FORMAT_H
 
@@ -5,7 +17,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-#include "../utils/ft_utils.h"
+#include "../utils/pf_utils.h"
 #include "../flag/pf_flag.h"
 
 #define FORMAT_SET "cspdiuxX%"

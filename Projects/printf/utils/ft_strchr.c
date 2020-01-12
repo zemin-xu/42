@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 10:24:54 by zexu              #+#    #+#             */
-/*   Updated: 2019/10/28 14:22:33 by zexu             ###   ########.fr       */
+/*   Created: 2020/01/12 20:13:26 by zexu              #+#    #+#             */
+/*   Updated: 2020/01/12 20:13:29 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** return a pointer to the located byte, or a null pointer if no match
 */
 
-#include "ft_utils.h"
+#include "pf_utils.h"
 
 char				*ft_strchr(char const *string, int c)
 {
