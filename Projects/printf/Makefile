@@ -41,15 +41,12 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-OBJ = ${SRC:%.c=%.o}
+OBJ = ${SRC:.c=.o}
 
-$(NAME): ${OBJ}  
+${NAME}: ${OBJ}
 	ar rcs ${NAME} ${OBJ}
 
 all: ${NAME}
-
-${OBJ}:
-	${CC} ${CFLAGS} -I ${HEADER} -c ${SRC}
 
 clean:
 	${RM} ${OBJ}
