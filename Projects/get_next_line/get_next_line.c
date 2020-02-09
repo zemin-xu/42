@@ -6,34 +6,34 @@
 /*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:01:16 by zexu              #+#    #+#             */
-/*   Updated: 2019/11/29 22:24:23 by zexu             ###   ########.fr       */
+/*   Updated: 2020/02/09 13:25:56 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Return a line read from a file descriptor without the newline character.
-**
-** Return '1' if a line has been read;
-** return '0' if EOF has been reached;
-** return '-1' if an error happens.
-*/
+ ** Return a line read from a file descriptor without the newline character.
+ **
+ ** Return '1' if a line has been read;
+ ** return '0' if EOF has been reached;
+ ** return '-1' if an error happens.
+ */
 
 /*
-** ssize_t		read(int fd, void *buf, size_t count);
-**
-** read() attempts to read up to 'count' bytes from file descriptor 'fd'
-** into the buffer starting at 'buf'.
-**
-** If 'count' is zero, read() may detect the errors. If it does not check for
-** errors, it returns zero and has no other effects.
-**
-** On success, the number of bytes read is returned (zero indicates EOF),
-** and the file position is advanced by this number.
-*/
+ ** ssize_t		read(int fd, void *buf, size_t count);
+ **
+ ** read() attempts to read up to 'count' bytes from file descriptor 'fd'
+ ** into the buffer starting at 'buf'.
+ **
+ ** If 'count' is zero, read() may detect the errors. If it does not check for
+ ** errors, it returns zero and has no other effects.
+ **
+ ** On success, the number of bytes read is returned (zero indicates EOF),
+ ** and the file position is advanced by this number.
+ */
 
 /*
-** File descriptor is integer that uniquely identifies an open file of process.
-*/
+ ** File descriptor is integer that uniquely identifies an open file of process.
+ */
 
 #include "get_next_line.h"
 
@@ -106,7 +106,7 @@ char					*gnl_strdup(char *s, size_t start, size_t end)
 }
 
 void					get_next_line_2(t_gnl_list **tmp, int fd, char *buffer,
-										int read_value)
+		int read_value)
 {
 	size_t				begin;
 	size_t				end;
@@ -151,3 +151,43 @@ int						get_next_line(int fd, char **line)
 	*line = gnl_fetch(&tmp, fd);
 	return (1);
 }
+
+#include <stdio.h>
+#include "get_next_line.h"
+#include <fcntl.h>
+
+int		main(int ac, char **argv)
+{
+	/*
+	   char	*line;
+	   int		fd;
+
+	   ac++;
+	   fd = open(argv[1], O_RDONLY);
+	   while ((get_next_line(fd, &line) && line))
+	   {
+	   printf("%s\n", line);
+	   free(line);
+	   line = NULL;
+	   }
+	   return (0);
+	   */
+
+	char *line;
+	int fd[2];
+	fd[0] = open(argv[1], O_RDONLY);
+	fd[1] = open(argv[2], O_RDONLY);
+
+	int i;
+	i = 0;
+	ac++;
+	while ((get_next_line(fd[i % 2], &line) && line))
+	{
+		printf("%s\n", line);
+		free(line);
+		line = NULL;
+		i++;
+	}
+
+}
+
