@@ -13,16 +13,13 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
 
-#include "utils/pf_utils.h"
-#include "format/pf_format.h"
+# include "utils/pf_utils.h"
+# include "format/pf_format.h"
 
-
-int				ft_printf(char const *format, ...);
+int ft_printf(char const *format, ...);
 
 #endif
-
-

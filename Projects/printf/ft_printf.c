@@ -30,11 +30,11 @@
 /*
 **	----------------------------Format Characters----------------------------
 ** 'diouxX': The int (or appropriate variant) argument is converted to signed
-** decimal (d and i), unsigned octal (o), unsigned decimal (u), or unsigned 
-** hexadecimal (x and X) notation.  The letters ``abcdef'' are used for x 
-** conversions; the letters ``ABCDEF'' are used for X conversions.  
+** decimal (d and i), unsigned octal (o), unsigned decimal (u), or unsigned
+** hexadecimal (x and X) notation.  The letters ``abcdef'' are used for x
+** conversions; the letters ``ABCDEF'' are used for X conversions.
 ** The precision, if any, gives the minimum number of digits that must appear;
-** if the converted value requires fewer digits, it is padded on the left 
+** if the converted value requires fewer digits, it is padded on the left
 ** with zeros.
 **
 ** 'c': The first byte of argument is printed.
@@ -63,7 +63,7 @@
 **	------------------------------Field Width-------------------------------
 ** An optional digit string specifying a field width; if the output string
 ** has fewer bytes than the field width it will be blank-padded on the left
-** to make up the field width(a leading zero is a flag, but an embedded zero 
+** to make up the field width(a leading zero is a flag, but an embedded zero
 ** is part of a field width.
 **
 **	------------------------------Precision---------------------------------
@@ -74,15 +74,15 @@
 ** zero.
 **
 ** https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNC
-** TIONS/format.html 
+** TIONS/format.html
 */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int parse_flag(va_list argp, char const *format, t_flag *flag)
+static int		parse_flag(va_list argp, char const *format, t_flag *flag)
 {
-	int wildcard;
+	int			wildcard;
 
 	flag->has_flag = 1;
 	if (*format == '0' && !flag->is_padded && !flag->is_precised)
@@ -102,9 +102,10 @@ static int parse_flag(va_list argp, char const *format, t_flag *flag)
 	return (0);
 }
 
-static int parse_format(va_list argp, char const **format, t_output **res, t_flag *flag)
-{	
-	int ret;
+static int		parse_format(va_list argp, char const **format,
+				t_output **res, t_flag *flag)
+{
+	int			ret;
 
 	ret = -1;
 	if (!format || !res || !flag)
@@ -131,9 +132,9 @@ static int parse_format(va_list argp, char const **format, t_output **res, t_fla
 	return (ret);
 }
 
-static int format_str(va_list argp, char const **format, t_output **res)
+static int		format_str(va_list argp, char const **format, t_output **res)
 {
-	t_flag *flag;
+	t_flag		*flag;
 
 	if (!format || !res || !(flag = t_flag_init()))
 		return (-1);
@@ -153,11 +154,11 @@ static int format_str(va_list argp, char const **format, t_output **res)
 	}
 }
 
-static int normal_str(char const **format, t_output **res)
+static int		normal_str(char const **format, t_output **res)
 {
-	int i;
-	char *str;
-	t_output *new;
+	int			i;
+	char		*str;
+	t_output	*new;
 
 	i = 0;
 	while (*(*format + i) && *(*format + i) != '%')
@@ -172,11 +173,11 @@ static int normal_str(char const **format, t_output **res)
 	return (0);
 }
 
-int ft_printf(char const *format, ...)
+int				ft_printf(char const *format, ...)
 {
-	va_list argp;
-	t_output *res;
-	int ret;
+	va_list		argp;
+	t_output	*res;
+	int			ret;
 
 	res = NULL;
 	va_start(argp, format);
@@ -194,6 +195,7 @@ int ft_printf(char const *format, ...)
 	return (ret);
 }
 
+#if 0
 int main()
 {
 	int i = 1031247822;
@@ -267,3 +269,4 @@ int main()
 	
 	return 0;
 }
+#endif
