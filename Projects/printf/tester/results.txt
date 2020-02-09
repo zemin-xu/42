@@ -1,0 +1,7 @@
+Test  38 (s_string_prec_width_notrunc) : FAILED.
+    First line of code: {return test("%7.5s", "yolo");}
+      expected output : "   yolo"
+      your output     : "  yolo"
+      expected (nonprintable as hex) : "   yolo"
+      actual   (nonprintable as hex) : "  yolo"
+
