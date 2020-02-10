@@ -26,5 +26,7 @@ char	*ft_itoa(int n);
 char	*ft_uitoa(unsigned int n);
 char	*ft_hextoa(unsigned int n, int is_maj);
 char	*ft_ptoa(void *n);
+void	*ft_memmove(void *to, const void *from, size_t size);
+void	*ft_memcpy(void *to, const void *from, size_t size);
 
 #endif

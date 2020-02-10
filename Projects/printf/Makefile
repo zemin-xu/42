@@ -22,6 +22,8 @@ SRC = ft_printf.c \
 	utils/ft_strlen.c \
 	utils/ft_strsub.c \
 	utils/ft_uitoa.c \
+	utils/ft_memmove.c \
+	utils/ft_memcpy.c \
 	format/pf_format_char.c \
 	format/pf_format_int.c \
 	format/pf_format_operations.c \
