@@ -48,7 +48,7 @@ char				*ft_hextoa(unsigned int n, int is_maj)
 	while (len > i)
 	{
 		if (tmp % 16 < 10)
-			*(str + --len) = '0' + tmp % 16;
+			*(str + --len) = '0' + (tmp % 16);
 		else
 		{
 			if (is_maj)
