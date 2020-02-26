@@ -25,7 +25,7 @@ typedef struct				s_flag
 {
 	int has_flag;
 
-	int is_left_justified;
+	int is_left_aligned;
 	int is_padded;
 	int pad_num;
 	int is_precised;

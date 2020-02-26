@@ -10,28 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pf_format.h"
+#include "t_pf.h"
 
-t_output				*pf_output_new(void *content, char type)
+t_pf					*pf_new(void *str, char type)
 {
-	t_output			*list;
+	t_pf				*list;
 
-	if (!(list = (t_output *)malloc(sizeof(t_output))))
+	if (!(list = (t_pf *)malloc(sizeof(t_pf))))
 		return (NULL);
-	list->content = content;
-	list->format_type = type;
-	list->length = ft_strlen(content);
-	if (!(list->flag = t_flag_init()))
-		return (NULL);
+	list->type_format = type;
+	list->str_before_flag = str;
+	list->len_before_flag = ft_strlen(str);
+	list->is_left_aligned = 0;
+	list->leading_zero = 0;
+	list->precision_width = -1;
+	list->minimum_width = -1;
+	list->str_after_flag = NULL;
+	list->len_after_flag = 0;
 	list->next = NULL;
 	return (list);
 }
 
-t_output				*pf_output_last(t_output **head)
+t_pf					*pf_last(t_pf **head)
 {
-	t_output			*current;
+	t_pf				*current;
 
-	if (!head)
+	if (!head || !(*head))
 		return (NULL);
 	if (!(*head)->next)
 		return (*head);
@@ -41,9 +45,9 @@ t_output				*pf_output_last(t_output **head)
 	return (current);
 }
 
-int						pf_output_add(t_output **head, t_output *new)
+int						pf_add(t_pf **head, t_pf *new)
 {
-	t_output			*last;
+	t_pf				*last;
 
 	if (!head || !new)
 		return (-1);
@@ -57,13 +61,14 @@ int						pf_output_add(t_output **head, t_output *new)
 	return (0);
 }
 
-int						pf_output_free(t_output **head)
+int						pf_free(t_pf **head)
 {
-	t_output			*current;
-	t_output			*next;
+	t_pf				*current;
+	t_pf				*next;
 
 	if (!head || !(current = *head))
 		return (-1);
+/*
 	while (current->next)
 	{
 		next = current->next;
@@ -76,5 +81,6 @@ int						pf_output_free(t_output **head)
 	t_flag_free(current->flag);
 	free(current);
 	head = NULL;
+*/
 	return (0);
 }

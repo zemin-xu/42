@@ -22,14 +22,19 @@
 
 # define FORMAT_SET "cspdiuxX%"
 
-typedef struct		s_output
+typedef struct		s_pf
 {
-	char			format_type;
-	char			*content;
-	size_t			length;
-	struct s_flag	*flag;
+	char			type_format;
+	char			*str_before_flag;
+	size_t			len_before_flag;
+	int				is_left_aligned;
+	int				leading_zero;
+	int				precision_width;
+	int				minimum_width;
+	char			*str_after_flag;
+	size_t			len_after_flag;
 	struct s_output	*next;
-}					t_output;
+}					t_pf;
 int					pf_signed_int(va_list argp, t_output **res);
 int					pf_unsigned_int(va_list argp, t_output **res);
 int					pf_hex(va_list argp, t_output **res, int is_maj);
@@ -40,11 +45,11 @@ int					pf_percentage(t_output **res);
 int					pf_pad(t_output *str, size_t pad_len,
 							size_t prec_len, char c);
 int					pf_precise(t_output *str, size_t prec_len);
-t_output			*pf_output_new(void *content, char type);
-t_output			*pf_output_last(t_output **head);
-int					pf_output_add(t_output **head, t_output *new);
-int					pf_output_free(t_output **head);
-int					pf_output_flag(t_output *curr);
-int					pf_output_pad(t_output *curr);
-int					pf_output_print(t_output *head);
+
+t_pf				*pf_new(void *content, char type);
+t_pf				*pf_last(t_pf **head);
+int					pf_add(t_pf **head, t_pf *new);
+int					pf_free(t_pf **head);
+int					pf_flag(t_pf *curr);
+int					pf_print(t_pf *head);
 #endif
