@@ -12,7 +12,7 @@
 
 #include "pf_format.h"
 
-t_pf				*pf_init(void *content, char type)
+t_pf				*t_pf_init(void *content, char type)
 {
 	t_pf			*list;
 
@@ -27,7 +27,7 @@ t_pf				*pf_init(void *content, char type)
 	return (list);
 }
 
-t_pf				*pf_output_last(t_pf **head)
+t_pf				*t_pf_last(t_pf **head)
 {
 	t_pf			*current;
 
@@ -41,7 +41,7 @@ t_pf				*pf_output_last(t_pf **head)
 	return (current);
 }
 
-int						pf_output_add(t_pf **head, t_pf *new)
+int						t_pf_add(t_pf **head, t_pf *new)
 {
 	t_pf			*last;
 
@@ -51,13 +51,13 @@ int						pf_output_add(t_pf **head, t_pf *new)
 		*head = new;
 	else
 	{
-		last = pf_output_last(head);
+		last = t_pf_last(head);
 		last->next = new;
 	}
 	return (0);
 }
 
-int						pf_output_free(t_pf **head)
+int						t_pf_free(t_pf **head)
 {
 	t_pf			*current;
 	t_pf			*next;
