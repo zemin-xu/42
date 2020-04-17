@@ -117,7 +117,7 @@ void	log_failed_test(int test_number, int expected, int actual,
 	//Open files
 	int finmine = open(OUT_ACTUAL, O_RDONLY);
 	int finlibc = open(OUT_EXPECTED, O_RDONLY);
-	int fout = open(TEST_OUTPUT_FILENAME, O_CREAT | O_WRONLY | O_APPEND,
+	int fout = open(TESt_pf_FILENAME, O_CREAT | O_WRONLY | O_APPEND,
 				S_IRWXU | S_IRWXG | S_IRWXO);
 	if (fout < 0)
 	{
@@ -690,7 +690,7 @@ void	run_init(void)
 	}
 	if (options.refresh_results)
 	{
-		remove(TEST_OUTPUT_FILENAME);
+		remove(TESt_pf_FILENAME);
 	}
 }
 

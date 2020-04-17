@@ -219,7 +219,7 @@ void		print_end_test_message(int num_tests, int num_passed)
 	printf("Tests completed. %i/%i tests passed.\n",
 			num_passed, num_tests);
 	if (num_passed != num_tests)
-		printf("See %s for details.\n", TEST_OUTPUT_FILENAME);
+		printf("See %s for details.\n", TESt_pf_FILENAME);
 }
 
 

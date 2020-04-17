@@ -12,11 +12,11 @@
 
 #include "pf_format.h"
 
-t_output				*pf_output_new(void *content, char type)
+t_pf				*pf_output_new(void *content, char type)
 {
-	t_output			*list;
+	t_pf			*list;
 
-	if (!(list = (t_output *)malloc(sizeof(t_output))))
+	if (!(list = (t_pf *)malloc(sizeof(t_pf))))
 		return (NULL);
 	list->content = content;
 	list->format_type = type;
@@ -27,9 +27,9 @@ t_output				*pf_output_new(void *content, char type)
 	return (list);
 }
 
-t_output				*pf_output_last(t_output **head)
+t_pf				*pf_output_last(t_pf **head)
 {
-	t_output			*current;
+	t_pf			*current;
 
 	if (!head)
 		return (NULL);
@@ -41,9 +41,9 @@ t_output				*pf_output_last(t_output **head)
 	return (current);
 }
 
-int						pf_output_add(t_output **head, t_output *new)
+int						pf_output_add(t_pf **head, t_pf *new)
 {
-	t_output			*last;
+	t_pf			*last;
 
 	if (!head || !new)
 		return (-1);
@@ -57,10 +57,10 @@ int						pf_output_add(t_output **head, t_output *new)
 	return (0);
 }
 
-int						pf_output_free(t_output **head)
+int						pf_output_free(t_pf **head)
 {
-	t_output			*current;
-	t_output			*next;
+	t_pf			*current;
+	t_pf			*next;
 
 	if (!head || !(current = *head))
 		return (-1);

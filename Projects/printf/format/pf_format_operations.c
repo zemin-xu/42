@@ -12,7 +12,7 @@
 
 #include "pf_format.h"
 
-int pf_pad(t_output *str, size_t pad_len, size_t prec_len, char c)
+int pf_pad(t_pf *str, size_t pad_len, size_t prec_len, char c)
 {
 	int rest;
 
@@ -44,7 +44,7 @@ int pf_pad(t_output *str, size_t pad_len, size_t prec_len, char c)
 	}
 }
 
-int pf_precise(t_output *str, size_t prec_len)
+int pf_precise(t_pf *str, size_t prec_len)
 {
 	int rest;
 	int is_exception;

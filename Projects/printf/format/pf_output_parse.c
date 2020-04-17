@@ -12,7 +12,7 @@
 
 #include "pf_format.h"
 
-int				pf_output_flag(t_output *curr)
+int				pf_output_flag(t_pf *curr)
 {
 	int			count;
 
@@ -38,7 +38,7 @@ int				pf_output_flag(t_output *curr)
 	return (count);
 }
 
-int				pf_output_pad(t_output *curr)
+int				pf_output_pad(t_pf *curr)
 {
 	if (curr->flag->is_padded == 1)
 		return (pf_pad(curr, curr->flag->pad_num,
@@ -50,10 +50,10 @@ int				pf_output_pad(t_output *curr)
 		return (0);
 }
 
-int				pf_output_print(t_output *head)
+int				pf_output_print(t_pf *head)
 {
 	int			count;
-	t_output	*current;
+	t_pf	*current;
 
 	count = 0;
 	if (!(current = head))

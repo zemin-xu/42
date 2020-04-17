@@ -12,10 +12,10 @@
 
 #include "pf_format.h"
 
-int				pf_char(va_list argp, t_output **res)
+int				pf_char(va_list argp, t_pf **res)
 {
 	char		*str;
-	t_output	*new;
+	t_pf	*new;
 
 	if (!(str = (char *)malloc(sizeof(char) * 2)))
 		return (-1);
@@ -26,10 +26,10 @@ int				pf_char(va_list argp, t_output **res)
 	return (pf_output_add(res, new));
 }
 
-int				pf_str(va_list argp, t_output **res)
+int				pf_str(va_list argp, t_pf **res)
 {
 	char		*str;
-	t_output	*new;
+	t_pf	*new;
 
 	if (!(str = ft_strdup(va_arg(argp, char *))))
 		return (-1);
@@ -38,10 +38,10 @@ int				pf_str(va_list argp, t_output **res)
 	return (pf_output_add(res, new));
 }
 
-int				pf_percentage(t_output **res)
+int				pf_percentage(t_pf **res)
 {
 	char		*str;
-	t_output	*new;
+	t_pf	*new;
 
 	if (!(str = (char *)malloc(sizeof(char) * 2)))
 		return (-1);

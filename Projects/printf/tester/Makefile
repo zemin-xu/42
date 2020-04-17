@@ -33,7 +33,7 @@ INDEXED_TESTS=src/unit_tests_indexed.c
 NUMBER_OF_TESTS=$(shell cat $(UNIT_TEST_FILE) | grep -c "^\s*int\s*[a-zA-Z0-9_]*(void)" | tr -d " \n\t")
 TEST_DEFINES=-D OUT_ACTUAL="\"$(TEST_OUT_ACTUAL)\"" \
 			 -D OUT_EXPECTED="\"$(TEST_OUT_EXPECTED)\"" \
-			 -D TEST_OUTPUT_FILENAME="\"$(TEST_RESULTS)\"" \
+			 -D TESt_pf_FILENAME="\"$(TEST_RESULTS)\"" \
 			 -D MAX_FILE_COPY_SIZE=$(TEST_FAIL_LOGGING_MAXBYTES) \
 			 -D IGNORE_RETURN_VALUE=$(IGNORE_RETURN_VALUE) \
 			 -D DEFAULT_RUN_OPTIONS="\"$(DEFAULT_RUN_OPTIONS)\"" \

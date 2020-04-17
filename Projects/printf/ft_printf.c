@@ -48,8 +48,8 @@
 **
 **	------------------------------Flags--------------------------------------
 ** '0': Zero padding. The converted value is padded on the left with zeros
-** than blanks. If a precision is given with a numeric conversion, the 0 flag
-** is ignored.
+** rather than blanks. If a precision is given with a numeric conversion, the 0
+** flag is ignored.
 **
 ** '-': A negative field width flag; the converted value is to be left adjusted
 ** on the field boundary. The converted value is padded on the right side with
@@ -64,7 +64,7 @@
 ** An optional digit string specifying a field width; if the output string
 ** has fewer bytes than the field width it will be blank-padded on the left
 ** to make up the field width(a leading zero is a flag, but an embedded zero
-** is part of a field width.
+** is part of a field width).
 **
 **	------------------------------Precision---------------------------------
 ** An optional period, '.', followed by an optional digit string giving a
@@ -103,7 +103,7 @@ static int		parse_flag(va_list argp, char const *format, t_flag *flag)
 }
 
 static int		parse_format(va_list argp, char const **format,
-				t_output **res, t_flag *flag)
+				t_pf **res, t_flag *flag)
 {
 	int			ret;
 
@@ -132,7 +132,7 @@ static int		parse_format(va_list argp, char const **format,
 	return (ret);
 }
 
-static int		format_str(va_list argp, char const **format, t_output **res)
+static int		format_str(va_list argp, char const **format, t_pf **res)
 {
 	t_flag		*flag;
 
@@ -154,11 +154,11 @@ static int		format_str(va_list argp, char const **format, t_output **res)
 	}
 }
 
-static int		normal_str(char const **format, t_output **res)
+static int		normal_str(char const **format, t_pf **res)
 {
 	int			i;
 	char		*str;
-	t_output	*new;
+	t_pf	*new;
 
 	i = 0;
 	while (*(*format + i) && *(*format + i) != '%')
@@ -176,7 +176,7 @@ static int		normal_str(char const **format, t_output **res)
 int				ft_printf(char const *format, ...)
 {
 	va_list		argp;
-	t_output	*res;
+	t_pf	*res;
 	int			ret;
 
 	res = NULL;
