@@ -12,7 +12,7 @@
 
 #include "pf_format.h"
 
-t_pf				*pf_output_new(void *content, char type)
+t_pf				*pf_init(void *content, char type)
 {
 	t_pf			*list;
 

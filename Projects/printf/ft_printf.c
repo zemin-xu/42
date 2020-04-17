@@ -165,7 +165,7 @@ static int		normal_str(char const **format, t_pf **res)
 		i++;
 	if (!(str = ft_strsub(*format, 0, i)))
 		return (-1);
-	if (!(new = pf_output_new(str, 's')))
+	if (!(new = pf_init(str, 's')))
 		return (-1);
 	if (pf_output_add(res, new) == -1)
 		return (-1);

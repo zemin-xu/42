@@ -19,7 +19,7 @@ int				pf_signed_int(va_list argp, t_pf **res)
 
 	if (!(str = ft_itoa(va_arg(argp, int))))
 		return (-1);
-	if (!(new = pf_output_new(str, 'i')))
+	if (!(new = pf_init(str, 'i')))
 		return (-1);
 	return (pf_output_add(res, new));
 }
@@ -31,7 +31,7 @@ int				pf_unsigned_int(va_list argp, t_pf **res)
 
 	if (!(str = ft_uitoa(va_arg(argp, unsigned int))))
 		return (-1);
-	if (!(new = pf_output_new(str, 'u')))
+	if (!(new = pf_init(str, 'u')))
 		return (-1);
 	return (pf_output_add(res, new));
 }
@@ -43,7 +43,7 @@ int				pf_hex(va_list argp, t_pf **res, int is_maj)
 
 	if (!(str = ft_hextoa(va_arg(argp, unsigned int), is_maj)))
 		return (-1);
-	if (!(new = pf_output_new(str, 'x')))
+	if (!(new = pf_init(str, 'x')))
 		return (-1);
 	return (pf_output_add(res, new));
 }
@@ -55,7 +55,7 @@ int				pf_pointer(va_list argp, t_pf **res)
 
 	if (!(str = ft_ptoa(va_arg(argp, void *))))
 		return (-1);
-	if (!(new = pf_output_new(str, 'p')))
+	if (!(new = pf_init(str, 'p')))
 		return (-1);
 	return (pf_output_add(res, new));
 }

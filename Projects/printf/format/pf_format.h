@@ -25,9 +25,17 @@
 typedef struct		s_pf
 {
 	char			format_type;
+	char			*str_before;
 	char			*content;
+	size_t			len_before;
 	size_t			length;
 	struct s_flag	*flag;
+	int				has_flag;
+	int				is_left_justified;
+	int				pad_num;
+	int				precise_num;
+	char			*str_after;
+	size_t			len_after;
 	struct s_pf		*next;
 }					t_pf;
 int					pf_signed_int(va_list argp, t_pf **res);
@@ -40,7 +48,7 @@ int					pf_percentage(t_pf **res);
 int					pf_pad(t_pf *str, size_t pad_len,
 							size_t prec_len, char c);
 int					pf_precise(t_pf *str, size_t prec_len);
-t_pf				*pf_output_new(void *content, char type);
+t_pf				*pf_init(void *content, char type);
 t_pf				*pf_output_last(t_pf **head);
 int					pf_output_add(t_pf **head, t_pf *new);
 int					pf_output_free(t_pf **head);

@@ -21,7 +21,7 @@ int				pf_char(va_list argp, t_pf **res)
 		return (-1);
 	*str = (char)va_arg(argp, int);
 	*(str + 1) = '\0';
-	if (!(new = pf_output_new(str, 'c')))
+	if (!(new = pf_init(str, 'c')))
 		return (-1);
 	return (pf_output_add(res, new));
 }
@@ -33,7 +33,7 @@ int				pf_str(va_list argp, t_pf **res)
 
 	if (!(str = ft_strdup(va_arg(argp, char *))))
 		return (-1);
-	if (!(new = pf_output_new(str, 's')))
+	if (!(new = pf_init(str, 's')))
 		return (-1);
 	return (pf_output_add(res, new));
 }
@@ -47,7 +47,7 @@ int				pf_percentage(t_pf **res)
 		return (-1);
 	*str = '%';
 	*(str + 1) = '\0';
-	if (!(new = pf_output_new(str, '%')))
+	if (!(new = pf_init(str, '%')))
 		return (-1);
 	return (pf_output_add(res, new));
 }
