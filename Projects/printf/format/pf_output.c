@@ -18,8 +18,16 @@ t_pf				*t_pf_init(void *content, char type)
 
 	if (!(list = (t_pf *)malloc(sizeof(t_pf))))
 		return (NULL);
-	list->content = content;
 	list->format_type = type;
+	list->str_before = content;
+	list->len_before = ft_strlen(content);
+
+	list->has_flag = 0;
+	list->is_left_justified = 0;
+	list->pad_num = -1;
+	list->precise_num = -1;
+
+	list->content = content;
 	list->length = ft_strlen(content);
 	if (!(list->flag = t_flag_init()))
 		return (NULL);

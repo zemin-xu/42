@@ -54,5 +54,5 @@ int					t_pf_add(t_pf **head, t_pf *new);
 int					t_pf_free(t_pf **head);
 int					pf_output_flag(t_pf *curr);
 int					pf_output_pad(t_pf *curr);
-int					pf_output_print(t_pf *head);
+int					t_pf_output(t_pf *head);
 #endif

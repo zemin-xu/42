@@ -50,7 +50,7 @@ int				pf_output_pad(t_pf *curr)
 		return (0);
 }
 
-int				pf_output_print(t_pf *head)
+int				t_pf_output(t_pf *head)
 {
 	int			count;
 	t_pf	*current;
