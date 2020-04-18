@@ -125,8 +125,8 @@ static int		parse_format(va_list argp, char const **format,
 		ret = pf_hex(argp, res, 1);
 	else if (**format == '%')
 		ret = pf_percentage(res);
-	t_flag_free(t_pf_last(res)->flag);
-	t_pf_last(res)->flag = flag;
+	t_flag_free(t_pf_last(*res)->flag);
+	t_pf_last(*res)->flag = flag;
 	(*format)++;
 	return (ret);
 }

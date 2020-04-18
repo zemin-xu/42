@@ -49,7 +49,7 @@ int					pf_pad(t_pf *str, size_t pad_len,
 							size_t prec_len, char c);
 int					pf_precise(t_pf *str, size_t prec_len);
 t_pf				*t_pf_init(void *content, char type);
-t_pf				*t_pf_last(t_pf **head);
+t_pf				*t_pf_last(t_pf *head);
 int					t_pf_add(t_pf **head, t_pf *new);
 int					t_pf_free(t_pf **head);
 int					pf_output_flag(t_pf *curr);

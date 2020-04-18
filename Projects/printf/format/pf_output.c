@@ -31,19 +31,20 @@ t_pf				*t_pf_init(void *content, char type)
 	list->length = ft_strlen(content);
 	if (!(list->flag = t_flag_init()))
 		return (NULL);
+
 	list->next = NULL;
 	return (list);
 }
 
-t_pf				*t_pf_last(t_pf **head)
+t_pf				*t_pf_last(t_pf *head)
 {
 	t_pf			*current;
 
 	if (!head)
 		return (NULL);
-	if (!(*head)->next)
-		return (*head);
-	current = *head;
+	if (!(head->next))
+		return (head);
+	current = head;
 	while (current->next)
 		current = current->next;
 	return (current);
@@ -59,7 +60,7 @@ int						t_pf_add(t_pf **head, t_pf *new)
 		*head = new;
 	else
 	{
-		last = t_pf_last(head);
+		last = t_pf_last(*head);
 		last->next = new;
 	}
 	return (0);
