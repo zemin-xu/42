@@ -103,50 +103,50 @@ static int		parse_flag(va_list argp, char const *format, t_pf **head_ref, t_flag
 }
 */
 
-static int parse_format(va_list argp, char const **format,
+static int parse_format(va_list argp, char const **fmt_str_p,
 						t_pf **res)
 {
 	int ret;
 
 	ret = -1;
-	if (!format || !res)
+	if (!fmt_str_p || !res)
 		return (-1);
-	if (**format == 'c')
+	if (**fmt_str_p == 'c')
 		ret = pf_char(argp, res);
-	else if (**format == 's')
+	else if (**fmt_str_p == 's')
 		ret = pf_str(argp, res);
-	else if (**format == 'p')
+	else if (**fmt_str_p == 'p')
 		ret = pf_pointer(argp, res);
-	else if (**format == 'd' || **format == 'i')
+	else if (**fmt_str_p == 'd' || **fmt_str_p == 'i')
 		ret = pf_signed_int(argp, res);
-	else if (**format == 'u')
+	else if (**fmt_str_p == 'u')
 		ret = pf_unsigned_int(argp, res);
-	else if (**format == 'x')
+	else if (**fmt_str_p == 'x')
 		ret = pf_hex(argp, res, 0);
-	else if (**format == 'X')
+	else if (**fmt_str_p == 'X')
 		ret = pf_hex(argp, res, 1);
-	else if (**format == '%')
+	else if (**fmt_str_p == '%')
 		ret = pf_percentage(res);
-	(*format)++;
+	(*fmt_str_p)++;
 	return (ret);
 }
 
-static int format_str(va_list argp, char const **format, t_pf **head_ref)
+static int format_str(va_list argp, char const **fmt_str_p, t_pf **head_ref)
 {
 
-	if (!format || !head_ref)
+	if (!fmt_str_p || !head_ref)
 		return (-1);
-	(*format)++;
-	while (ft_strchr(FLAG_SET, **format))
+	(*fmt_str_p)++;
+	while (ft_strchr(FLAG_SET, **fmt_str_p))
 	{
 		/*
 		if (parse_flag(argp, *format, flag) == -1)
 			return (-1);
 		*/
-		(*format)++;
+		(*fmt_str_p)++;
 	}
-	if (ft_strchr(FORMAT_SET, **format))
-		return (parse_format(argp, format, head_ref));
+	if (ft_strchr(FORMAT_SET, **fmt_str_p))
+		return (parse_format(argp, fmt_str_p, head_ref));
 	else
 	{
 		ft_putstr_fd("Not implemented yet", 1);
