@@ -12,6 +12,7 @@
 
 #include "pf_format.h"
 
+/*
 int				pf_output_flag(t_pf *curr)
 {
 	int			count;
@@ -49,6 +50,7 @@ int				pf_output_pad(t_pf *curr)
 	else
 		return (0);
 }
+*/
 
 int				t_pf_output(t_pf *head)
 {
@@ -58,8 +60,7 @@ int				t_pf_output(t_pf *head)
 	count = 0;
 	if (!(current = head))
 		return (0);
-	count += pf_output_flag(current);
 	while ((current = current->next) != NULL)
-		count += pf_output_flag(current);
+		ft_putstr_fd(current->content, 1);
 	return (count);
 }

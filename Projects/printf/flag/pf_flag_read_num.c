@@ -12,6 +12,7 @@
 
 #include "pf_flag.h"
 
+/*
 void pf_flag_read_char(t_flag *flag, char num)
 {
 	if (flag->is_precised)
@@ -39,3 +40,4 @@ void pf_flag_read_int(t_flag *flag, int num)
 		flag->pad_num = num;
 	}
 }
+*/

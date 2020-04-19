@@ -29,9 +29,6 @@ t_pf				*t_pf_init(void *content, char type)
 
 	list->content = content;
 	list->length = ft_strlen(content);
-	if (!(list->flag = t_flag_init()))
-		return (NULL);
-
 	list->next = NULL;
 	return (list);
 }
@@ -77,12 +74,10 @@ int						t_pf_free(t_pf **head_ref)
 	{
 		next = current->next;
 		free(current->content);
-		t_flag_free(current->flag);
 		free(current);
 		current = next;
 	}
 	free(current->content);
-	t_flag_free(current->flag);
 	free(current);
 	head_ref = NULL;
 	return (0);

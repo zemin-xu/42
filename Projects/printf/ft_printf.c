@@ -79,7 +79,8 @@
 
 #include "ft_printf.h"
 
-static int		parse_flag(va_list argp, char const *format, t_flag *flag)
+/*
+static int		parse_flag(va_list argp, char const *format, t_pf **head_ref, t_flag *flag)
 {
 	int			wildcard;
 
@@ -100,14 +101,15 @@ static int		parse_flag(va_list argp, char const *format, t_flag *flag)
 		pf_flag_read_char(flag, *format);
 	return (0);
 }
+*/
 
-static int		parse_format(va_list argp, char const **format,
-				t_pf **res, t_flag *flag)
+static int parse_format(va_list argp, char const **format,
+						t_pf **res)
 {
-	int			ret;
+	int ret;
 
 	ret = -1;
-	if (!format || !res || !flag)
+	if (!format || !res)
 		return (-1);
 	if (**format == 'c')
 		ret = pf_char(argp, res);
@@ -125,27 +127,26 @@ static int		parse_format(va_list argp, char const **format,
 		ret = pf_hex(argp, res, 1);
 	else if (**format == '%')
 		ret = pf_percentage(res);
-	t_flag_free(t_pf_last(*res)->flag);
-	t_pf_last(*res)->flag = flag;
 	(*format)++;
 	return (ret);
 }
 
-static int		format_str(va_list argp, char const **format, t_pf **head_ref)
+static int format_str(va_list argp, char const **format, t_pf **head_ref)
 {
-	t_flag		*flag;
 
-	if (!format || !head_ref || !(flag = t_flag_init()))
+	if (!format || !head_ref)
 		return (-1);
 	(*format)++;
 	while (ft_strchr(FLAG_SET, **format))
 	{
+		/*
 		if (parse_flag(argp, *format, flag) == -1)
 			return (-1);
+		*/
 		(*format)++;
 	}
 	if (ft_strchr(FORMAT_SET, **format))
-		return (parse_format(argp, format, head_ref, flag));
+		return (parse_format(argp, format, head_ref));
 	else
 	{
 		ft_putstr_fd("Not implemented yet", 1);
@@ -153,11 +154,11 @@ static int		format_str(va_list argp, char const **format, t_pf **head_ref)
 	}
 }
 
-static int		normal_str(char const **fmt_str_p, t_pf **head_ref)
+static int normal_str(char const **fmt_str_p, t_pf **head_ref)
 {
-	int			i;
-	char		*str;
-	t_pf		*new;
+	int i;
+	char *str;
+	t_pf *new;
 
 	i = 0;
 	while (*(*fmt_str_p + i) && *(*fmt_str_p + i) != '%')
@@ -172,11 +173,11 @@ static int		normal_str(char const **fmt_str_p, t_pf **head_ref)
 	return (0);
 }
 
-int				ft_printf(char const *format, ...)
+int ft_printf(char const *format, ...)
 {
-	va_list		argp;
-	t_pf		*head;
-	int			ret_value;
+	va_list argp;
+	t_pf *head;
+	int ret_value;
 
 	head = NULL;
 	va_start(argp, format);
