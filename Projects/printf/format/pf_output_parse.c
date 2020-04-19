@@ -61,6 +61,6 @@ int				t_pf_output(t_pf *head)
 	if (!(current = head))
 		return (0);
 	while ((current = current->next) != NULL)
-		ft_putstr_fd(current->content, 1);
+		ft_putstr_fd(current->str_before, 1);
 	return (count);
 }

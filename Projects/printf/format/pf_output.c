@@ -27,7 +27,6 @@ t_pf				*t_pf_init(void *content, char type)
 	list->pad_num = -1;
 	list->precise_num = -1;
 
-	list->content = content;
 	list->length = ft_strlen(content);
 	list->next = NULL;
 	return (list);
@@ -73,11 +72,11 @@ int						t_pf_free(t_pf **head_ref)
 	while (current->next)
 	{
 		next = current->next;
-		free(current->content);
+		free(current->str_before);
 		free(current);
 		current = next;
 	}
-	free(current->content);
+	free(current->str_before);
 	free(current);
 	head_ref = NULL;
 	return (0);

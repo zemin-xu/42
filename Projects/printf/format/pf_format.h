@@ -26,7 +26,6 @@ typedef struct		s_pf
 {
 	char			format_type;
 	char			*str_before;
-	char			*content;
 	size_t			len_before;
 	size_t			length;
 	struct s_flag	*flag;
