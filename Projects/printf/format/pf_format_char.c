@@ -38,16 +38,16 @@ int				pf_str(va_list argp, t_pf **res, t_pf *new)
 	return (t_pf_add(res, new));
 }
 
-int				pf_percentage(t_pf **res)
+int				pf_percentage(t_pf **res, t_pf *new)
 {
 	char		*str;
-	t_pf	*new;
 
 	if (!(str = (char *)malloc(sizeof(char) * 2)))
 		return (-1);
 	*str = '%';
 	*(str + 1) = '\0';
-	if (!(new = t_pf_init(str, '%')))
-		return (-1);
+	new->format_type = '%';
+	new->str_before = str;
+	new->len_before = 1;
 	return (t_pf_add(res, new));
 }

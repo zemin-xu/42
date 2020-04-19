@@ -37,13 +37,13 @@ typedef struct		s_pf
 	size_t			len_after;
 	struct s_pf		*next;
 }					t_pf;
-int					pf_signed_int(va_list argp, t_pf **head_ref);
-int					pf_unsigned_int(va_list argp, t_pf **head_ref);
-int					pf_hex(va_list argp, t_pf **head_ref, int is_maj);
-int					pf_pointer(va_list argp, t_pf **head_ref);
+int					pf_signed_int(va_list argp, t_pf **head_ref, t_pf *new);
+int					pf_unsigned_int(va_list argp, t_pf **head_ref, t_pf *new);
+int					pf_hex(va_list argp, t_pf **head_ref, t_pf *new, int is_maj);
+int					pf_pointer(va_list argp, t_pf **head_ref, t_pf *new);
 int					pf_char(va_list argp, t_pf **head_ref, t_pf *new);
 int					pf_str(va_list argp, t_pf **head_ref, t_pf *new);
-int					pf_percentage(t_pf **head_ref);
+int					pf_percentage(t_pf **head_ref, t_pf *new);
 int					pf_pad(t_pf *str, size_t pad_len,
 							size_t prec_len, char c);
 int					pf_precise(t_pf *str, size_t prec_len);

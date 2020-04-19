@@ -116,17 +116,17 @@ static int parse_format(va_list argp, char const **fmt_str_p,
 	else if (**fmt_str_p == 's')
 		ret = pf_str(argp, res, new);
 	else if (**fmt_str_p == 'p')
-		ret = pf_pointer(argp, res);
+		ret = pf_pointer(argp, res, new);
 	else if (**fmt_str_p == 'd' || **fmt_str_p == 'i')
-		ret = pf_signed_int(argp, res);
+		ret = pf_signed_int(argp, res, new);
 	else if (**fmt_str_p == 'u')
-		ret = pf_unsigned_int(argp, res);
+		ret = pf_unsigned_int(argp, res, new);
 	else if (**fmt_str_p == 'x')
-		ret = pf_hex(argp, res, 0);
+		ret = pf_hex(argp, res, new, 0);
 	else if (**fmt_str_p == 'X')
-		ret = pf_hex(argp, res, 1);
+		ret = pf_hex(argp, res, new, 1);
 	else if (**fmt_str_p == '%')
-		ret = pf_percentage(res);
+		ret = pf_percentage(res, new);
 	(*fmt_str_p)++;
 	return (ret);
 }
@@ -143,10 +143,6 @@ static int format_str(va_list argp, char const **fmt_str_p, t_pf **head_ref)
 	while (ft_strchr(FLAG_SET, **fmt_str_p))
 	{
 		// while loop, add into new list
-		/*
-		if (parse_flag(argp, *format, flag) == -1)
-			return (-1);
-		*/
 		(*fmt_str_p)++;
 	}
 	if (ft_strchr(FORMAT_SET, **fmt_str_p))
