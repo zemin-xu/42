@@ -18,8 +18,8 @@
 # include <stdarg.h>
 
 # include "../utils/pf_utils.h"
-# include "../flag/pf_flag.h"
 
+# define FLAG_SET "-.*0123456789"
 # define FORMAT_SET "cspdiuxX%"
 
 typedef struct		s_pf
@@ -27,10 +27,9 @@ typedef struct		s_pf
 	char			format_type;
 	char			*str_before;
 	size_t			len_before;
-	size_t			length;
-	struct s_flag	*flag;
 	int				has_flag;
 	int				is_left_justified;
+	int				is_padded_with_zero;
 	int				pad_num;
 	int				precise_num;
 	char			*str_after;
@@ -54,4 +53,7 @@ int					t_pf_free(t_pf **head_ref);
 int					pf_output_flag(t_pf *curr);
 int					pf_output_pad(t_pf *curr);
 int					t_pf_output(t_pf *head);
+
+void				pf_flag_read_char(t_pf *new, char num);
+void				pf_flag_read_int(t_pf *new, int num);
 #endif

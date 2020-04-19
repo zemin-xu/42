@@ -28,15 +28,13 @@ SRC = main.c \
 	format/pf_format_char.c \
 	format/pf_format_int.c \
 	format/pf_format_operations.c \
-	format/pf_output_parse.c \
-	format/pf_output.c \
-	flag/pf_flag_read_num.c \
-	flag/pf_flag.c
+	format/t_pf_parse.c \
+	format/t_pf.c \
+	format/pf_flag_read_num.c
 
 HEADER = ft_printf.h \
 	utils/pf_utils.h \
-	format/pf_format.h \
-	flag/pf_flag.h
+	format/pf_format.h
 
 CC = gcc
 

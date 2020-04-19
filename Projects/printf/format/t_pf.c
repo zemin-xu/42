@@ -24,6 +24,7 @@ t_pf				*t_pf_init(void *content, char type)
 		list->len_before = ft_strlen(content);
 	list->has_flag = 0;
 	list->is_left_justified = 0;
+	list->is_padded_with_zero = 0;
 	list->pad_num = -1;
 	list->precise_num = -1;
 

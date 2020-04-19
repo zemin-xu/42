@@ -10,34 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pf_flag.h"
-
-/*
-void pf_flag_read_char(t_flag *flag, char num)
+#include "pf_format.h"
+void pf_flag_read_char(t_pf *new, char num)
 {
-	if (flag->is_precised)
-		flag->precise_num = flag->precise_num * 10 + num - '0';
+	if (new->precise_num != -1)
+		new->precise_num = new->precise_num * 10 + num - '0';
 	else
 	{
-		if (flag->pad_num == 0 && num == '0')
-			flag->is_padded = 2;
-		else
+		if (new->pad_num == -1)
 		{
-			if (flag->is_padded != 2)
-				flag->is_padded = 1;
+			new->pad_num = 0;
+			if (num == '0')
+				new->is_padded_with_zero = 1;
 		}
-		flag->pad_num = flag->pad_num * 10 + num - '0';
+		new->pad_num = new->pad_num * 10 + num - '0';
 	}
 }
 
-void pf_flag_read_int(t_flag *flag, int num)
+void pf_flag_read_int(t_pf *new, int num)
 {
-	if (flag->is_precised)
-		flag->precise_num = num;
+	if (new->precise_num == 0)
+		new->precise_num = num;
 	else
-	{
-		flag->is_padded = 1;
-		flag->pad_num = num;
-	}
+		new->pad_num = num;
 }
-*/

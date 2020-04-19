@@ -79,29 +79,27 @@
 
 #include "ft_printf.h"
 
-/*
-static int		parse_flag(va_list argp, char const *format, t_pf **head_ref, t_flag *flag)
+static int		parse_flag(va_list argp, char const *format, t_pf *new)
 {
 	int			wildcard;
 
-	flag->has_flag = 1;
-	if (*format == '0' && !flag->is_padded && !flag->is_precised)
-		flag->is_padded = 2;
+	new->has_flag = 1;
+	if (*format == '0' && new->pad_num == -1 && new->precise_num == -1)
+		new->is_padded_with_zero = 1;
 	else if (*format == '-')
-		flag->is_left_justified = 1;
+		new->is_left_justified = 1;
 	else if (*format == '.')
-		flag->is_precised = 1;
+		new->precise_num = 0;
 	else if (*format == '*')
 	{
 		if ((wildcard = va_arg(argp, int)) < 0)
 			return (-1);
-		pf_flag_read_int(flag, wildcard);
+		pf_flag_read_int(new, wildcard);
 	}
 	else
-		pf_flag_read_char(flag, *format);
+		pf_flag_read_char(new, *format);
 	return (0);
 }
-*/
 
 static int parse_format(va_list argp, char const **fmt_str_p,
 						t_pf **res, t_pf *new)
@@ -142,7 +140,7 @@ static int format_str(va_list argp, char const **fmt_str_p, t_pf **head_ref)
 		return (-1);
 	while (ft_strchr(FLAG_SET, **fmt_str_p))
 	{
-		// while loop, add into new list
+		parse_flag(argp, *fmt_str_p, new);
 		(*fmt_str_p)++;
 	}
 	if (ft_strchr(FORMAT_SET, **fmt_str_p))
