@@ -50,28 +50,28 @@ t_pf				*t_pf_last(t_pf *head)
 	return (current);
 }
 
-int						t_pf_add(t_pf **head, t_pf *new)
+int						t_pf_add(t_pf **head_ref, t_pf *new)
 {
 	t_pf			*last;
 
-	if (!head || !new)
+	if (!head_ref || !new)
 		return (-1);
-	if (!(*head))
-		*head = new;
+	if (!(*head_ref))
+		*head_ref = new;
 	else
 	{
-		last = t_pf_last(*head);
+		last = t_pf_last(*head_ref);
 		last->next = new;
 	}
 	return (0);
 }
 
-int						t_pf_free(t_pf **head)
+int						t_pf_free(t_pf **head_ref)
 {
 	t_pf			*current;
 	t_pf			*next;
 
-	if (!head || !(current = *head))
+	if (!head_ref || !(current = *head_ref))
 		return (-1);
 	while (current->next)
 	{
@@ -84,6 +84,6 @@ int						t_pf_free(t_pf **head)
 	free(current->content);
 	t_flag_free(current->flag);
 	free(current);
-	head = NULL;
+	head_ref = NULL;
 	return (0);
 }

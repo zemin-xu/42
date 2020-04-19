@@ -131,11 +131,11 @@ static int		parse_format(va_list argp, char const **format,
 	return (ret);
 }
 
-static int		format_str(va_list argp, char const **format, t_pf **res)
+static int		format_str(va_list argp, char const **format, t_pf **head_ref)
 {
 	t_flag		*flag;
 
-	if (!format || !res || !(flag = t_flag_init()))
+	if (!format || !head_ref || !(flag = t_flag_init()))
 		return (-1);
 	(*format)++;
 	while (ft_strchr(FLAG_SET, **format))
@@ -145,7 +145,7 @@ static int		format_str(va_list argp, char const **format, t_pf **res)
 		(*format)++;
 	}
 	if (ft_strchr(FORMAT_SET, **format))
-		return (parse_format(argp, format, res, flag));
+		return (parse_format(argp, format, head_ref, flag));
 	else
 	{
 		ft_putstr_fd("Not implemented yet", 1);
@@ -153,7 +153,7 @@ static int		format_str(va_list argp, char const **format, t_pf **res)
 	}
 }
 
-static int		normal_str(char const **format, t_pf **head)
+static int		normal_str(char const **format, t_pf **head_ref)
 {
 	int			i;
 	char		*str;
@@ -166,7 +166,7 @@ static int		normal_str(char const **format, t_pf **head)
 		return (-1);
 	if (!(new = t_pf_init(str, 's')))
 		return (-1);
-	if (t_pf_add(head, new) == -1)
+	if (t_pf_add(head_ref, new) == -1)
 		return (-1);
 	*format += i;
 	return (0);
@@ -175,21 +175,21 @@ static int		normal_str(char const **format, t_pf **head)
 int				ft_printf(char const *format, ...)
 {
 	va_list		argp;
-	t_pf		*tmp;
+	t_pf		*head;
 	int			ret_value;
 
-	tmp = NULL;
+	head = NULL;
 	va_start(argp, format);
 	while (*format)
 	{
-		if (*format == '%' && format_str(argp, &format, &tmp) == -1)
+		if (*format == '%' && format_str(argp, &format, &head) == -1)
 			return (-1);
-		else if (normal_str(&format, &tmp) == -1)
+		else if (normal_str(&format, &head) == -1)
 			return (-1);
 	}
 	va_end(argp);
-	ret_value = t_pf_output(tmp);
-	if (t_pf_free(&tmp) == -1)
+	ret_value = t_pf_output(head);
+	if (t_pf_free(&head) == -1)
 		return (-1);
 	return (ret_value);
 }

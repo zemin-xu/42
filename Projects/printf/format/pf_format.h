@@ -50,8 +50,8 @@ int					pf_pad(t_pf *str, size_t pad_len,
 int					pf_precise(t_pf *str, size_t prec_len);
 t_pf				*t_pf_init(void *content, char type);
 t_pf				*t_pf_last(t_pf *head);
-int					t_pf_add(t_pf **head, t_pf *new);
-int					t_pf_free(t_pf **head);
+int					t_pf_add(t_pf **head_ref, t_pf *new);
+int					t_pf_free(t_pf **head_ref);
 int					pf_output_flag(t_pf *curr);
 int					pf_output_pad(t_pf *curr);
 int					t_pf_output(t_pf *head);
