@@ -50,7 +50,7 @@ ${NAME}: ${OBJ}
 	ar rcs ${NAME} ${OBJ}
 
 compile:
-	${CC} ${CFLAGS} ${SRC} -I ${HEADER}
+	${CC} -g ${CFLAGS} ${SRC} -I ${HEADER}
 
 all: ${NAME}
 
