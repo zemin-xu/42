@@ -94,6 +94,11 @@ Why do we use pointer to linked list element when declaring it ?
 
 2. By allocating memory for node in heap, the lists will remain as long as we wish. If we allocates it in stack by the traditional way like that for int, the lists will be destroyed when function ends. What's more, the space in stack in much less than that in heap.
 
+Why sometimes double pointers ?
+In order to amend a variable in a calling function from within a called function, you need to pass a pointer to the variable as a function argument. This provides the called function with the memory address of the variable to be amended. Dereferencing this (pointer) variable within the called function provides access to the original value.
+
+[Reference](/https://dev-notes.eu/2018/07/double-pointers-and-linked-list-in-c/)
+
 ```c
 #include <stdlib.h>
 typedef struct               s_linked_list
