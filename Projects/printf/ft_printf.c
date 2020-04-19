@@ -104,7 +104,7 @@ static int		parse_flag(va_list argp, char const *format, t_pf **head_ref, t_flag
 */
 
 static int parse_format(va_list argp, char const **fmt_str_p,
-						t_pf **res)
+						t_pf **res, t_pf *new)
 {
 	int ret;
 
@@ -112,9 +112,9 @@ static int parse_format(va_list argp, char const **fmt_str_p,
 	if (!fmt_str_p || !res)
 		return (-1);
 	if (**fmt_str_p == 'c')
-		ret = pf_char(argp, res);
+		ret = pf_char(argp, res, new);
 	else if (**fmt_str_p == 's')
-		ret = pf_str(argp, res);
+		ret = pf_str(argp, res, new);
 	else if (**fmt_str_p == 'p')
 		ret = pf_pointer(argp, res);
 	else if (**fmt_str_p == 'd' || **fmt_str_p == 'i')
@@ -134,11 +134,15 @@ static int parse_format(va_list argp, char const **fmt_str_p,
 static int format_str(va_list argp, char const **fmt_str_p, t_pf **head_ref)
 {
 
+	t_pf	*new;
 	if (!fmt_str_p || !head_ref)
 		return (-1);
 	(*fmt_str_p)++;
+	if (!(new = t_pf_init(0, '?')))
+		return (-1);
 	while (ft_strchr(FLAG_SET, **fmt_str_p))
 	{
+		// while loop, add into new list
 		/*
 		if (parse_flag(argp, *format, flag) == -1)
 			return (-1);
@@ -146,7 +150,7 @@ static int format_str(va_list argp, char const **fmt_str_p, t_pf **head_ref)
 		(*fmt_str_p)++;
 	}
 	if (ft_strchr(FORMAT_SET, **fmt_str_p))
-		return (parse_format(argp, fmt_str_p, head_ref));
+		return (parse_format(argp, fmt_str_p, head_ref, new));
 	else
 	{
 		ft_putstr_fd("Not implemented yet", 1);
