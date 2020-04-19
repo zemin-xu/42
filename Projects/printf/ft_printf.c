@@ -153,22 +153,22 @@ static int		format_str(va_list argp, char const **format, t_pf **head_ref)
 	}
 }
 
-static int		normal_str(char const **format, t_pf **head_ref)
+static int		normal_str(char const **fmt_str_p, t_pf **head_ref)
 {
 	int			i;
 	char		*str;
 	t_pf		*new;
 
 	i = 0;
-	while (*(*format + i) && *(*format + i) != '%')
+	while (*(*fmt_str_p + i) && *(*fmt_str_p + i) != '%')
 		i++;
-	if (!(str = ft_strsub(*format, 0, i)))
+	if (!(str = ft_strsub(*fmt_str_p, 0, i)))
 		return (-1);
 	if (!(new = t_pf_init(str, 's')))
 		return (-1);
 	if (t_pf_add(head_ref, new) == -1)
 		return (-1);
-	*format += i;
+	*fmt_str_p += i;
 	return (0);
 }
 

@@ -1,5 +1,16 @@
 # Printf
 
+## Pointer and const modifier
+
+_const_ always modifies the thing that comes before it (to the left of it), EXCEPT when it's the first thing in a type declaration, where it modifies the thing that comes after it (to the right of it).
+
+```c
+int       *      mutable_pointer_to_mutable_int;
+int const *      mutable_pointer_to_constant_int;
+int       *const constant_pointer_to_mutable_int;
+int const *const constant_pointer_to_constant_int;
+```
+
 ## Stack and Heap
 
 It is wrong to return a reference to a local variable, because the memory for this variable is deallocated when the function ends. The following example shows the problem :
