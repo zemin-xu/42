@@ -27,10 +27,11 @@ SRC = main.c \
 	utils/ft_memcpy.c \
 	format/pf_format_char.c \
 	format/pf_format_int.c \
-	format/pf_format_operations.c \
-	format/t_pf_parse.c \
+	format/t_pf_output.c \
 	format/t_pf.c \
-	format/pf_flag_read_num.c
+	format/pf_flag_read_num.c \
+	format/pf_flag_parse_char.c \
+	format/pf_flag_operations.c
 
 HEADER = ft_printf.h \
 	utils/pf_utils.h \

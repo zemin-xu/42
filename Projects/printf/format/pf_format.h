@@ -55,4 +55,6 @@ int					t_pf_output(t_pf *head);
 
 void				pf_flag_read_char(t_pf *new, char num);
 void				pf_flag_read_int(t_pf *new, int num);
+char	*pf_join_with_pad_zero(char const *s, size_t str_len, size_t pad_len, int is_left);
+char	*pf_join_with_pad_space(char const *s, size_t str_len, size_t pad_len, int is_left);
 #endif

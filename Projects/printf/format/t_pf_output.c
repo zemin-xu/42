@@ -52,16 +52,28 @@ int				pf_output_pad(t_pf *curr)
 }
 */
 
-int				t_pf_output(t_pf *head)
+int t_pf_output(t_pf *head)
 {
-	int			count;
-	t_pf	*current;
+	int count;
+	t_pf *current;
 
 	count = 0;
 	if (!(current = head))
 		return (0);
-	ft_putstr_fd(current->str_before, 1);
-	while ((current = current->next) != NULL)
+	if (!current->has_flag)
 		ft_putstr_fd(current->str_before, 1);
+	/*
+		else
+			ft_putstr_fd(current->str_after, 1);
+			*/
+	while ((current = current->next) != NULL)
+	{
+		if (!current->has_flag)
+			ft_putstr_fd(current->str_before, 1);
+		/*
+		else
+			ft_putstr_fd(current->str_after, 1);
+			*/
+	}
 	return (count);
 }
