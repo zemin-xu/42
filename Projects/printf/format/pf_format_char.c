@@ -22,7 +22,6 @@ int				pf_char(va_list argp, t_pf **res, t_pf *new)
 	*(str + 1) = '\0';
 	new->format_type = 'c';
 	new->str_before = str;
-	new->len_before = 1;
 	return (t_pf_add(res, new));
 }
 
@@ -34,7 +33,6 @@ int				pf_str(va_list argp, t_pf **res, t_pf *new)
 		return (-1);
 	new->format_type = 's';
 	new->str_before = str;
-	new->len_before = ft_strlen(str);
 	return (t_pf_add(res, new));
 }
 
@@ -48,6 +46,5 @@ int				pf_percentage(t_pf **res, t_pf *new)
 	*(str + 1) = '\0';
 	new->format_type = '%';
 	new->str_before = str;
-	new->len_before = 1;
 	return (t_pf_add(res, new));
 }

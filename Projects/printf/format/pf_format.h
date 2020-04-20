@@ -26,14 +26,13 @@ typedef struct		s_pf
 {
 	char			format_type;
 	char			*str_before;
-	size_t			len_before;
 	int				has_flag;
 	int				is_left_justified;
 	int				is_padded_with_zero;
 	int				pad_num;
 	int				precise_num;
 	char			*str_after;
-	size_t			len_after;
+	size_t			len;
 	struct s_pf		*next;
 }					t_pf;
 int					pf_signed_int(va_list argp, t_pf **head_ref, t_pf *new);
