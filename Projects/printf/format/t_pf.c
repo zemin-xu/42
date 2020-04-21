@@ -25,7 +25,8 @@ t_pf				*t_pf_init(void *content, char type)
 	list->is_padded_with_zero = 0;
 	list->pad_num = -1;
 	list->precise_num = -1;
-	list->len = 0;
+	if (content)
+		list->len = ft_strlen(content);
 	list->next = NULL;
 	return (list);
 }

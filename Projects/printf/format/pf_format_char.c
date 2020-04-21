@@ -15,10 +15,13 @@
 int				pf_char(va_list argp, t_pf **res, t_pf *new)
 {
 	char		*str;
+	char		tmp;
 
+	if (!(tmp = (char)va_arg(argp, int)))
+		return (-1);
 	if (!(str = (char *)malloc(sizeof(char) * 2)))
 		return (-1);
-	*str = (char)va_arg(argp, int);
+	*str = tmp;
 	*(str + 1) = '\0';
 	new->format_type = 'c';
 	new->str_before = str;
@@ -29,8 +32,11 @@ int				pf_char(va_list argp, t_pf **res, t_pf *new)
 int				pf_str(va_list argp, t_pf **res, t_pf *new)
 {
 	char		*str;
+	char		*tmp;
 
-	if (!(str = ft_strdup(va_arg(argp, char *))))
+	if (!(tmp = va_arg(argp, char *)))
+		tmp = "(null)";
+	if (!(str = ft_strdup(tmp)))
 		return (-1);
 	new->format_type = 's';
 	new->str_before = str;
