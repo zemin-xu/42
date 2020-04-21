@@ -13,6 +13,8 @@
 /*
 ** allocate and return a new created string ending with '\0' representing
 ** the integer 'n' given as argument.
+**
+** The itoa here will not display '-', for collaboration with printf.
 */
 
 #include "pf_utils.h"
@@ -26,7 +28,6 @@ static int			length(int n)
 	count = 1;
 	if (tmp < 0)
 	{
-		count++;
 		tmp *= -1;
 	}
 	while (tmp >= 10)
@@ -52,9 +53,7 @@ char				*ft_itoa(int n)
 	i = 0;
 	if (tmp < 0)
 	{
-		*str = '-';
 		tmp *= -1;
-		i = 1;
 	}
 	while (len > i)
 	{

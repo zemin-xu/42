@@ -5,8 +5,9 @@ int main()
 {
 	int i;
 	int j;
-	i = printf("$%s$\n", NULL);
-	j = ft_printf("$%s$\n", NULL);
+
+	i = printf("$%07.5d$\n",  -17);
+	j = ft_printf("$%07.5d$\n", -17);
 
 	printf("-------------\n");
 	printf("ori = %d\n", i); 

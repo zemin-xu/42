@@ -31,6 +31,7 @@ SRC = main.c \
 	format/t_pf.c \
 	format/pf_flag_read_num.c \
 	format/pf_flag_parse_char.c \
+	format/pf_flag_parse_num.c \
 	format/pf_flag_operations.c
 
 HEADER = ft_printf.h \

@@ -78,3 +78,26 @@ char	*pf_join_with_pad_space(char const *s, size_t str_len, size_t pad_len, int 
 	*(str + str_len + i) = '\0';
 	return (str);
 }
+
+char	*pf_join_prec_with_num(char const *s, size_t num_len, size_t prec_len, int is_minus)
+{
+	char *str;
+	int	 i;
+
+	if (s == NULL || (str = (char *)malloc(num_len + prec_len + (is_minus ? 1 : 0) + 1)) == NULL)
+		return (NULL);
+	i = 0;
+	if (is_minus)
+	{
+		*(str) = '-';
+		i++;
+	}
+	while (i < (int)prec_len + (is_minus ? 1 : 0))
+	{
+		*(str + i) = '0';
+		i++;
+	}
+	inner_strncpy(str + i, s, num_len);
+	*(str + num_len + i) = '\0';
+	return (str);	
+}

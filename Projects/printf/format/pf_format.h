@@ -26,6 +26,7 @@ typedef struct		s_pf
 {
 	char			format_type;
 	char			*str_before;
+	int				is_num_with_minus;
 	int				has_flag;
 	int				is_left_justified;
 	int				is_padded_with_zero;
@@ -57,7 +58,10 @@ void				pf_flag_read_char(t_pf *new, char num);
 void				pf_flag_read_int(t_pf *new, int num);
 char	*pf_join_with_pad_zero(char const *s, size_t str_len, size_t pad_len, int is_left);
 char	*pf_join_with_pad_space(char const *s, size_t str_len, size_t pad_len, int is_left);
+char	*pf_join_prec_with_num(char const *s, size_t num_len, size_t prec_len, int is_minus);
 
 
 void				pf_flag_parse_s(t_pf *list);
+void				pf_flag_parse_c(t_pf *list);
+void				pf_flag_parse_i(t_pf *list);
 #endif

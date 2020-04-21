@@ -12,18 +12,22 @@
 
 #include "pf_format.h"
 
-int				pf_signed_int(va_list argp, t_pf **res, t_pf *new)
+int				pf_signed_int(va_list argp, t_pf **head_ref, t_pf *new)
 {
 	char		*str;
+	int			tmp;
 
-	if (!(str = ft_itoa(va_arg(argp, int))))
+	if ((tmp = va_arg(argp, int)) < 0)
+		new->is_num_with_minus = 1;
+	if (!(str = ft_itoa(tmp)))
 		return (-1);
 	new->format_type = 'i';
 	new->str_before = str;
-	return (t_pf_add(res, new));
+	new->len = ft_strlen(str);
+	return (t_pf_add(head_ref, new));
 }
 
-int				pf_unsigned_int(va_list argp, t_pf **res, t_pf *new)
+int				pf_unsigned_int(va_list argp, t_pf **head_ref, t_pf *new)
 {
 	char		*str;
 
@@ -32,10 +36,10 @@ int				pf_unsigned_int(va_list argp, t_pf **res, t_pf *new)
 	new->format_type = 'u';
 	new->str_before = str;
 	new->len = ft_strlen(str);
-	return (t_pf_add(res, new));
+	return (t_pf_add(head_ref, new));
 }
 
-int				pf_hex(va_list argp, t_pf **res, t_pf *new, int is_maj)
+int				pf_hex(va_list argp, t_pf **head_ref, t_pf *new, int is_maj)
 {
 	char		*str;
 
@@ -44,10 +48,10 @@ int				pf_hex(va_list argp, t_pf **res, t_pf *new, int is_maj)
 	new->format_type = 'u';
 	new->str_before = str;
 	new->len = ft_strlen(str);
-	return (t_pf_add(res, new));
+	return (t_pf_add(head_ref, new));
 }
 
-int				pf_pointer(va_list argp, t_pf **res, t_pf *new)
+int				pf_pointer(va_list argp, t_pf **head_ref, t_pf *new)
 {
 	char		*str;
 
@@ -56,5 +60,5 @@ int				pf_pointer(va_list argp, t_pf **res, t_pf *new)
 	new->format_type = 'p';
 	new->str_before = str;
 	new->len = ft_strlen(str);
-	return (t_pf_add(res, new));
+	return (t_pf_add(head_ref, new));
 }

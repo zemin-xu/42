@@ -15,17 +15,14 @@
 int				pf_char(va_list argp, t_pf **res, t_pf *new)
 {
 	char		*str;
-	char		tmp;
 
-	if (!(tmp = (char)va_arg(argp, int)))
-		return (-1);
 	if (!(str = (char *)malloc(sizeof(char) * 2)))
 		return (-1);
-	*str = tmp;
+	*str = (char)va_arg(argp, int);
 	*(str + 1) = '\0';
 	new->format_type = 'c';
 	new->str_before = str;
-	new->len = ft_strlen(str);
+	new->len = 1;
 	return (t_pf_add(res, new));
 }
 
