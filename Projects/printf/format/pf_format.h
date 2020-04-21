@@ -49,12 +49,15 @@ t_pf				*t_pf_init(void *content, char type);
 t_pf				*t_pf_last(t_pf *head);
 int					t_pf_add(t_pf **head_ref, t_pf *new);
 int					t_pf_free(t_pf **head_ref);
-int					pf_output_flag(t_pf *curr);
-int					pf_output_pad(t_pf *curr);
+
+void				t_pf_flag_parse(t_pf *head);
 int					t_pf_output(t_pf *head);
 
 void				pf_flag_read_char(t_pf *new, char num);
 void				pf_flag_read_int(t_pf *new, int num);
 char	*pf_join_with_pad_zero(char const *s, size_t str_len, size_t pad_len, int is_left);
 char	*pf_join_with_pad_space(char const *s, size_t str_len, size_t pad_len, int is_left);
+
+
+void				pf_flag_parse_s(t_pf *list);
 #endif

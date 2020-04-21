@@ -26,7 +26,6 @@ t_pf				*t_pf_init(void *content, char type)
 	list->pad_num = -1;
 	list->precise_num = -1;
 	list->len = 0;
-
 	list->next = NULL;
 	return (list);
 }

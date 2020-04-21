@@ -20,6 +20,7 @@ int				pf_signed_int(va_list argp, t_pf **res, t_pf *new)
 		return (-1);
 	new->format_type = 'i';
 	new->str_before = str;
+	new->len = ft_strlen(str);
 	return (t_pf_add(res, new));
 }
 
@@ -31,6 +32,7 @@ int				pf_unsigned_int(va_list argp, t_pf **res, t_pf *new)
 		return (-1);
 	new->format_type = 'u';
 	new->str_before = str;
+	new->len = ft_strlen(str);
 	return (t_pf_add(res, new));
 }
 
@@ -42,6 +44,7 @@ int				pf_hex(va_list argp, t_pf **res, t_pf *new, int is_maj)
 		return (-1);
 	new->format_type = 'u';
 	new->str_before = str;
+	new->len = ft_strlen(str);
 	return (t_pf_add(res, new));
 }
 
@@ -53,5 +56,6 @@ int				pf_pointer(va_list argp, t_pf **res, t_pf *new)
 		return (-1);
 	new->format_type = 'p';
 	new->str_before = str;
+	new->len = ft_strlen(str);
 	return (t_pf_add(res, new));
 }

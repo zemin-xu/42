@@ -187,6 +187,7 @@ int ft_printf(char const *format, ...)
 			return (-1);
 	}
 	va_end(argp);
+	t_pf_flag_parse(head);
 	ret_value = t_pf_output(head);
 	if (t_pf_free(&head) == -1)
 		return (-1);

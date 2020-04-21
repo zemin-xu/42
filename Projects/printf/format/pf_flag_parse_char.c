@@ -5,6 +5,7 @@ void				pf_flag_parse_s(t_pf *list)
 	size_t		pad_len;
 
 	str_len = ft_strlen(list->str_before);
+	pad_len = 0;
 	if (list->precise_num != -1 && (int)str_len > list->precise_num)
 		str_len = list->precise_num;
 	if (list->pad_num != -1 && (int)str_len < list->pad_num)

@@ -12,68 +12,39 @@
 
 #include "pf_format.h"
 
-/*
-int				pf_output_flag(t_pf *curr)
+void	t_pf_flag_parse(t_pf *head)
 {
-	int			count;
+	t_pf	*curr;
 
-	if (!curr)
-		return (0);
-	count = curr->length;
-	if (!curr->flag->has_flag)
-		ft_putstr_fd(curr->content, 1);
-	else if (curr->flag->is_left_justified)
+	if (!(curr = head))
+		return ;
+	while (curr)
 	{
-		if (curr->flag->is_precised)
-			count += pf_precise(curr, curr->flag->precise_num);
-		ft_putstr_fd(curr->content, 1);
-		count += pf_output_pad(curr);
+		if (curr->has_flag)
+		{
+			if (curr->format_type == 's')
+				pf_flag_parse_s(curr);
+		}
+		curr = curr->next;
 	}
-	else
-	{
-		count += pf_output_pad(curr);
-		if (curr->flag->is_precised)
-			count += pf_precise(curr, curr->flag->precise_num);
-		ft_putstr_fd(curr->content, 1);
-	}
-	return (count);
 }
 
-int				pf_output_pad(t_pf *curr)
+int	t_pf_output(t_pf *head)
 {
-	if (curr->flag->is_padded == 1)
-		return (pf_pad(curr, curr->flag->pad_num,
-		curr->flag->precise_num, ' '));
-	else if (curr->flag->is_padded == 2)
-		return (pf_pad(curr, curr->flag->pad_num,
-		curr->flag->precise_num, '0'));
-	else
-		return (0);
-}
-*/
-
-int t_pf_output(t_pf *head)
-{
-	int count;
-	t_pf *current;
+	t_pf *curr;
+	int	count;
 
 	count = 0;
-	if (!(current = head))
-		return (0);
-	if (!current->has_flag)
-		ft_putstr_fd(current->str_before, 1);
-	/*
-		else
-			ft_putstr_fd(current->str_after, 1);
-			*/
-	while ((current = current->next) != NULL)
+	if (!(curr = head))
+		return (-1);
+	while (curr)
 	{
-		if (!current->has_flag)
-			ft_putstr_fd(current->str_before, 1);
-		/*
+		if (!curr->has_flag)
+			ft_putstr_fd(curr->str_before, 1);
 		else
-			ft_putstr_fd(current->str_after, 1);
-			*/
+			ft_putstr_fd(curr->str_after, 1);
+		count += curr->len;
+		curr = curr->next;
 	}
 	return (count);
 }

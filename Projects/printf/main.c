@@ -5,8 +5,9 @@ int main()
 {
 	int i;
 	int j;
-	i = printf("$%7.9d$\n", -847);
-	j = ft_printf("$%d$\n", -847);
+	i = printf("$%7.9s$\n", "wherehello");
+	j = ft_printf("$%7.9s$\n", "wherehello");
+
 	printf("-------------\n");
 	printf("ori = %d\n", i); 
 	printf("mine = %d\n", j); 
