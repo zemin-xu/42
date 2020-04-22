@@ -18,7 +18,10 @@ int				pf_signed_int(va_list argp, t_pf **head_ref, t_pf *new)
 	int			tmp;
 
 	if ((tmp = va_arg(argp, int)) < 0)
+	{
 		new->is_num_with_minus = 1;
+		new->has_flag = 1;
+	}
 	if (!(str = ft_itoa(tmp)))
 		return (-1);
 	new->format_type = 'i';

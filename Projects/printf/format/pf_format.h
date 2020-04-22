@@ -64,4 +64,5 @@ char	*pf_join_prec_with_num(char const *s, size_t num_len, size_t prec_len, int 
 void				pf_flag_parse_s(t_pf *list);
 void				pf_flag_parse_c(t_pf *list);
 void				pf_flag_parse_i(t_pf *list);
+void				pf_flag_exception_i(t_pf *list);
 #endif

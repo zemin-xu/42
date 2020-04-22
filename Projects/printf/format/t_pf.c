@@ -20,7 +20,7 @@ t_pf				*t_pf_init(void *content, char type)
 		return (NULL);
 	list->format_type = type;
 	list->str_before = content;
-	list->is_num_with_minus = -1;
+	list->is_num_with_minus = 0;
 	list->has_flag = 0;
 	list->is_left_justified = 0;
 	list->is_padded_with_zero = 0;

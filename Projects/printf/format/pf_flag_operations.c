@@ -84,6 +84,7 @@ char	*pf_join_prec_with_num(char const *s, size_t num_len, size_t prec_len, int 
 	char *str;
 	int	 i;
 
+	prec_len = prec_len < 0 ? 0 : prec_len;
 	if (s == NULL || (str = (char *)malloc(num_len + prec_len + (is_minus ? 1 : 0) + 1)) == NULL)
 		return (NULL);
 	i = 0;

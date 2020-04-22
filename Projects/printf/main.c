@@ -6,9 +6,9 @@ int main()
 	int i;
 	int j;
 
-	i = printf("$%07.5d$\n",  -17);
-	j = ft_printf("$%07.5d$\n", -17);
-
+	i = printf("$%u$\n",  'c');
+	j = ft_printf("$%u$\n", 'c');
+	
 	printf("-------------\n");
 	printf("ori = %d\n", i); 
 	printf("mine = %d\n", j); 
