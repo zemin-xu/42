@@ -3,12 +3,11 @@
 
 int main()
 {
-	int a =5;
 	int i;
 	int j;
 
-	i = printf("$%20p$\n", &a);
-	j = ft_printf("$%20p$\n",&a);
+	i = printf("");
+	j = ft_printf("");
 	
 	printf("-------------\n");
 	printf("ori = %d\n", i); 

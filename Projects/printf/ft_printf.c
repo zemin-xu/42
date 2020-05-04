@@ -177,6 +177,8 @@ int ft_printf(char const *format, ...)
 	t_pf *head;
 	int ret_value;
 
+	if (*format == '\0')
+		return (0);
 	head = NULL;
 	va_start(argp, format);
 	while (*format)
