@@ -51,6 +51,6 @@ int				pf_percentage(t_pf **res, t_pf *new)
 	*(str + 1) = '\0';
 	new->format_type = '%';
 	new->str_before = str;
-	new->len = ft_strlen(str);
+	new->len = 1; 
 	return (t_pf_add(res, new));
 }

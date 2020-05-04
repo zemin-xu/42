@@ -26,7 +26,8 @@ void	t_pf_flag_parse(t_pf *head)
 				pf_flag_parse_s(curr);
 			else if (curr->format_type == 'c')
 				pf_flag_parse_c(curr);
-			else if (curr->format_type == 'i' || curr->format_type == 'd')
+			else if (curr->format_type == 'i' || curr->format_type == 'd'
+					|| curr->format_type == 'u' || curr->format_type == '%')
 				pf_flag_parse_i(curr);
 		}
 		curr = curr->next;

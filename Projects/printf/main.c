@@ -6,8 +6,8 @@ int main()
 	int i;
 	int j;
 
-	i = printf("$%u$\n",  'c');
-	j = ft_printf("$%u$\n", 'c');
+	i = printf("$%c$\n", '\0');
+	j = ft_printf("$%c$\n",'\0');
 	
 	printf("-------------\n");
 	printf("ori = %d\n", i); 
