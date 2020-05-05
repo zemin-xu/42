@@ -48,7 +48,7 @@ The operation to allocate a chunk of memory on the heap is malloc.
 
 ### void*
 
-void* is the type of untyped pointers. A void* pointer can be converted into any other pointer type without an explicit cast.
+_void*_ is the type of untyped pointers. A _void*_ pointer can be converted into any other pointer type without an explicit cast.
 
 ### free
 

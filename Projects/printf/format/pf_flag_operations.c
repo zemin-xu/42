@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_format_operations.c                             :+:      :+:    :+:   */
+/*   pf_flag_operations.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zexu <zexu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: zexu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/12 20:11:10 by zexu              #+#    #+#             */
-/*   Updated: 2020/01/12 20:11:14 by zexu             ###   ########.fr       */
+/*   Created: 2020/05/05 16:50:38 by zexu              #+#    #+#             */
+/*   Updated: 2020/05/05 16:50:50 by zexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_format.h"
 
-static char *inner_strncpy(char *to, const char *from, size_t size)
+static char			*inner_strncpy(char *to, const char *from, size_t size)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (from[i] && i < size)
@@ -30,10 +30,11 @@ static char *inner_strncpy(char *to, const char *from, size_t size)
 	return (to);
 }
 
-char	*pf_join_with_pad_zero(char const *s, size_t str_len, size_t pad_len, int is_left)
+char				*pf_join_with_pad_zero(char const *s, size_t str_len,
+											size_t pad_len, int is_left)
 {
-	char *str;
-	size_t i;
+	char			*str;
+	size_t			i;
 
 	if (s == NULL || (str = (char *)malloc(str_len + pad_len + 1)) == NULL)
 		return (NULL);
@@ -54,11 +55,11 @@ char	*pf_join_with_pad_zero(char const *s, size_t str_len, size_t pad_len, int i
 	return (str);
 }
 
-
-char	*pf_join_with_pad_space(char const *s, size_t str_len, size_t pad_len, int is_left)
+char				*pf_join_with_pad_space(char const *s, size_t str_len,
+											size_t pad_len, int is_left)
 {
-	char *str;
-	int	 i;
+	char			*str;
+	int				i;
 
 	if (s == NULL || (str = (char *)malloc(str_len + pad_len + 1)) == NULL)
 		return (NULL);
@@ -79,13 +80,15 @@ char	*pf_join_with_pad_space(char const *s, size_t str_len, size_t pad_len, int 
 	return (str);
 }
 
-char	*pf_join_prec_with_num(char const *s, size_t num_len, size_t prec_len, int is_minus)
+char				*pf_join_prec_with_num(char const *s, size_t num_len,
+											size_t prec_len, int is_minus)
 {
-	char *str;
-	int	 i;
+	char			*str;
+	int				i;
 
 	prec_len = prec_len < 0 ? 0 : prec_len;
-	if (s == NULL || (str = (char *)malloc(num_len + prec_len + (is_minus ? 1 : 0) + 1)) == NULL)
+	if (s == NULL || (str = (char *)malloc(num_len + prec_len +
+										(is_minus ? 1 : 0) + 1)) == NULL)
 		return (NULL);
 	i = 0;
 	if (is_minus)
@@ -100,15 +103,13 @@ char	*pf_join_prec_with_num(char const *s, size_t num_len, size_t prec_len, int 
 	}
 	inner_strncpy(str + i, s, num_len);
 	*(str + num_len + i) = '\0';
-	return (str);	
+	return (str);
 }
 
-void	free_tmp(char const *str_before, char *tmp)
+void				free_tmp(char const *str_before, char *tmp)
 {
 	if (!tmp)
 		return ;
 	if (ft_strlen(str_before) != ft_strlen(tmp))
-	{
 		free(tmp);
-	}
 }
