@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "pf_format.h"
 
-void	t_pf_flag_parse(t_pf *head)
+void		t_pf_flag_parse(t_pf *head)
 {
 	t_pf	*curr;
 
@@ -28,19 +27,19 @@ void	t_pf_flag_parse(t_pf *head)
 			else if (curr->format_type == 'c')
 				pf_flag_parse_c(curr);
 			else if (curr->format_type == 'i' || curr->format_type == 'd'
-					|| curr->format_type == 'u' || curr->format_type == '%'
-					|| curr->format_type == 'p' || curr->format_type == 'x'
-					|| curr->format_type == 'X')
+			|| curr->format_type == 'u' || curr->format_type == '%'
+			|| curr->format_type == 'p' || curr->format_type == 'x'
+			|| curr->format_type == 'X')
 				pf_flag_parse_i(curr);
 		}
 		curr = curr->next;
 	}
 }
 
-int	t_pf_output(t_pf *head)
+int			t_pf_output(t_pf *head)
 {
-	t_pf *curr;
-	int	count;
+	t_pf	*curr;
+	int		count;
 
 	count = 0;
 	if (!(curr = head))

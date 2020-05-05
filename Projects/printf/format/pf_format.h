@@ -36,10 +36,14 @@ typedef struct		s_pf
 	size_t			len;
 	struct s_pf		*next;
 }					t_pf;
-int					pf_signed_int(va_list argp, t_pf **head_ref, t_pf *new);
-int					pf_unsigned_int(va_list argp, t_pf **head_ref, t_pf *new);
-int					pf_hex(va_list argp, t_pf **head_ref, t_pf *new, int is_maj);
-int					pf_pointer(va_list argp, t_pf **head_ref, t_pf *new);
+int					pf_signed_int(va_list argp, t_pf **head_ref,
+						t_pf *new);
+int					pf_unsigned_int(va_list argp, t_pf **head_ref,
+						t_pf *new);
+int					pf_hex(va_list argp, t_pf **head_ref, t_pf *new,
+						int is_maj);
+int					pf_pointer(va_list argp, t_pf **head_ref,
+						t_pf *new);
 int					pf_char(va_list argp, t_pf **head_ref, t_pf *new);
 int					pf_str(va_list argp, t_pf **head_ref, t_pf *new);
 int					pf_percentage(t_pf **head_ref, t_pf *new);
@@ -50,20 +54,18 @@ t_pf				*t_pf_init(void *content, char type);
 t_pf				*t_pf_last(t_pf *head);
 int					t_pf_add(t_pf **head_ref, t_pf *new);
 int					t_pf_free(t_pf **head_ref);
-
 void				t_pf_flag_parse(t_pf *head);
 int					t_pf_output(t_pf *head);
-
 void				pf_flag_read_char(t_pf *new, char num);
 void				pf_flag_read_int(t_pf *new, int num);
-char	*pf_join_with_pad_zero(char const *s, size_t str_len, size_t pad_len, int is_left);
-char	*pf_join_with_pad_space(char const *s, size_t str_len, size_t pad_len, int is_left);
-char	*pf_join_prec_with_num(char const *s, size_t num_len, size_t prec_len, int is_minus);
-void	free_tmp(char const *str_before, char *tmp);
-
-
+char				*pf_join_with_pad_zero(char const *s,
+						size_t str_len, size_t pad_len, int is_left);
+char				*pf_join_with_pad_space(char const *s,
+						size_t str_len, size_t pad_len, int is_left);
+char				*pf_join_prec_with_num(char const *s,
+						size_t num_len, size_t prec_len, int is_minus);
+void				free_tmp(char const *str_before, char *tmp);
 void				pf_flag_parse_s(t_pf *list);
 void				pf_flag_parse_c(t_pf *list);
 void				pf_flag_parse_i(t_pf *list);
-void				pf_flag_exception_i(t_pf *list);
 #endif

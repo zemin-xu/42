@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "pf_format.h"
 
 t_pf				*t_pf_init(void *content, char type)
@@ -47,7 +46,7 @@ t_pf				*t_pf_last(t_pf *head)
 	return (current);
 }
 
-int						t_pf_add(t_pf **head_ref, t_pf *new)
+int					t_pf_add(t_pf **head_ref, t_pf *new)
 {
 	t_pf			*last;
 
@@ -63,7 +62,7 @@ int						t_pf_add(t_pf **head_ref, t_pf *new)
 	return (0);
 }
 
-int						t_pf_free(t_pf **head_ref)
+int					t_pf_free(t_pf **head_ref)
 {
 	t_pf			*current;
 	t_pf			*tmp;

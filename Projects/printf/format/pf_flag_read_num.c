@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "pf_format.h"
-void pf_flag_read_char(t_pf *new, char num)
+
+void	pf_flag_read_char(t_pf *new, char num)
 {
 	if (new->precise_num != -1)
 		new->precise_num = new->precise_num * 10 + num - '0';
@@ -27,7 +28,7 @@ void pf_flag_read_char(t_pf *new, char num)
 	}
 }
 
-void pf_flag_read_int(t_pf *new, int num)
+void	pf_flag_read_int(t_pf *new, int num)
 {
 	if (new->precise_num == 0)
 		new->precise_num = num;
