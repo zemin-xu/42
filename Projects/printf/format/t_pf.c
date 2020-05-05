@@ -65,19 +65,19 @@ int						t_pf_add(t_pf **head_ref, t_pf *new)
 int						t_pf_free(t_pf **head_ref)
 {
 	t_pf			*current;
-	t_pf			*next;
+	t_pf			*tmp;
 
 	if (!head_ref || !(current = *head_ref))
 		return (-1);
-	while (current->next)
+	while (current)
 	{
-		next = current->next;
 		free(current->str_before);
+		if (current->has_flag && current->str_after)
+			free(current->str_after);
+		tmp = current->next;
 		free(current);
-		current = next;
+		current = tmp;
 	}
-	free(current->str_before);
-	free(current);
 	head_ref = NULL;
 	return (0);
 }

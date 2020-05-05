@@ -147,7 +147,9 @@ static int format_str(va_list argp, char const **fmt_str_p, t_pf **head_ref)
 		return (parse_format(argp, fmt_str_p, head_ref, new));
 	else
 	{
+		free(new);
 		ft_putstr_fd("Not implemented yet", 1);
+		t_pf_free(head_ref);
 		return (-1);
 	}
 }

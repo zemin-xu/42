@@ -30,6 +30,7 @@ void pf_flag_parse_i(t_pf *list)
 		}
 	}
 	list->len = ft_strlen(list->str_after);
+	free_tmp(list->str_before, tmp);
 }
 
 void pf_flag_exception_i(t_pf *list)
@@ -39,3 +40,4 @@ void pf_flag_exception_i(t_pf *list)
 		*(list->str_before) = '\0';
 	}
 }
+

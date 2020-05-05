@@ -1,17 +1,16 @@
 #include "ft_printf.h"
 #include <stdio.h>
-
-int main()
+int main(void)
 {
-	int i;
-	int j;
+  ft_printf("%6.9s\n", "wherhaesgnaskgna");
+  ft_printf("%9.6s\n", "wherhaesgnaskgna");
+  ft_printf("%6c\n", 'a');
+  ft_printf("%9c\n", 'd');
 
-	i = printf("");
-	j = ft_printf("");
-	
-	printf("-------------\n");
-	printf("ori = %d\n", i); 
-	printf("mine = %d\n", j); 
-	
-	return 0;
+
+  while (1)
+  {
+  }
+
+  return (0);
 }

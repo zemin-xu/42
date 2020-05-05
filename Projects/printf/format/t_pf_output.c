@@ -30,7 +30,6 @@ void	t_pf_flag_parse(t_pf *head)
 					|| curr->format_type == 'u' || curr->format_type == '%'
 					|| curr->format_type == 'p' || curr->format_type == 'x'
 					|| curr->format_type == 'X')
-					
 				pf_flag_parse_i(curr);
 		}
 		curr = curr->next;
