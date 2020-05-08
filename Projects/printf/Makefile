@@ -12,7 +12,8 @@
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c \
+SRC = main.c \
+	ft_printf.c \
 	utils/ft_hextoa.c \
 	utils/ft_itoa.c \
 	utils/ft_ptoa.c \
@@ -49,7 +50,8 @@ ${NAME}: ${OBJ}
 	ar rcs ${NAME} ${OBJ}
 
 all: ${NAME}
-
+compile:
+	${CC} -g ${SRC} -I ${HEADER}
 clean:
 	${RM} ${OBJ}
 

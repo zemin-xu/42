@@ -17,9 +17,9 @@
 
 #include "pf_utils.h"
 
-static int			length(unsigned long n)
+static int			length(unsigned long long n)
 {
-	long			tmp;
+	unsigned long long			tmp;
 	int				count;
 
 	tmp = n;
@@ -37,9 +37,9 @@ char				*ft_ptoa(void *n)
 	int				len;
 	int				i;
 	char			*str;
-	long			tmp;
+	unsigned long long tmp;
 
-	tmp = (unsigned long)n;
+	tmp = (unsigned long long)n;
 	len = length(tmp);
 	if ((str = (char *)malloc((len + 1) * sizeof(char))) == NULL)
 		return (NULL);

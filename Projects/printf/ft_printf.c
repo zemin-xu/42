@@ -14,8 +14,6 @@
 
 static int		parse_flag(va_list argp, char const *format, t_pf *new)
 {
-	int			wildcard;
-
 	new->has_flag = 1;
 	if (*format == '0' && new->pad_num == -1 && new->precise_num == -1)
 		new->is_padded_with_zero = 1;
@@ -24,11 +22,7 @@ static int		parse_flag(va_list argp, char const *format, t_pf *new)
 	else if (*format == '.')
 		new->precise_num = 0;
 	else if (*format == '*')
-	{
-		if ((wildcard = va_arg(argp, int)) < 0)
-			return (-1);
-		pf_flag_read_int(new, wildcard);
-	}
+		pf_flag_read_int(new, va_arg(argp, int));
 	else
 		pf_flag_read_char(new, *format);
 	return (0);
