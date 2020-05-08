@@ -25,8 +25,7 @@ static int		parse_flag(va_list argp, char const *format, t_pf *new)
 		new->precise_num = 0;
 	else if (*format == '*')
 	{
-		if ((wildcard = va_arg(argp, int)) < 0)
-			return (-1);
+		wildcard = va_arg(argp, int);
 		pf_flag_read_int(new, wildcard);
 	}
 	else

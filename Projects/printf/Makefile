@@ -50,6 +50,9 @@ ${NAME}: ${OBJ}
 
 all: ${NAME}
 
+compile:
+	${CC} -g ${SRC} -I ${HEADER}
+	
 clean:
 	${RM} ${OBJ}
 

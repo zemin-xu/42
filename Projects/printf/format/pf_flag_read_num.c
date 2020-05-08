@@ -31,7 +31,17 @@ void	pf_flag_read_char(t_pf *new, char num)
 void	pf_flag_read_int(t_pf *new, int num)
 {
 	if (new->precise_num == 0)
+	{
 		new->precise_num = num;
+	}
 	else
-		new->pad_num = num;
+	{
+		if (num < 0)
+		{
+			new->is_left_justified = 1;
+			new->pad_num = -num;
+		}
+		else
+			new->pad_num = num;
+	}
 }
