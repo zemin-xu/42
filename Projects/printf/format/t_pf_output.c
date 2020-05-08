@@ -50,9 +50,9 @@ int			t_pf_output(t_pf *head)
 		if (curr->format_type == 'c' && *(curr->str_before) == '\0')
 		{
 			if (!curr->has_flag)
-				ft_putstr_fd_c_null(curr->str_before, 1);
+				ft_putstr_fd_c_null(curr->str_before, 1, curr->len);
 			else
-				ft_putstr_fd_c_null(curr->str_after, 1);
+				ft_putstr_fd_c_null(curr->str_after, 1, curr->len);
 		}
 		else
 		{

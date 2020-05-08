@@ -64,6 +64,7 @@ char				*pf_join_with_pad_space(char const *s,
 						size_t str_len, size_t pad_len, int is_left);
 char				*pf_join_prec_with_num(char const *s,
 						size_t num_len, size_t prec_len, int is_minus);
+char				*pf_join_pad_c_null(size_t pad_len, int is_left);
 char				*pf_join_prec_with_0x(char const *s, size_t num_len,
 											size_t prec_len);
 void				free_tmp(char const *str_before, char *tmp);

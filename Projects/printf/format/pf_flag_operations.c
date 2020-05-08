@@ -62,6 +62,29 @@ char				*pf_join_with_pad_space(char const *s, size_t str_len,
 	return (str);
 }
 
+char				*pf_join_pad_c_null(size_t pad_len, int is_left)
+{
+	char			*str;
+	int				i;
+
+	if ((str = (char *)malloc(1 + pad_len)) == NULL)
+		return (NULL);
+	i = -1;
+	if (is_left)
+	{
+		*str = '\0';
+		while (++i < (int)pad_len)
+			*(str + 1 + i) = ' ';
+	}
+	else
+	{
+		while (++i < (int)pad_len)
+			*(str + i) = ' ';
+		*(str + i) = '\0';
+	}
+	return (str);
+}
+
 char				*pf_join_prec_with_num(char const *s, size_t num_len,
 											size_t prec_len, int is_minus)
 {
@@ -88,16 +111,6 @@ char				*pf_join_prec_with_num(char const *s, size_t num_len,
 	return (str);
 }
 
-char				*pf_join_with_0x(char const *s)
-{
-	char			*str;
-
-	if (s == NULL || (str = (char *)malloc(ft_strlen(s) + 3)) == NULL)
-		return (NULL);
-	ft_strncpy(str + 2, s, ft_strlen(s));
-	*(str + ft_strlen(s) + 2) = '\0';
-	return (str);
-}
 char				*pf_join_prec_with_0x(char const *s, size_t num_len,
 											size_t prec_len)
 {

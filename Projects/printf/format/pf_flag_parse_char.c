@@ -37,19 +37,23 @@ void				pf_flag_parse_c(t_pf *list)
 	size_t			str_len;
 	size_t			pad_len;
 
-	str_len = ft_strlen(list->str_before);
-	if (*(list->str_before) == '\0')
-		str_len = 1;
+	str_len = 1; 
 	pad_len = 0;
 	if (list->pad_num != -1 && (int)str_len < list->pad_num)
 		pad_len = list->pad_num - str_len;
-	if (list->is_left_justified)
-		list->str_after = pf_join_with_pad_space(list->str_before,
-												str_len, pad_len, 1);
-	else
-		list->str_after = pf_join_with_pad_space(list->str_before,
-												str_len, pad_len, 0);
-	list->len = ft_strlen(list->str_after);
 	if (*(list->str_before) == '\0')
-		(list->len)++;
+	{
+		list->str_after = pf_join_pad_c_null(pad_len, list->is_left_justified);
+		list->len = 1 + pad_len; 
+	}
+	else
+	{
+		if (list->is_left_justified)
+			list->str_after = pf_join_with_pad_space(list->str_before,
+												str_len, pad_len, 1);
+		else
+			list->str_after = pf_join_with_pad_space(list->str_before,
+												str_len, pad_len, 0);
+		list->len = ft_strlen(list->str_after);
+	}
 }
