@@ -12,24 +12,6 @@
 
 #include "pf_format.h"
 
-static char			*inner_strncpy(char *to, const char *from, size_t size)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (from[i] && i < size)
-	{
-		to[i] = from[i];
-		i++;
-	}
-	while (i < size)
-	{
-		to[i] = '\0';
-		i++;
-	}
-	return (to);
-}
-
 char				*pf_join_with_pad_zero(char const *s, size_t str_len,
 											size_t pad_len, int is_left)
 {
@@ -41,7 +23,7 @@ char				*pf_join_with_pad_zero(char const *s, size_t str_len,
 	i = -1;
 	if (is_left)
 	{
-		inner_strncpy(str, s, str_len);
+		ft_strncpy(str, s, str_len);
 		while (++i < pad_len)
 			*(str + str_len + i) = '0';
 	}
@@ -49,7 +31,7 @@ char				*pf_join_with_pad_zero(char const *s, size_t str_len,
 	{
 		while (++i < pad_len)
 			*(str + i) = '0';
-		inner_strncpy(str + i, s, str_len);
+		ft_strncpy(str + i, s, str_len);
 	}
 	*(str + str_len + i) = '\0';
 	return (str);
@@ -66,7 +48,7 @@ char				*pf_join_with_pad_space(char const *s, size_t str_len,
 	i = -1;
 	if (is_left)
 	{
-		inner_strncpy(str, s, str_len);
+		ft_strncpy(str, s, str_len);
 		while (++i < (int)pad_len)
 			*(str + str_len + i) = ' ';
 	}
@@ -74,7 +56,7 @@ char				*pf_join_with_pad_space(char const *s, size_t str_len,
 	{
 		while (++i < (int)pad_len)
 			*(str + i) = ' ';
-		inner_strncpy(str + i, s, str_len);
+		ft_strncpy(str + i, s, str_len);
 	}
 	*(str + str_len + i) = '\0';
 	return (str);
@@ -101,7 +83,39 @@ char				*pf_join_prec_with_num(char const *s, size_t num_len,
 		*(str + i) = '0';
 		i++;
 	}
-	inner_strncpy(str + i, s, num_len);
+	ft_strncpy(str + i, s, num_len);
+	*(str + num_len + i) = '\0';
+	return (str);
+}
+
+char				*pf_join_with_0x(char const *s)
+{
+	char			*str;
+
+	if (s == NULL || (str = (char *)malloc(ft_strlen(s) + 3)) == NULL)
+		return (NULL);
+	ft_strncpy(str + 2, s, ft_strlen(s));
+	*(str + ft_strlen(s) + 2) = '\0';
+	return (str);
+}
+char				*pf_join_prec_with_0x(char const *s, size_t num_len,
+											size_t prec_len)
+{
+	char			*str;
+	int				i;
+
+	prec_len = prec_len < 0 ? 0 : prec_len;
+	if (s == NULL || (str = (char *)malloc(num_len + prec_len + 3)) == NULL)
+		return (NULL);
+	i = 2;
+	*str = '0';
+	*(str + 1) = 'x';
+	while (i < (int)prec_len + 2)
+	{
+		*(str + i) = '0';
+		i++;
+	}
+	ft_strncpy(str + i, s, num_len);
 	*(str + num_len + i) = '\0';
 	return (str);
 }

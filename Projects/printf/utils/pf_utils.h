@@ -18,6 +18,7 @@
 # include <stdarg.h>
 
 void	ft_putstr_fd(char *s, int fd);
+void	ft_putstr_fd_c_null(char *s, int fd, size_t len);
 size_t	ft_strlen(char const *s);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(char const *string, int c);
@@ -28,5 +29,6 @@ char	*ft_hextoa(unsigned int n, int is_maj);
 char	*ft_ptoa(void *n);
 void	*ft_memmove(void *to, const void *from, size_t size);
 void	*ft_memcpy(void *to, const void *from, size_t size);
+char    *ft_strncpy(char *to, const char *from, size_t size);
 
 #endif

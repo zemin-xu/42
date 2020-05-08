@@ -30,3 +30,17 @@ void		ft_putstr_fd(char *s, int fd)
 		i++;
 	}
 }
+
+void		ft_putstr_fd_c_null(char *s, int fd, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	if (s == NULL)
+		return ;
+	while (i < len)
+	{
+		inner_putchar_fd(*(s + i), fd);
+		i++;
+	}
+}

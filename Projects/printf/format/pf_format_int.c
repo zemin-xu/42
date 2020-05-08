@@ -62,6 +62,7 @@ int				pf_pointer(va_list argp, t_pf **head_ref, t_pf *new)
 		return (-1);
 	new->format_type = 'p';
 	new->str_before = str;
+	new->has_flag = 1;
 	new->len = ft_strlen(str);
 	return (t_pf_add(head_ref, new));
 }

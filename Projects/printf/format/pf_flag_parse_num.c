@@ -64,3 +64,21 @@ void			pf_flag_parse_i(t_pf *list)
 	list->len = ft_strlen(list->str_after);
 	free_tmp(list->str_before, tmp);
 }
+
+void		pf_flag_parse_p(t_pf *list)
+{
+	size_t		str_len;
+	size_t		pad_len;
+	char		*tmp;
+	
+	pf_flag_exception_i(list);
+	str_len = ft_strlen(list->str_before);
+	pad_len = 0;
+	tmp = pf_join_prec_with_0x(list->str_before, str_len,
+		list->precise_num - str_len);
+	if (list->pad_num != -1 && (int)ft_strlen(tmp) < list->pad_num)
+		pad_len = list->pad_num - ft_strlen(tmp);
+	pf_flag_parse_i_justify(list, tmp, pad_len);
+	list->len = ft_strlen(list->str_after);
+	free_tmp(list->str_before, tmp);
+}

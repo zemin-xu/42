@@ -30,6 +30,8 @@ void		t_pf_flag_parse(t_pf *head)
 			|| curr->format_type == 'u' || curr->format_type == '%'
 			|| curr->format_type == 'x' || curr->format_type == 'X')
 				pf_flag_parse_i(curr);
+			else if (curr->format_type == 'p')
+				pf_flag_parse_p(curr);
 		}
 		curr = curr->next;
 	}
@@ -45,10 +47,20 @@ int			t_pf_output(t_pf *head)
 		return (-1);
 	while (curr)
 	{
-		if (!curr->has_flag)
-			ft_putstr_fd(curr->str_before, 1);
+		if (curr->format_type == 'c' && *(curr->str_before) == '\0')
+		{
+			if (!curr->has_flag)
+				ft_putstr_fd_c_null(curr->str_before, 1);
+			else
+				ft_putstr_fd_c_null(curr->str_after, 1);
+		}
 		else
-			ft_putstr_fd(curr->str_after, 1);
+		{
+			if (!curr->has_flag)
+				ft_putstr_fd(curr->str_before, 1);
+			else
+				ft_putstr_fd(curr->str_after, 1);
+		}
 		count += curr->len;
 		curr = curr->next;
 	}
