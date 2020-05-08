@@ -32,14 +32,10 @@ void	pf_flag_read_int(t_pf *new, int num)
 {
 	if (new->precise_num == 0)
 	{
-<<<<<<< HEAD
 		if (num >= 0)
 			new->precise_num = num;
 		else
 			new->precise_num = -1;
-=======
-		new->precise_num = num;
->>>>>>> 604044d717eb986e7f339b3f8861c02151c8c0e6
 	}
 	else
 	{

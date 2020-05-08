@@ -22,14 +22,7 @@ static int		parse_flag(va_list argp, char const *format, t_pf *new)
 	else if (*format == '.')
 		new->precise_num = 0;
 	else if (*format == '*')
-<<<<<<< HEAD
 		pf_flag_read_int(new, va_arg(argp, int));
-=======
-	{
-		wildcard = va_arg(argp, int);
-		pf_flag_read_int(new, wildcard);
-	}
->>>>>>> 604044d717eb986e7f339b3f8861c02151c8c0e6
 	else
 		pf_flag_read_char(new, *format);
 	return (0);

@@ -50,15 +50,8 @@ ${NAME}: ${OBJ}
 	ar rcs ${NAME} ${OBJ}
 
 all: ${NAME}
-<<<<<<< HEAD
 compile:
 	${CC} -g ${SRC} -I ${HEADER}
-=======
-
-compile:
-	${CC} -g ${SRC} -I ${HEADER}
-	
->>>>>>> 604044d717eb986e7f339b3f8861c02151c8c0e6
 clean:
 	${RM} ${OBJ}
 
