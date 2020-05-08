@@ -132,11 +132,3 @@ char				*pf_join_prec_with_0x(char const *s, size_t num_len,
 	*(str + num_len + i) = '\0';
 	return (str);
 }
-
-void				free_tmp(char const *str_before, char *tmp)
-{
-	if (!tmp)
-		return ;
-	if (ft_strlen(str_before) != ft_strlen(tmp))
-		free(tmp);
-}

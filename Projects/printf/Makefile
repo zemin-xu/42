@@ -12,8 +12,7 @@
 
 NAME = libftprintf.a
 
-SRC = main.c \
-	ft_printf.c \
+SRC = ft_printf.c \
 	utils/ft_hextoa.c \
 	utils/ft_itoa.c \
 	utils/ft_ptoa.c \

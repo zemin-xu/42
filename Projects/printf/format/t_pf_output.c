@@ -43,8 +43,7 @@ int			t_pf_output(t_pf *head)
 	int		count;
 
 	count = 0;
-	if (!(curr = head))
-		return (-1);
+	curr = head;
 	while (curr)
 	{
 		if (curr->format_type == 'c' && *(curr->str_before) == '\0')
@@ -65,4 +64,12 @@ int			t_pf_output(t_pf *head)
 		curr = curr->next;
 	}
 	return (count);
+}
+
+void		free_tmp(char const *str_before, char *tmp)
+{
+	if (!tmp)
+		return ;
+	if (ft_strlen(str_before) != ft_strlen(tmp))
+		free(tmp);
 }

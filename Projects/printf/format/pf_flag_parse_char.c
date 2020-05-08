@@ -37,14 +37,14 @@ void				pf_flag_parse_c(t_pf *list)
 	size_t			str_len;
 	size_t			pad_len;
 
-	str_len = 1; 
+	str_len = 1;
 	pad_len = 0;
 	if (list->pad_num != -1 && (int)str_len < list->pad_num)
 		pad_len = list->pad_num - str_len;
 	if (*(list->str_before) == '\0')
 	{
 		list->str_after = pf_join_pad_c_null(pad_len, list->is_left_justified);
-		list->len = 1 + pad_len; 
+		list->len = 1 + pad_len;
 	}
 	else
 	{

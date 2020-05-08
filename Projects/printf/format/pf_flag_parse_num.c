@@ -65,12 +65,12 @@ void			pf_flag_parse_i(t_pf *list)
 	free_tmp(list->str_before, tmp);
 }
 
-void		pf_flag_parse_p(t_pf *list)
+void			pf_flag_parse_p(t_pf *list)
 {
 	size_t		str_len;
 	size_t		pad_len;
 	char		*tmp;
-	
+
 	pf_flag_exception_i(list);
 	str_len = ft_strlen(list->str_before);
 	pad_len = 0;

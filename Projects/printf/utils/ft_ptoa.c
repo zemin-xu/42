@@ -32,12 +32,12 @@ static int				length(unsigned long long n)
 	return (count);
 }
 
-char				*ft_ptoa(void *n)
+char					*ft_ptoa(void *n)
 {
-	int				len;
-	int				i;
-	char			*str;
-	unsigned long long tmp;
+	int					len;
+	int					i;
+	char				*str;
+	unsigned long long	tmp;
 
 	tmp = (unsigned long long)n;
 	len = length(tmp);

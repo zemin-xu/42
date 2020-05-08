@@ -39,12 +39,12 @@ void	pf_flag_read_int(t_pf *new, int num)
 	}
 	else
 	{
- 		if (num < 0)
- 		{
- 			new->is_left_justified = 1;
- 			new->pad_num = -num;
- 		}
- 		else
- 			new->pad_num = num;
- 	}
+		if (num < 0)
+		{
+			new->is_left_justified = 1;
+			new->pad_num = -num;
+		}
+		else
+			new->pad_num = num;
+	}
 }
