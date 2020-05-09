@@ -50,3 +50,12 @@ size_t				ft_strlcpy(char *to, const char *from, size_t size)
 	}
 	return (inner_strlen(from));
 }
+
+Int main()
+{
+
+Int	*p;
+
+ft_strtrim(p, "data");
+
+}
