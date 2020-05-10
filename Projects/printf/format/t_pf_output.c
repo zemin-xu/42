@@ -27,11 +27,13 @@ void		t_pf_flag_parse(t_pf *head)
 			else if (curr->format_type == 'c')
 				pf_flag_parse_c(curr);
 			else if (curr->format_type == 'i' || curr->format_type == 'd'
-			|| curr->format_type == 'u' || curr->format_type == '%'
-			|| curr->format_type == 'x' || curr->format_type == 'X')
+			|| curr->format_type == 'u' || curr->format_type == 'x'
+			|| curr->format_type == 'X')
 				pf_flag_parse_i(curr);
 			else if (curr->format_type == 'p')
 				pf_flag_parse_p(curr);
+			else if (curr->format_type == '%')
+				pf_flag_parse_per(curr);
 		}
 		curr = curr->next;
 	}

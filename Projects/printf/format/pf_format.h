@@ -70,6 +70,7 @@ char				*pf_join_prec_with_0x(char const *s, size_t num_len,
 void				free_tmp(char const *str_before, char *tmp);
 void				pf_flag_parse_s(t_pf *list);
 void				pf_flag_parse_c(t_pf *list);
+void				pf_flag_parse_per(t_pf *list);
 void				pf_flag_parse_i(t_pf *list);
 void				pf_flag_parse_p(t_pf *list);
 #endif

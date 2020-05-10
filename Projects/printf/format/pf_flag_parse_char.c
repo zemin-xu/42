@@ -57,3 +57,21 @@ void				pf_flag_parse_c(t_pf *list)
 		list->len = ft_strlen(list->str_after);
 	}
 }
+
+void				pf_flag_parse_per(t_pf *list)
+{
+	size_t			str_len;
+	size_t			pad_len;
+
+	str_len = 1;
+	pad_len = 0;
+	if (list->pad_num - str_len > 0)
+		pad_len = list->pad_num - str_len;
+	if (list->is_left_justified)
+		list->str_after = pf_join_with_pad_space(list->str_before,
+												str_len, pad_len, 1);
+	else
+		list->str_after = pf_join_with_pad_space(list->str_before,
+												str_len, pad_len, 0);
+	list->len = ft_strlen(list->str_after);
+}
